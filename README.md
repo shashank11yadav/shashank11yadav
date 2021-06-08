@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://github.com/shashank11yadav/shashank11yadav/blob/master/Assets/hello.gif" alt="hello" /> </p>
+<p align="center"> <img src="https://github.com/shashank11yadav/shashank11yadav/blob/master/Assets/hello.gif" height= "200"alt="hello" /> </p>
 <h1 align="center">Hi 👋, I'm Shashank Yadav</h1>
 
 <!--
