@@ -45,9 +45,11 @@ src="https://github.com/devicons/devicon/blob/master/icons/android/android-plain
 
 Thanks!! ✌️
 
-<p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" />
- <img align="right" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" />
+<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" />
  </a>
+ 
+<p align="center"> <img src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" />
+ 
 
 <p align="center">
 <a href="https://www.linkedin.com/in/shashank-yadav-517028195/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="vrindagupta6828" height="30" width="30" /></a>
