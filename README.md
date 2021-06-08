@@ -40,8 +40,8 @@ src="https://github.com/devicons/devicon/blob/master/icons/android/android-plain
 
 ## Contact Me ☎️
 
-* Mail me on [Gmail](shashank.yadav3032@gmail.com) 
-* Connect me on [LinkedIn](linkedin.com/in/shashank-yadav-517028195)
+* Mail me on <a href="mailto:shashank.yadav3032@gmail.com" rel="me">Mail</a>
+* Connect me on <a href="https://www.linkedin.com/in/shashank-yadav-517028195/" rel="me">LinkedIn</a>
 
 Thanks!! ✌️
 
