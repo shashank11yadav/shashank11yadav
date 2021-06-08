@@ -48,7 +48,7 @@ Thanks!! ✌️
 <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" />
  </a>
  
-<p> <img src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" />
+<img align="center" src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" />
  
 
 <p align="center">
