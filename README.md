@@ -1,5 +1,5 @@
 <p align="center"> <img src="https://github.com/shashank11yadav/shashank11yadav/blob/master/Assets/HELO.gif" height= "400" alt="hello" /> </p>
-<h1 align="center">Hi <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px">, I'm Shashank Yadav</h1>
+<h1 align="center"><img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> I'm Shashank Yadav</h1>
 
 <!--
 **shashank11yadav/shashank11yadav** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
@@ -25,7 +25,8 @@ Here are some ideas to get you started:
 - 5⭐ at <a href="https://www.hackerrank.com/Hell_sha1201">Hackerrank</a> Problem Solving, CPP, SQL
 - Currently Learning **Python**, **Android** and **Machine Learning**
 - Ask me about anything, I am happy to help
-- Willing to contribute more and more in **Open Source** in 2021
+
+<!-- - Willing to contribute more and more in **Open Source** in 2021 -->
 
 
 <h2 align="left">:hammer_and_wrench: Technologies and Tools I use:</h2>
@@ -45,10 +46,10 @@ src="https://github.com/devicons/devicon/blob/master/icons/android/android-plain
 
 Thanks!! ✌️
 
-<img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" />
+<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" />
  </a>
  
-<img align="center" src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" />
+<!-- <img align="center" src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" /> -->
  
 
 <p align="center">
