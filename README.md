@@ -22,12 +22,13 @@ Here are some ideas to get you started:
 
 - I'm Shashank Yadav currently a Third Year CSE student at <a href="https://www.gehu.ac.in/">@GEHU  </a>
 - I'm a **Developer** | **Programmer** | **Learner**
-- 5⭐ at <a href="https://www.hackerrank.com/Hell_sha1201">Hackerrank</a> Problem Solving, CPP, SQL
+- **5**⭐ at <a href="https://www.hackerrank.com/Hell_sha1201">Hackerrank</a> in **Problem Solving**, **CPP**, **SQL**
 - Currently Learning **Python**, **Android** and **Machine Learning**
 - Ask me about anything, I am happy to help
 
 <!-- - Willing to contribute more and more in **Open Source** in 2021 -->
 
+<br/>
 
 <h2 align="left">:hammer_and_wrench: Technologies and Tools I use:</h2>
 
@@ -46,16 +47,18 @@ src="https://github.com/devicons/devicon/blob/master/icons/android/android-plain
 
 Thanks!! ✌️
 
-<img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" />
- </a>
+<!-- <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" /> -->
+
+[![Most Used Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact)](https://github.com/shashank11yadav/github-readme-stats)
+
  
 <!-- <img align="center" src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" /> -->
  
 
 <p align="center">
-<a href="https://www.linkedin.com/in/shashank-yadav-517028195/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="vrindagupta6828" height="30" width="30" /></a>
-<a href="https://www.facebook.com/people/Shashank-Yadav/100006999601029/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="vrinda gupta.1422409" height="30" width="30" /></a>
-<a href="https://www.instagram.com/shashankyadav3032/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="vrinda_gupta.vg" height="30" width="30" /></a>
+<a href="https://www.linkedin.com/in/shashank-yadav-517028195/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="shashank-yadav-517028195" height="30" width="30" /></a>
+<a href="https://www.facebook.com/people/Shashank-Yadav/100006999601029/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="Shashank-Yadav/100006999601029" height="30" width="30" /></a>
+<a href="https://www.instagram.com/shashankyadav3032/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="shashankyadav3032" height="30" width="30" /></a>
 <a href="https://leetcode.com/Shashank-yadav/" target="_blank"><img align="center" alt="Shashank's Leetcode" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/leetcode.svg" />
 </a>
 </p>
