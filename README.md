@@ -14,9 +14,10 @@ Here are some ideas to get you started:
 - 📫 How to reach me: ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
--->
+
 
 ![visitors](https://visitor-badge.glitch.me/badge?page_id=https://github.com/shashank11yadav)
+-->
 
 <img align="right" alt="GIF" src="https://github.com/shashank11yadav/shashank11yadav/blob/master/Assets/code.gif?raw=true" width="400" height="320" />
 
