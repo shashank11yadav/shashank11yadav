@@ -1,65 +1,66 @@
-<p align="center"> <img src="https://github.com/shashank11yadav/shashank11yadav/blob/master/Assets/HELO.gif" height= "400" alt="hello" /> </p>
-<h1 align="center"><img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px"> I'm Shashank Yadav</h1>
+<!-- Profile README for github.com/shashank11yadav -->
 
-<!--
-**shashank11yadav/shashank11yadav** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
-
-
-![visitors](https://visitor-badge.glitch.me/badge?page_id=https://github.com/shashank11yadav)
+<!-- Optional animated header
+![header](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=180&section=header&fontAlignY=31&text=Shashank%20Yadav&fontSize=40)
 -->
 
-<img align="right" alt="GIF" src="https://github.com/shashank11yadav/shashank11yadav/blob/master/Assets/code.gif?raw=true" width="400" height="320" />
-
-- I'm Shashank Yadav pursuing Masters in Computer Science at <a href="https://www.umb.edu/">@UMass  </a>
-- I'm a **Developer** | **Programmer** | **Learner**
-- **5**⭐ at <a href="https://www.hackerrank.com/Hell_sha1201">Hackerrank</a> in **Problem Solving**, **CPP**, **SQL**
-- Currently Learning **Python**, **Android** and **Machine Learning**
-- Ask me about anything, I am happy to help
-
-<!-- - Willing to contribute more and more in **Open Source** in 2021 -->
-
-<br/>
-
-<h2 align="left">:hammer_and_wrench: Technologies and Tools I use:</h2>
-
-<img src="https://github.com/devicons/devicon/blob/master/icons/github/github-original-wordmark.svg" alt="github" width="50" height="50"/><img
-src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/cpp/cpp.png" width="50" height="50"/><img                                   src="https://github.com/devicons/devicon/blob/master/icons/python/python-original-wordmark.svg" alt="python" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original-wordmark.svg" alt="java" width="50" height="50"/><img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="tensorflow" width="40" height="40"/> <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" alt="mySql" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/git/git-original-wordmark.svg" alt="git" width="50" height="50"/><img src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="50" height="50"/><img
-src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="50" height="50"/><img
-src="https://github.com/devicons/devicon/blob/master/icons/android/android-plain-wordmark.svg" alt="android" width="50" height="50"/>
-<a href="https://firebase.google.com/" target="_blank"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a>
-
-<br />
-
-## Contact Me ☎️
-
-* Mail me on <a href="mailto:shashank.yadav3032@gmail.com" rel="me">GMail</a>
-* Connect me on <a href="https://www.linkedin.com/in/shashank-yadav-517028195/" rel="me">LinkedIn</a>
-
-Thanks!! ✌️
-
-<!-- <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact" alt="shashank11yadav" /> -->
-
-[![Most Used Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact)](https://github.com/shashank11yadav/github-readme-stats)
-
- 
-<!-- <img align="center" src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&theme=radical&count_private=true" alt="ShashankYadav github stats" /> -->
- 
+<h1 align="center"><img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px" alt="wave"> Shashank Yadav</h1>
+<p align="center"><strong>Software Engineer</strong> — Java/Spring • Python • AWS/Kubernetes • AI/ML in production</p>
 
 <p align="center">
-<a href="https://www.linkedin.com/in/shashank-yadav-cs/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="https://www.linkedin.com/in/shashank-yadav-cs/" height="30" width="30" /></a>
-<a href="https://www.facebook.com/people/Shashank-Yadav/100006999601029/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/facebook.svg" alt="Shashank-Yadav/100006999601029" height="30" width="30" /></a>
-<a href="https://www.instagram.com/shashankyadav3032/" target="_blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/instagram.svg" alt="shashankyadav3032" height="30" width="30" /></a>
-<a href="https://leetcode.com/Shashank-yadav/" target="_blank"><img align="center" alt="Shashank's Leetcode" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/leetcode.svg" />
-</a>
+  <a href="https://leetcode.com/u/Shashank-yadav/">
+    <img alt="LeetCode" src="https://img.shields.io/badge/LeetCode-@Shashank--yadav-111?style=for-the-badge&logo=leetcode&logoColor=FFA116&labelColor=0F0F0F">
+  </a>
+  <a href="https://www.linkedin.com/in/shashank-yadav-cs/">
+    <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-shashank--yadav--cs-111?style=for-the-badge&logo=linkedin&logoColor=0A66C2&labelColor=0F0F0F">
+  </a>
+  <a href="mailto:shashank.yadav3032@gmail.com">
+    <img alt="Email" src="https://img.shields.io/badge/Gmail-shashank.yadav3032%40gmail.com-111?style=for-the-badge&logo=gmail&logoColor=EA4335&labelColor=0F0F0F">
+  </a>
+  <a href="https://shashank11yadav.github.io/shashank-portfolio/">
+    <img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Visit-111?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0F0F0F">
+  </a>
+  <a href="https://drive.google.com/file/d/1kUL4MU6jjOG5LcZR-9yWCXKUhe4-BcV3/view">
+    <img alt="Resume" src="https://img.shields.io/badge/Resume-View-111?style=for-the-badge&logo=googledrive&logoColor=34A853&labelColor=0F0F0F">
+  </a>
 </p>
+
+<p align="center"> <img src="https://readme-typing-svg.demolab.com?font=Inter&size=16&duration=2600&pause=700&center=true&vCenter=true&width=520&lines=Backend+%2F+Platform+%2F+ML-in-prod;MS+CS+%40+UMass+Boston;AWS+%7C+Kubernetes+%7C+Postgres;Clean+APIs.+Reliable+systems.+Measured+impact.;Open+to+Software+Engineer%2C+ML-Infra+roles" alt="typing intro" /> </p>
+
+<img align="right" alt="Coding" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="350" height="320" />
+
+### About
+- MS in Computer Science, **UMass Boston**  
+- Built cloud-native services with **Java/Spring**, **Python**, **Node/React**; deploy on **AWS/Kubernetes** with CI/CD  
+- Solved **700+** LeetCode problems in **C++** and **Java**  
+- Interested in data-intensive backends, RAG/OCR pipelines, and performance tuning
+
+### Selected projects
+- **AccuScan** — Lightweight OCR + triage toolkit for unstructured docs. [🔗](https://github.com/shashank11yadav/AccuScan)
+- **PitchPerfect** — LLM-powered role-play assistant with real-time analytics. [🔗](https://amie-jobs-wat9.vercel.app/signin)
+- **BuzzRoom** — Real-time chat with OTP auth and delivery receipts. [🔗](https://github.com/shashank11yadav/BuzzRoom)
+
+### Toolbox
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=java,spring,python,cpp,js,ts,nodejs,react,next,postgres,mysql,mongodb,redis,docker,kubernetes,aws,jenkins,linux,opencv,tensorflow,pytorch,sklearn,git,expressjs,bootstrap,postman,bash,firebase&perline=14" alt="Skills" />
+</p>
+
+### By the numbers
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=shashank11yadav&show_icons=true&hide_title=true&hide_border=true&rank_icon=github" alt="GitHub stats" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact&hide_border=true" alt="Top languages" />
+</p>
+<p align="center">
+  <a href="https://leetcode.com/u/Shashank-yadav/">
+    <img src="https://leetcard.jacoblin.cool/Shashank-yadav?ext=activity" alt="LeetCode stats"/>
+  </a>
+</p>
+
+---
+
+### Let’s connect
+If you’re building data-intensive, ML-enabled products and need someone who ships — reach out via **email** or **LinkedIn** (above).
+
+<!-- Optional footer
+![footer](https://capsule-render.vercel.app/api?type=waving&color=timeGradient&height=100&section=footer)
+-->
