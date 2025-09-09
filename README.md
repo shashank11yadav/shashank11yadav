@@ -17,10 +17,10 @@
   <a href="mailto:shashank.yadav3032@gmail.com">
     <img alt="Email" src="https://img.shields.io/badge/Gmail-shashank.yadav3032%40gmail.com-111?style=for-the-badge&logo=gmail&logoColor=EA4335&labelColor=0F0F0F">
   </a>
-  <a href="https://shashank11yadav.github.io/shashank-portfolio/">
+  <a href="https://shashank11yadav.github.io/shashank-yadav-portfolio/">
     <img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Visit-111?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0F0F0F">
   </a>
-  <a href="https://drive.google.com/file/d/1kUL4MU6jjOG5LcZR-9yWCXKUhe4-BcV3/view">
+  <a href="https://drive.google.com/file/d/1snhoAl2qE-RtV797FtQCy2SIOwR_2YRu/view">
     <img alt="Resume" src="https://img.shields.io/badge/Resume-View-111?style=for-the-badge&logo=googledrive&logoColor=34A853&labelColor=0F0F0F">
   </a>
 </p>
