@@ -1,0 +1,47 @@
+# Refreshes the moving parts of the profile README and pushes them to the `output` branch,
+# so `master` only changes by hand:
+#   - hero-{light,dark}.svg with the current profile-view count (read from the komarev.com
+#     counter that the README loads as a 1x1 image; each refresh adds one view)
+#   - github-snake{,-dark}.svg, the contribution graph being eaten by a snake
+name: profile
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: profile
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Render the banner with the view count
+        run: |
+          views=$(curl -fsS "https://komarev.com/ghpvc/?username=${{ github.repository_owner }}" | python3 scripts/views.py) || views=""
+          python3 scripts/render_svgs.py dist --only hero ${views:+--views "$views"}
+
+      - uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3.5.0
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-snake.svg?color_snake=#0969da
+            dist/github-snake-dark.svg?palette=github-dark&color_snake=#4493f8
+
+      - uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v5.0.0
+        with:
+          target_branch: output
+          build_dir: dist
+          keep_history: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
