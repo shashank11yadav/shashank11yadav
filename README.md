@@ -1,4 +1,4 @@
-## Hi, I'm Shashank
+# Hi, I'm Shashank
 
 **Software Engineer | MS CS @ UMass Boston (’25) | Python, Java/Spring, Kafka, AWS**
 
@@ -10,7 +10,7 @@ I lean backend: real-time services, the data paths behind them, and checking whe
 
 [Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://shashank11yadav.github.io/shashank-yadav-portfolio/) · [Resume](https://drive.google.com/file/d/1snhoAl2qE-RtV797FtQCy2SIOwR_2YRu/view) · [LeetCode](https://leetcode.com/u/Shashank-yadav/)
 
-### Experience
+## 01 / Experience
 
 <details open>
 <summary><b>Software Developer · Ally Financial</b> · 07/2025 – present · Remote<br><sub>Real-time fraud scoring: fraud losses −18% in the first quarter after launch</sub></summary>
@@ -55,27 +55,32 @@ I lean backend: real-time services, the data paths behind them, and checking whe
 
 </details>
 
-### Featured work
+## 02 / Featured work
 
-**[pytest-triage](https://github.com/shashank11yadav/pytest-triage)**: a shadow-mode triage assistant for pytest's GitHub issues, scored against what the maintainers actually did.
+### [pytest-triage](https://github.com/shashank11yadav/pytest-triage)
+A shadow-mode triage assistant for pytest's GitHub issues, scored against what the maintainers actually did.
 - Label suggestions: **macro-F1 0.52 vs 0.41** for a free kNN baseline (+0.12, 95% CI +0.06 to +0.17, paired bootstrap).
 - Duplicate finder: **10/15 known originals recovered, 3/30 false alarms**, after fixing a retrieval-pool bug.
 - Tested against **19 prompt-injection attacks**. 2 got through, and both are now routed to a human.
 
 `Python · Gemini · hybrid search · bootstrap evals · Docker`
 
-**[Ask the Filings](https://github.com/shashank11yadav/ask-the-filings)**: question answering over SEC 10-K filings with cited answers. It says so when the filings don't contain the answer.
+### [Ask the Filings](https://github.com/shashank11yadav/ask-the-filings)
+Question answering over SEC 10-K filings with cited answers. It says so when the filings don't contain the answer.
 - Postgres with pgvector and full-text search, merged with Reciprocal Rank Fusion. Answers come back as structured JSON with citation ids.
 - Dense, sparse and hybrid retrieval compared on recall@8, faithfulness, abstention accuracy, p95 latency and $/query.
 
 `Python · Postgres/pgvector · Gemini · FastAPI · Docker`
 
-**[SyncScribe](https://github.com/shashank11yadav/collaborative-editor)**: a Google-Docs-style real-time editor with presence, inline comments and sharing. [Live demo](https://collaborative-editor-ten.vercel.app)
+### [SyncScribe](https://github.com/shashank11yadav/collaborative-editor)
+A Google-Docs-style real-time editor with presence, inline comments and sharing. [Live demo](https://collaborative-editor-ten.vercel.app)
 
 `Next.js · TypeScript · Liveblocks · Lexical`
 
 <!--
-### Open-source contributions
+When you enable this section, renumber the sections after it (03 → 04, 04 → 05).
+
+## 03 / Open-source contributions
 
 **<Project>** · <N> merged pull requests
 <One sentence: what the change does and why it mattered.> ([#1234](https://github.com/<org>/<repo>/pull/1234))
@@ -84,7 +89,7 @@ I lean backend: real-time services, the data paths behind them, and checking whe
 <One sentence.> ([#5678](https://github.com/<org>/<repo>/pull/5678), [#5690](https://github.com/<org>/<repo>/pull/5690))
 -->
 
-### Three things I'd bring up in an interview
+## 03 / Three things I'd bring up in an interview
 
 **More retrieval candidates made duplicate detection worse.** In pytest-triage, merging the LLM's expansion queries into one ranked pool pushed easy duplicates out of the top 100. Keeping the issue's own top 8 and adding the expansion results as a separate pool raised recall from 6/15 to 10/15.
 
@@ -92,7 +97,7 @@ I lean backend: real-time services, the data paths behind them, and checking whe
 
 **340 ms → 265 ms came from the database layer.** At Ally, reworking the query plans behind the fraud APIs and adding connection pooling cut average response time by about a fifth. <!-- Add what you found: which query, what the plan was doing, how you measured it. -->
 
-### Toolbox
+## 04 / Toolbox
 
 | Area | Tools | Where I've used them |
 | :--- | :--- | :--- |
@@ -102,3 +107,11 @@ I lean backend: real-time services, the data paths behind them, and checking whe
 | **Cloud & delivery** | AWS (EKS, Lambda, SQS/SNS, S3), Docker, Kubernetes, GitHub Actions, Jenkins | Ally CI/CD to EKS, TCS Jenkins pipeline |
 | **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally narrative generation |
 | **Quality & reliability** | PyTest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
+
+---
+
+**Working on real-time systems or production ML? I'd like to hear about it.**
+I'm looking for backend, ML/AI engineering and platform roles.
+
+**US · Open to remote**
+[Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://shashank11yadav.github.io/shashank-yadav-portfolio/)
