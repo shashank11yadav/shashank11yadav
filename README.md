@@ -168,7 +168,11 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 | **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally narrative generation |
 | **Quality & reliability** | PyTest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/github-snake-dark.svg"><img src="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/github-snake.svg" width="100%" alt="A snake eating the squares of Shashank's GitHub contribution graph"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/h-activity-dark.svg"><img src="./Assets/profile/h-activity-light.svg" width="100%" alt="06 Activity"></picture>
+
+Public activity only: work I do for employers lives in their repositories, so it doesn't show up here. Redrawn every 6 hours from GitHub's contribution calendar.
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/activity-dark.svg"><img src="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/activity-light.svg" width="100%" alt="Contribution field: 21 GitHub contributions in the last 12 months, 8 active days, longest streak 2 days, current streak 2 days, busiest day Mon 12 Oct 2026 with 6."></picture>
 
 ---
 
@@ -181,7 +185,7 @@ I'm looking for backend, ML/AI engineering and platform roles.
 <details>
 <summary>Plain-text version of the images</summary>
 
-Contribution graph: a snake eats this year's GitHub contributions, redrawn daily.
+**Activity:** a year of public GitHub contributions, one cell per day, with totals, active days, streaks and the busiest day; redrawn every 6 hours.
 
 **Shashank Yadav**: open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS Computer Science, UMass Boston (2025) · based in the United States, open to remote · Software Developer at Ally Financial. Stream (Kafka, Redis) → serve (gRPC, Spring, FastAPI) → retrieve (pgvector, BM25, RRF) → evaluate (bootstrap CIs, audits).
 

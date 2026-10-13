@@ -11,9 +11,9 @@ Placeholders:
     {{buttons}}    the row of link buttons
     {{views}}      the komarev.com counter, loaded as an invisible 1x1 image; the count is drawn
                    into the banner by .github/workflows/profile.yml
-    {{pic:hero}}   is served from the `output` branch (it carries the view count);
+    {{pic:hero}} and {{pic:activity}} are served from the `output` branch (view count and
+                   contribution field are refreshed there every 6 hours by .github/workflows/profile.yml);
                    pass --preview to use the local copy instead
-    {{snake}}      contribution-graph snake, redrawn every 6 hours by .github/workflows/profile.yml
 """
 import pathlib
 import re
@@ -24,6 +24,7 @@ ASSETS = "./Assets/profile"
 USER = "shashank11yadav"
 RAW = f"https://raw.githubusercontent.com/{USER}/{USER}/output"
 PREVIEW = "--preview" in sys.argv
+LIVE = {"hero", "activity"}     # images redrawn by the profile workflow
 
 LINKS = {
     "portfolio": "https://shashank11yadav.github.io/shashank-yadav-portfolio/",
@@ -41,7 +42,7 @@ def alt(name):
 
 
 def picture(name, extra=""):
-    base = RAW if name == "hero" and not PREVIEW else ASSETS
+    base = RAW if name in LIVE and not PREVIEW else ASSETS
     return (f'<picture><source media="(prefers-color-scheme: dark)" srcset="{base}/{name}-dark.svg">'
             f'<img src="{base}/{name}-light.svg" {extra}alt="{alt(name)}"></picture>')
 
@@ -50,12 +51,6 @@ def buttons():
     size = 'height="40" '
     cells = [f'<a href="{url}">{picture("btn-" + key, size)}</a>' for key, url in LINKS.items()]
     return '<p align="center">\n' + "\n".join(cells) + "\n</p>"
-
-
-def snake():
-    return (f'<picture><source media="(prefers-color-scheme: dark)" srcset="{RAW}/github-snake-dark.svg">'
-            f'<img src="{RAW}/github-snake.svg" width="100%" '
-            f'alt="A snake eating the squares of Shashank\'s GitHub contribution graph"></picture>')
 
 
 def views():
@@ -68,7 +63,7 @@ def fill(match):
         return picture(arg, 'width="100%" ')
     if kind == "h":
         return picture("h-" + arg, 'width="100%" ')
-    return {"buttons": buttons, "snake": snake, "views": views}[kind]()
+    return {"buttons": buttons, "views": views}[kind]()
 
 
 template = (ROOT / "scripts/README.template.md").read_text()

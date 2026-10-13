@@ -2,7 +2,7 @@
 # so `master` only changes by hand:
 #   - hero-{light,dark}.svg with the current profile-view count (read from the komarev.com
 #     counter that the README loads as a 1x1 image; each refresh adds one view)
-#   - github-snake{,-dark}.svg, the contribution graph being eaten by a snake
+#   - activity-{light,dark}.svg, the contribution field (last 12 months, one cell per day)
 name: profile
 
 on:
@@ -26,17 +26,13 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Render the banner with the view count
+      - name: Render the banner and the contribution field
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           views=$(curl -fsS "https://komarev.com/ghpvc/?username=${{ github.repository_owner }}" | python3 scripts/views.py) || views=""
-          python3 scripts/render_svgs.py dist --only hero ${views:+--views "$views"}
-
-      - uses: Platane/snk/svg-only@d8f6715049803e982ee5ff501b6b9b7d5deeb09b # v3.5.0
-        with:
-          github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-snake.svg?color_snake=#0969da
-            dist/github-snake-dark.svg?palette=github-dark&color_snake=#4493f8
+          python3 scripts/contributions.py "${{ github.repository_owner }}" > "$RUNNER_TEMP/contributions.json"
+          python3 scripts/render_svgs.py dist --only hero,activity --contrib "$RUNNER_TEMP/contributions.json" ${views:+--views "$views"}
 
       - uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v5.0.0
         with:

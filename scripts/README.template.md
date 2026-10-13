@@ -159,7 +159,11 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 | **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally narrative generation |
 | **Quality & reliability** | PyTest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
 
-{{snake}}
+{{h:activity}}
+
+Public activity only: work I do for employers lives in their repositories, so it doesn't show up here. Redrawn every 6 hours from GitHub's contribution calendar.
+
+{{pic:activity}}
 
 ---
 
@@ -172,7 +176,7 @@ I'm looking for backend, ML/AI engineering and platform roles.
 <details>
 <summary>Plain-text version of the images</summary>
 
-Contribution graph: a snake eats this year's GitHub contributions, redrawn daily.
+**Activity:** a year of public GitHub contributions, one cell per day, with totals, active days, streaks and the busiest day; redrawn every 6 hours.
 
 **Shashank Yadav**: open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS Computer Science, UMass Boston (2025) · based in the United States, open to remote · Software Developer at Ally Financial. Stream (Kafka, Redis) → serve (gRPC, Spring, FastAPI) → retrieve (pgvector, BM25, RRF) → evaluate (bootstrap CIs, audits).
 

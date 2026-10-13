@@ -9,6 +9,7 @@ ARGS = argparse.ArgumentParser(description=__doc__)
 ARGS.add_argument("out")
 ARGS.add_argument("--views", type=int, help="profile-view count to show in the banner")
 ARGS.add_argument("--only", help="comma-separated image names to render, e.g. hero")
+ARGS.add_argument("--contrib", help="contributions JSON from scripts/contributions.py")
 ARGS = ARGS.parse_args()
 OUT = ARGS.out
 os.makedirs(OUT, exist_ok=True)
@@ -16,10 +17,12 @@ os.makedirs(OUT, exist_ok=True)
 THEMES = {
     "light": dict(bg="#f6f8fa", card="#ffffff", border="#d0d7de", text="#1f2328",
                   muted="#59636e", accent="#0969da", good="#1a7f37", line="#8c959f",
-                  goodbg="#f0fff4", warm="#bc4c00", violet="#8250df", pink="#bf3989", eye="#1f2328"),
+                  goodbg="#f0fff4", warm="#bc4c00", violet="#8250df", pink="#bf3989", eye="#1f2328",
+                  cells=["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"], glow="#b6d6ff"),
     "dark": dict(bg="#161b22", card="#0d1117", border="#30363d", text="#e6edf3",
                  muted="#9198a1", accent="#4493f8", good="#3fb950", line="#6e7681",
-                 goodbg="#0f1f14", warm="#f0883e", violet="#ab7df8", pink="#db61a2", eye="#0d1117"),
+                 goodbg="#0f1f14", warm="#f0883e", violet="#ab7df8", pink="#db61a2", eye="#0d1117",
+                 cells=["#21262d", "#0e4429", "#006d32", "#26a641", "#39d353"], glow="#1f3f6b"),
 }
 SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif"
 MONO = "ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace"
@@ -385,12 +388,13 @@ def button(t, label, primary):
 
 # ---------------------------------------------------------------- section headers
 SERIF = "'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif"
-HEADER_COLOURS = ["accent", "warm", "good", "violet", "pink", "violet"]
+HEADER_COLOURS = ["accent", "warm", "good", "violet", "pink", "violet", "warm"]
 SECTIONS = [("about", "01", "About", "whoami"), ("experience", "02", "Experience", "where I've shipped"),
             ("work", "03", "Featured work", "built, measured, written up"),
             ("opensource", "04", "Open-source contributions", "upstream"),
             ("interview", "04", "Things I'd bring up", "in an interview"),
-            ("toolbox", "05", "Toolbox", "what I reach for")]
+            ("toolbox", "05", "Toolbox", "what I reach for"),
+            ("activity", "06", "Activity", "a year on GitHub")]
 
 
 def header(t, num, title, tag, colour="accent", idx=0):
@@ -587,9 +591,112 @@ def syncscribe(t):
                inner=hoppers(t, [(20, 44, 290, 200), (345, 44, 290, 200), (670, 44, 290, 200)], [("warm", 0.0), ("good", 0.5)]))
 
 
+# ---------------------------------------------------------------- contribution field
+# Modelled on SahajIVVIX-1's "contribution field": stats on top, one cell per day below.
+# Empty days glow as a light sweeps across the year; the busiest day pulses.
+import datetime as _dt
+import json as _json
+
+
+def _streaks(days):
+    longest = run = 0
+    for _, n in days:
+        run = run + 1 if n else 0
+        longest = max(longest, run)
+    current = 0
+    for _, n in reversed(days[:-1] if days and not days[-1][1] else days):
+        if not n:
+            break
+        current += 1
+    return longest, current
+
+
+def activity(t):
+    data = _json.load(open(ARGS.contrib))
+    weeks = data["weeks"]
+    days = [d for w in weeks for d in w]
+    active = sum(1 for _, n in days if n)
+    longest, current = _streaks(days)
+    top_date, top_n = max(days, key=lambda d: d[1])
+    top_label = _dt.date.fromisoformat(top_date).strftime("%a %d %b %Y")
+    peak = max(top_n, 1)
+
+    def level(n):
+        return 0 if n == 0 else min(4, 1 + int(3 * (n - 1) / max(peak - 1, 1)))
+
+    sweep, step = 7.0, 0.05
+    style = PHONE_CSS + f"""
+  .e{{animation:glow {sweep}s linear infinite}}
+  @keyframes glow{{ 0%{{fill:{t['cells'][0]}}} 3%{{fill:{t['glow']}}} 9%,100%{{fill:{t['cells'][0]}}} }}
+  .top{{transform-box:fill-box;transform-origin:center;animation:top 1.8s ease-out infinite}}
+  @keyframes top{{ 0%{{transform:scale(1);opacity:.9}} 100%{{transform:scale(2.4);opacity:0}} }}
+  @media (prefers-reduced-motion: reduce){{ .e,.top{{animation:none}} .top{{opacity:0}} }}
+"""
+    stats = [("CONTRIBUTIONS", f"{data['total']:,}", "last 12 months"),
+             ("ACTIVE DAYS", f"{active}", "in the last 12 months"),
+             ("LONGEST STREAK", f"{longest}", "days in a row"),
+             ("CURRENT STREAK", f"{current}", "days and counting" if current else "start one today"),
+             ("BUSIEST DAY", f"{top_n}", top_label)]
+    d = ['<g class="dt">',
+         text(40, 44, "CONTRIBUTION FIELD", t, size=14, color="accent", weight=600, font=MONO, spacing=1.5),
+         text(1160, 44, "one cell per day · empty days glow as the light passes", t, size=13, color="muted",
+              font=MONO, anchor="end")]
+    for i, (k, v, sub) in enumerate(stats):
+        x = 40 + i * 226
+        if i:
+            d.append(f'<line x1="{x - 16}" y1="70" x2="{x - 16}" y2="150" stroke="{t["border"]}"/>')
+        d.append(text(x, 88, k, t, size=11.5, color="muted", weight=600, font=MONO, spacing=1.2))
+        d.append(text(x, 126, v, t, size=34, weight=700))
+        d.append(text(x, 148, sub, t, size=13, color="muted"))
+    gx, gy, cell, gap = 84, 202, 16, 4
+    pitch = cell + gap
+    last_month = None
+    for c, week in enumerate(weeks):
+        month = week[0][0][:7]
+        if month != last_month and c < len(weeks) - 1:
+            if last_month is not None or week[0][0][8:] <= "07":
+                name = _dt.date.fromisoformat(week[0][0]).strftime("%b")
+                d.append(text(gx + c * pitch, gy - 10, name, t, size=12, color="muted", font=MONO))
+            last_month = month
+        first_dow = (_dt.date.fromisoformat(week[0][0]).weekday() + 1) % 7      # Sunday = 0
+        for r, (date, n) in enumerate(week):
+            y = gy + (first_dow + r if c == 0 else r) * pitch
+            x = gx + c * pitch
+            lv = level(n)
+            cls = ' class="e" style="animation-delay:%.2fs"' % (c * step) if lv == 0 else ""
+            d.append(f'<rect{cls} x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="{t["cells"][lv]}">'
+                     f'<title>{date}: {n} contribution{"s" if n != 1 else ""}</title></rect>')
+            if date == top_date and n:
+                d.append(f'<rect class="top" x="{x}" y="{y}" width="{cell}" height="{cell}" rx="3" fill="none" '
+                         f'stroke="{t["accent"]}" stroke-width="2"/>')
+    for r, name in [(1, "Mon"), (3, "Wed"), (5, "Fri")]:
+        d.append(text(40, gy + r * pitch + 12, name, t, size=12, color="muted", font=MONO))
+    ly = gy + 7 * pitch + 26
+    d.append(text(40, ly + 12, "pulsing cell = busiest day", t, size=12, color="muted", font=MONO))
+    lx = 1160 - 5 * pitch - 40
+    d.append(text(lx - 10, ly + 12, "less", t, size=12, color="muted", font=MONO, anchor="end"))
+    for i in range(5):
+        d.append(f'<rect x="{lx + i * pitch}" y="{ly}" width="{cell}" height="{cell}" rx="3" fill="{t["cells"][i]}"/>')
+    d.append(text(lx + 5 * pitch + 6, ly + 12, "more", t, size=12, color="muted", font=MONO))
+    d.append("</g>")
+    H = ly + 40
+    p = ['<g class="ph">', text(40, 70, "CONTRIBUTIONS", t, size=34, color="accent", weight=600, font=MONO, spacing=2)]
+    for i, (k, v, sub) in enumerate([("last 12 months", f"{data['total']:,}", ""), ("active days", f"{active}", ""),
+                                     ("longest streak", f"{longest}", "")]):
+        x = 40 + i * 380
+        p.append(text(x, 230, v, t, size=110, weight=700))
+        p.append(text(x, 300, k, t, size=36, color="muted"))
+    p.append("</g>")
+    alt = (f"Contribution field: {data['total']} GitHub contributions in the last 12 months, {active} active days, "
+           f"longest streak {longest} days, current streak {current} days, busiest day {top_label} with {top_n}.")
+    return svg(1200, H, "\n".join(d + p), t, alt, style=style, margin=HERO_MARGIN)
+
+
 ONLY = set(ARGS.only.split(",")) if ARGS.only else None
 for name, fn in [("hero", hero), ("impact", impact), ("triage", triage), ("filings", filings),
-                 ("syncscribe", syncscribe)]:
+                 ("syncscribe", syncscribe), ("activity", activity)]:
+    if name == "activity" and not ARGS.contrib:
+        continue
     if ONLY and name not in ONLY:
         continue
     for theme, t in THEMES.items():
