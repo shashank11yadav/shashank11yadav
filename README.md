@@ -176,10 +176,10 @@ Public activity only: work I do for employers lives in their repositories, so it
 
 ---
 
-**Working on real-time systems or production ML? I'd like to hear about it.**
+**Working on real-time systems or production ML? I'd like to hear about it.**<br>
 I'm looking for backend, ML/AI engineering and platform roles.
 
-**US · Open to remote**
+**US · Open to remote**<br>
 [Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://shashank11yadav.github.io/shashank-yadav-portfolio/) · [X](https://x.com/Shashankyadav30)
 
 <details>
