@@ -1,69 +1,107 @@
-<h1 align="center"><img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px" alt="wave"> Shashank Yadav</h1>
-<h3 align="center">Backend & ML-infra engineer · Java/Spring · Python · AWS/Kubernetes</h3>
-<p align="center">I build reliable APIs and ship ML models to production. MS CS, UMass Boston ’25.</p>
+## Hi, I'm Shashank
 
-<p align="center">
-  <a href="https://leetcode.com/u/Shashank-yadav/">
-    <img alt="LeetCode" src="https://img.shields.io/badge/LeetCode-@Shashank--yadav-111?style=for-the-badge&logo=leetcode&logoColor=FFA116&labelColor=0F0F0F">
-  </a>
-  <a href="https://www.linkedin.com/in/shashank-yadav-cs/">
-    <img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-shashank--yadav--cs-111?style=for-the-badge&logo=linkedin&logoColor=0A66C2&labelColor=0F0F0F">
-  </a>
-  <a href="mailto:yadav.shashank1201@gmail.com">
-    <img alt="Email" src="https://img.shields.io/badge/Gmail-yadav.shashank1201%40gmail.com-111?style=for-the-badge&logo=gmail&logoColor=EA4335&labelColor=0F0F0F">
-  </a>
-  <a href="https://shashank11yadav.github.io/shashank-yadav-portfolio/">
-    <img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-Visit-111?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0F0F0F">
-  </a>
-  <a href="https://drive.google.com/file/d/1snhoAl2qE-RtV797FtQCy2SIOwR_2YRu/view">
-    <img alt="Resume" src="https://img.shields.io/badge/Resume-View-111?style=for-the-badge&logo=googledrive&logoColor=34A853&labelColor=0F0F0F">
-  </a>
-</p>
+**Software Engineer | MS CS @ UMass Boston (’25) | Python, Java/Spring, Kafka, AWS**
 
-<p align="center"> <img src="https://readme-typing-svg.demolab.com?font=Inter&size=16&duration=2600&pause=700&center=true&vCenter=true&width=520&lines=Backend+%2F+Platform+%2F+ML-in-prod;MS+CS%2C+UMass+Boston+%E2%80%9925;AWS+%7C+Kubernetes+%7C+Postgres;Clean+APIs.+Reliable+systems.+Measured+impact.;Open+to+Software+Engineer%2C+ML-Infra+roles" alt="typing intro" /> </p>
+I lean backend: real-time services, the data paths behind them, and checking whether the ML inside them actually works. At **Ally Financial** I own two of the microservices that score transactions for fraud. In its first quarter, the platform cut fraud losses by **18%**.
 
-> [!NOTE]
-> Open to Software Engineer / ML-Infra roles · [yadav.shashank1201@gmail.com](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/)
+### Open to
+`Software Engineer` · `Backend` · `ML / AI Engineer`. Full-time, US or remote.
+<!-- Add work-authorization status here, e.g. "F-1 STEM OPT, no sponsorship needed until 20XX". -->
 
-<img align="right" alt="Coding" src="https://media.giphy.com/media/qgQUggAC3Pfv687qPC/giphy.gif" width="350" height="320" />
+[Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://shashank11yadav.github.io/shashank-yadav-portfolio/) · [Resume](https://drive.google.com/file/d/1snhoAl2qE-RtV797FtQCy2SIOwR_2YRu/view) · [LeetCode](https://leetcode.com/u/Shashank-yadav/)
 
-### About
-- MS CS, **UMass Boston ’25**  
-- Built cloud-native services with **Java/Spring**, **Python**, **Node/React**; deploy on **AWS/Kubernetes** with CI/CD  
-- Solved **700+** LeetCode problems in **C++** and **Java**  
-- Interested in data-intensive backends, RAG/OCR pipelines, and performance tuning
+### Experience
 
-### Selected projects
-- **AccuScan** — Lightweight OCR + triage toolkit for unstructured docs. [🔗](https://github.com/shashank11yadav/AccuScan)
-- **PitchPerfect** — LLM-powered role-play assistant with real-time analytics. [🔗](https://amie-jobs-wat9.vercel.app/signin)
-- **BuzzRoom** — Real-time chat with OTP auth and delivery receipts. [🔗](https://github.com/shashank11yadav/BuzzRoom)
+<details open>
+<summary><b>Software Developer · Ally Financial</b> · 07/2025 – present · Remote<br><sub>Real-time fraud scoring: fraud losses −18% in the first quarter after launch</sub></summary>
+
+- Helped build Ally's fraud detection platform from the ground up. I own **FraudRiskService** and **TransactionPolicyService**, which score transactions in real time (Python, gRPC, Kafka, Redis).
+- Built the `/transaction-risk-evaluation` and `/fraud-alert-monitoring` APIs on PostgreSQL/Aurora. Reworking query plans and adding connection pooling brought average response time from **340 ms to 265 ms**.
+- Built a React/TypeScript fraud analytics dashboard that streams live KPIs from Kafka. It replaced hand-maintained Excel reports and cut average investigation time by **~21%**.
+- Integrated Claude 3 into risk scoring to write anomaly narratives. Prompt guardrails and validation layers keep the output within FFIEC audit requirements.
+- Built the CI/CD pipeline (GitHub Actions, Docker, EKS) and added structured logging and Prometheus/Grafana metrics, so on-call engineers find issues in minutes instead of hours.
+- Own OAuth 2.0/JWT auth on every endpoint for SOC 2 and PCI DSS. Wrote **85+ tests** that run on every PR, with **>90% coverage** on critical paths.
+
+</details>
+
+<details>
+<summary><b>Graduate Teaching Assistant · University of Massachusetts Boston</b> · 09/2024 – 05/2025 · Boston, MA<br><sub>8 lab cohorts, 90+ students, feedback within 24 hours</sub></summary>
+
+- Led 8 lab cohorts (**90+ students**) through circuit analysis and MATLAB/Multisim simulations.
+- Gave actionable feedback on **70+ lab reports within 24 hours**, which improved problem-solving for **85%** of student pairs.
+
+</details>
+
+<details>
+<summary><b>Software Engineer · Tata Consultancy Services</b> · 08/2022 – 08/2023 · Gurgaon<br><sub>Core banking: zero-downtime Oracle → PostgreSQL migration, $45K/yr saved</sub></summary>
+
+- Shipped 7 Java/Spring Boot features to a core banking platform that processes **50K+ transactions a day**. Wrote 120+ JUnit tests and owned the Jenkins pipeline, which cut the defect rate by **40%** versus the previous release cycle.
+- Led a **zero-downtime migration of a 20 GB production database** from Oracle to PostgreSQL. Refactored 15K lines of SQL and application code and re-indexed critical queries, which saved **$45K/year** in licensing and cut **4 s** from page loads.
+- Managed a 6-person Tier-2 support team. A structured triage process raised SLA compliance (tickets resolved within 24 h) from **~65% to 90%**.
+- Automated nightly reporting with Bash and cron, removing ~5 hours a week of manual work and alerting on production anomalies.
+
+</details>
+
+<details>
+<summary><b>Software Development Engineer Intern · NTT Data</b> · 01/2021 – 07/2022 · Remote<br><sub>Enterprise apps: Spring Security hardening, weekly releases</sub></summary>
+
+- Built Angular/TypeScript components and Spring Boot APIs, plus a Kafka order-processing microservice handling 2K+ transactions a day.
+- Added authentication and role-based access (Spring Security, OAuth2, JWT) and fixed input-validation gaps from a security audit. There were zero auth-related incidents after launch.
+- Added JUnit/Mockito stages and SonarQube quality gates to GitHub Actions, which helped the team move from biweekly to weekly releases with fewer rollbacks.
+
+</details>
+
+### Featured work
+
+**[pytest-triage](https://github.com/shashank11yadav/pytest-triage)**: a shadow-mode triage assistant for pytest's GitHub issues, scored against what the maintainers actually did.
+- Label suggestions: **macro-F1 0.52 vs 0.41** for a free kNN baseline (+0.12, 95% CI +0.06 to +0.17, paired bootstrap).
+- Duplicate finder: **10/15 known originals recovered, 3/30 false alarms**, after fixing a retrieval-pool bug.
+- Tested against **19 prompt-injection attacks**. 2 got through, and both are now routed to a human.
+
+`Python · Gemini · hybrid search · bootstrap evals · Docker`
+
+**[Ask the Filings](https://github.com/shashank11yadav/ask-the-filings)**: question answering over SEC 10-K filings with cited answers. It says so when the filings don't contain the answer.
+- Postgres with pgvector and full-text search, merged with Reciprocal Rank Fusion. Answers come back as structured JSON with citation ids.
+- Dense, sparse and hybrid retrieval compared on recall@8, faithfulness, abstention accuracy, p95 latency and $/query.
+
+`Python · Postgres/pgvector · Gemini · FastAPI · Docker`
+
+**[SyncScribe](https://github.com/shashank11yadav/collaborative-editor)**: a Google-Docs-style real-time editor with presence, inline comments and sharing. [Live demo](https://collaborative-editor-ten.vercel.app)
+
+`Next.js · TypeScript · Liveblocks · Lexical`
+
+<!--
+### Open-source contributions
+
+**<Project>** · <N> merged pull requests
+<One sentence: what the change does and why it mattered.> ([#1234](https://github.com/<org>/<repo>/pull/1234))
+
+**<Project>** · <N> merged pull requests
+<One sentence.> ([#5678](https://github.com/<org>/<repo>/pull/5678), [#5690](https://github.com/<org>/<repo>/pull/5690))
+-->
+
+### Three things I'd bring up in an interview
+
+**More retrieval candidates made duplicate detection worse.** In pytest-triage, merging the LLM's expansion queries into one ranked pool pushed easy duplicates out of the top 100. Keeping the issue's own top 8 and adding the expansion results as a separate pool raised recall from 6/15 to 10/15.
+
+**My precision number was wrong because the ground truth was incomplete.** Maintainers apply about 1 label per issue and the model suggests 1.7, so measured precision was 0.43. A blind audit of 50 "false positives" put real precision at about 0.65–0.75.
+
+**340 ms → 265 ms came from the database layer.** At Ally, reworking the query plans behind the fraud APIs and adding connection pooling cut average response time by about a fifth. <!-- Add what you found: which query, what the plan was doing, how you measured it. -->
 
 ### Toolbox
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=java,spring,python,cpp,js,ts,nodejs,react,next,postgres,mysql,mongodb,redis,docker,kubernetes,aws,jenkins,linux,opencv,tensorflow,pytorch,sklearn,git,expressjs,bootstrap,postman,bash,firebase&perline=14" alt="Skills" />
-</p>
 
-### By the numbers
-<p align="center">
+| Area | Tools | Where I've used them |
+| :--- | :--- | :--- |
+| **Languages** | Python, Java, TypeScript, C++, SQL, Bash | Python and Java in production at Ally, TCS and NTT Data |
+| **Backend & APIs** | Spring Boot, FastAPI, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud APIs and services, TCS core banking |
+| **Streaming & data** | Kafka, Redis, PostgreSQL (incl. pgvector), Aurora, Oracle, MongoDB | Ally real-time scoring, TCS Oracle → Postgres migration, Ask the Filings |
+| **Cloud & delivery** | AWS (EKS, Lambda, SQS/SNS, S3), Docker, Kubernetes, GitHub Actions, Jenkins | Ally CI/CD to EKS, TCS Jenkins pipeline |
+| **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally narrative generation |
+| **Quality & reliability** | PyTest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
+
+<a href="https://leetcode.com/u/Shashank-yadav/">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api?username=shashank11yadav&show_icons=true&hide_title=true&hide_border=true&rank_icon=github&theme=github_dark">
-    <img src="https://github-stats-extended.vercel.app/api?username=shashank11yadav&show_icons=true&hide_title=true&hide_border=true&rank_icon=github" alt="GitHub stats" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://leetcard.jacoblin.cool/Shashank-yadav?theme=dark&ext=heatmap">
+    <img alt="LeetCode: 800+ problems solved" src="https://leetcard.jacoblin.cool/Shashank-yadav?theme=light&ext=heatmap">
   </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-stats-extended.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact&hide_border=true&theme=github_dark">
-    <img src="https://github-stats-extended.vercel.app/api/top-langs/?username=shashank11yadav&layout=compact&hide_border=true" alt="Top languages" />
-  </picture>
-</p>
-<p align="center">
-  <a href="https://leetcode.com/u/Shashank-yadav/">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://leetcard.jacoblin.cool/Shashank-yadav?ext=activity&theme=dark">
-      <img src="https://leetcard.jacoblin.cool/Shashank-yadav?ext=activity&theme=light" alt="LeetCode stats" />
-    </picture>
-  </a>
-</p>
-
----
-
-### Let’s connect
-If you’re building data-intensive, ML-enabled products and need someone who ships — reach out via **email** or **LinkedIn** (above).
+</a>
