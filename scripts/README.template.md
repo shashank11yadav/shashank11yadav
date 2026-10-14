@@ -59,16 +59,18 @@ I lean backend, and I like proof: every project below comes with the numbers tha
 {{h:work}}
 
 ### [pytest-triage](https://github.com/shashank11yadav/pytest-triage)
-A shadow-mode triage assistant for pytest's GitHub issues, scored against what the maintainers actually did.
+A triage assistant for pytest's GitHub issues that runs in shadow mode: it suggests labels, missing information and likely duplicates, never writes to GitHub, and is scored against what the maintainers actually did. [Live results, updated daily](https://shashank11yadav.github.io/pytest-triage/)
 
-**Problem:** pytest has 6,416 issues, and since 2025, 51% of new ones are never labelled.  
-**Approach:** suggest labels, missing information and likely duplicates in shadow mode (read-only), and score every suggestion against what maintainers actually did.
+**Problem:** since January 2025, 247 of pytest's 484 new issues (51%) never got a label. Triage is the first thing to slip when volunteers are busy.  
+**Approach:** a fixed pipeline of three cheap LLM calls plus local search, with enum-only outputs, injection guardrails and a policy check, and every choice made on a 2024 dev split before the test set is scored.
 
-- Label suggestions: **macro-F1 0.52 vs 0.41** for a free kNN baseline (+0.12, 95% CI +0.06 to +0.17, paired bootstrap).
-- Duplicate finder: **10/15 known originals recovered, 3/30 false alarms**, after fixing a retrieval-pool bug.
-- Tested against **19 prompt-injection attacks**. 2 got through, and both are now routed to a human.
+- Labels: **macro-F1 0.56** vs 0.46 for the best free method, a logistic-regression classifier (**+0.095**, 95% CI +0.04 to +0.14).
+- High-precision mode: **82% precise on the 17% of issues** where a second model agrees.
+- Duplicates: **7 of 15 known pairs flagged, 3 of 30 false alarms** (search alone finds 5).
+- Prompt injection: **0 of 104 attack runs reached a maintainer** (19 attacks in 6 variants each).
+- About **$0.0015 and 3.3 s per issue**; $2.13 spent on building and evaluating everything. A CI regression gate fails any prompt or model change that hasn't been re-measured.
 
-`Python · Gemini · hybrid search · bootstrap evals · Docker`
+`Python · Gemini · BM25 + embeddings · bootstrap evals · GitHub Actions · Docker`
 
 <details>
 <summary><b>Inside pytest-triage</b> · how one issue flows through it</summary>
@@ -82,32 +84,43 @@ A shadow-mode triage assistant for pytest's GitHub issues, scored against what t
 <summary><b>How these numbers are measured</b> · what they show and what they don't</summary>
 <br>
 
-- **Labels:** 10 labels, 237 test issues opened after 1 Jan 2025. The split is by time: every test issue is newer than anything the system learns from, and few-shot examples and duplicate candidates come only from older issues.
-- **Choosing variants:** prompt and model choices were made on a 2024 dev split, and the test set was run once. The headline +0.12 is prompt v1, designed before any test result was seen. v2's extra +0.02 is within noise.
-- **Confidence intervals:** paired bootstrap, 2,000 resamples of the test issues. Gaps under about 0.03 macro-F1 are noise.
-- **Duplicates:** 15 known duplicate pairs plus 30 non-duplicates. The pooling fix was designed on the same 15 pairs (too few for a separate dev set), so the 7/15 correctly flagged has a 95% CI of 25–70%.
-- **Precision:** maintainers apply about 1 label per issue, so the measured 0.43 understates real precision. Two AI raters audited 50 "false positives" (Cohen's kappa 0.41). No human rated them, so 0.65–0.75 is an indication, not a measurement.
-- **Prompt injection:** I wrote the 19 attacks myself. A suite written by someone else would be stronger evidence.
-- **Not yet used by maintainers:** these results come from a backtest; nobody has used the tool on live issues yet.
+- **Split by time:** examples come from issues before 2024, every choice (prompt, model, thresholds) is made on 256 issues from 2024, and the 237 test issues from 2025 onward are scored once per final choice. Few-shot examples and duplicate candidates are always older than the issue being triaged.
+- **Is the gap real?** Paired bootstrap, 2,000 resamples. With 11 to 44 examples per label, gaps under about 0.03 are noise: the prompt revisions after v1 each moved the score by less than that, so I don't count them as wins.
+- **The fair baseline:** a logistic regression on embeddings I already had, not just kNN or keywords. The LLM wins on intent labels (docs 0.85 vs 0.58) and ties on feature names (fixtures, parametrize).
+- **Precision:** measured 0.43 against maintainer labels, but maintainers apply about 1 label per issue and the model suggests 1.6. A blind audit of 50 "false positives" by two LLM raters (kappa 0.41, no human) puts real precision at about 0.65 to 0.75: an indication, not a measurement.
+- **Duplicates and injection fixes** were designed on the same data they're scored on, so those numbers are optimistic. The "before the fixes" injection run (1 of 104 reached a maintainer) is the fairer estimate, and I wrote the attacks myself.
+- **Not yet used by maintainers:** the daily shadow run scores issues that didn't exist when the code was written. That's the first step towards measuring whether it actually helps.
 
 </details>
 
 ### [Ask the Filings](https://github.com/shashank11yadav/ask-the-filings)
-Question answering over SEC 10-K filings with cited answers. It says so when the filings don't contain the answer.
+Ask a question about a company's annual report (SEC 10-K) and get an answer with the exact passages it came from. If the filings don't contain the answer, it says so instead of guessing.
 
 **Problem:** an answer about a filing is only useful if you can check it, and if it admits when the filing doesn't say.  
-**Approach:** hybrid retrieval over section-aware chunks, answers as JSON with citation ids and an explicit "not answerable" path, and every design choice compared on an eval set.
+**Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), a local cross-encoder reranker, and Gemini answering in JSON with citations. Every change was kept or dropped based on an eval.
 
-- Postgres with pgvector and full-text search, merged with Reciprocal Rank Fusion. Answers come back as structured JSON with citation ids.
-- Dense, sparse and hybrid retrieval compared on recall@8, faithfulness, abstention accuracy, p95 latency and $/query.
+- Hybrid + reranker: **recall@8 0.92 and 57 of 60 answers correct** (dense alone: 0.78 and 0.82), for **$0.007 and 4.8 s per question**. It never gave a confident wrong answer on this set; the 3 misses were honest "not in the excerpts".
+- The reranker had to earn its place: `bge-reranker-base` lifted recall@8 from 0.88 to 0.92, while a MiniLM reranker trained on web snippets added nothing.
+- A table-aware chunker looked like an 8-point win on the first 60 questions. On 121 newer ones it fixed 9 and broke 7 (McNemar p = 0.80), so I didn't adopt it.
 
-`Python · Postgres/pgvector · Gemini · FastAPI · Docker`
+`Python · Postgres/pgvector · bge embeddings + reranker · Gemini · FastAPI · Streamlit · Docker`
 
 <details>
 <summary><b>Inside Ask the Filings</b> · ingestion and the query path</summary>
 <br>
 
 <p align="center">{{pic:filings}}</p>
+
+</details>
+
+<details>
+<summary><b>How these numbers are measured</b> · what they show and what they don't</summary>
+<br>
+
+- **The set:** 60 questions over 10 companies' 10-Ks (2 years each), answered by Gemini 3.8 Flash. Retrieval-only metrics need no API calls.
+- **Same-family judge:** Gemini drafted the questions and Gemini grades the answers, and I haven't hand-checked all of them yet. That tends to be generous.
+- **Small set:** at 60 questions, a score like 0.95 is uncertain by several points either way. `evals/compare.py` runs a paired McNemar test and a bootstrap interval before I call any change a win.
+- **Not measured yet:** none of the 60 questions is unanswerable, so how often it wrongly refuses is still unknown.
 
 </details>
 
@@ -144,7 +157,9 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 
 **More retrieval candidates made duplicate detection worse.** In pytest-triage, merging the LLM's expansion queries into one ranked pool pushed easy duplicates out of the top 100. Keeping the issue's own top 8 and adding the expansion results as a separate pool raised recall from 6/15 to 10/15.
 
-**My precision number was wrong because the ground truth was incomplete.** Maintainers apply about 1 label per issue and the model suggests 1.7, so measured precision was 0.43. A blind audit of 50 "false positives" put real precision at about 0.65–0.75.
+**My precision number was wrong because the ground truth was incomplete.** Maintainers apply about 1 label per issue and the model suggests 1.6, so measured precision was 0.43. A blind audit of 50 "false positives" put real precision at about 0.65–0.75.
+
+**An 8-point win that was noise.** In Ask the Filings, a table-aware chunker beat the plain one by 8 points on the first 60 questions. Re-tested on 121 newer questions sampled from the filing text, it fixed 9 answers and broke 7 (McNemar p = 0.80). I kept the simpler chunker and added a paired test to every comparison.
 
 **340 ms → 265 ms came from the database layer.** At Ally, reworking the query plans behind the fraud APIs and adding connection pooling cut average response time by about a fifth. <!-- Add what you found: which query, what the plan was doing, how you measured it. -->
 
@@ -156,7 +171,7 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 | **Backend & APIs** | Spring Boot, FastAPI, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud APIs and services, TCS core banking |
 | **Streaming & data** | Kafka, Redis, PostgreSQL (incl. pgvector), Aurora, Oracle, MongoDB | Ally real-time scoring, TCS Oracle → Postgres migration, Ask the Filings |
 | **Cloud & delivery** | AWS (EKS, Lambda, SQS/SNS, S3), Docker, Kubernetes, GitHub Actions, Jenkins | Ally CI/CD to EKS, TCS Jenkins pipeline |
-| **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally narrative generation |
+| **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, rerankers, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally narrative generation |
 | **Quality & reliability** | PyTest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
 
 {{h:activity}}
@@ -180,7 +195,7 @@ I'm looking for backend, ML/AI engineering and platform roles.
 
 **Shashank Yadav**: open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS Computer Science, UMass Boston (2025) · based in the United States, open to remote · Software Developer at Ally Financial. Stream (Kafka, Redis) → serve (gRPC, Spring, FastAPI) → retrieve (pgvector, BM25, RRF) → evaluate (bootstrap CIs, audits).
 
-**Results:** fraud losses −18% in the first quarter (Ally Financial) · average fraud-API response 340 → 265 ms (Ally) · +0.12 macro-F1 for LLM triage over a free baseline, 95% CI +0.06 to +0.17 (pytest-triage).
+**Results:** fraud losses −18% in the first quarter (Ally Financial) · average fraud-API response 340 → 265 ms (Ally) · +0.095 macro-F1 for LLM triage over the best free method, 95% CI +0.04 to +0.14 (pytest-triage).
 
 </details>
 

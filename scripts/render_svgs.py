@@ -443,7 +443,7 @@ def impact(t):
     cols = [
         ("−18%", "fraud losses, first quarter", "Ally Financial · real-time fraud scoring", "−18%", "fraud losses"),
         ("340 → 265 ms", "average fraud-API response", "Ally · query plans + connection pooling", "−22%", "API latency"),
-        ("+0.12 F1", "LLM triage over a free baseline", "pytest-triage · 95% CI +0.06 to +0.17", "+0.12", "F1 vs baseline"),
+        ("+0.095 F1", "LLM triage vs best free method", "pytest-triage · 95% CI +0.04 to +0.14", "+0.095", "F1 vs baseline"),
     ]
     d, p = ['<g class="dt">'], ['<g class="ph">']
     for i, (num, lab, sub, pnum, plab) in enumerate(cols):
@@ -460,8 +460,8 @@ def impact(t):
     return svg(1200, 170, "\n".join(d + p), t,
                "Results: fraud losses down 18% in the first quarter after launch of Ally Financial's real-time fraud "
                "scoring; average fraud-API response time from 340 to 265 ms after reworking query plans and adding "
-               "connection pooling; pytest-triage's LLM labels beat a free kNN baseline by 0.12 macro-F1 "
-               "(95% CI +0.06 to +0.17).", style=PHONE_CSS, margin=HERO_MARGIN)
+               "connection pooling; pytest-triage's LLM labels beat the best free method by 0.095 macro-F1 "
+               "(95% CI +0.04 to +0.14).", style=PHONE_CSS, margin=HERO_MARGIN)
 
 
 # Request packets: a dot runs along an arrow during [start, end] of each cycle (fractions of the cycle).
@@ -494,69 +494,76 @@ def triage(t):
     ])
     b = [
         box(20, 162, 150, 82, "New issue", ["read from GitHub,", "never written back"], t),
-        box(200, 138, 175, 128, "Guard", ["redact secrets and", "home paths; fence the", "text as untrusted"], t, mono="guard.py"),
+        box(200, 138, 175, 128, "Guard", ["redact secrets and", "paths; fence and", "datamark the text"], t, mono="guard.py"),
         box(410, 34, 310, 140, "Assess · 1 Gemini call", ["few-shot: 5 most similar labelled issues",
             "enum-constrained JSON output:", "labels + missing-info items"], t, mono="classify.py"),
         box(410, 204, 310, 160, "Duplicates · 2 Gemini calls", ["expand → 3 root-cause search queries",
             "search → own top 8 ∪ queries' top 8", "(BM25 + embeddings, fused by RRF)",
             "verify → which are the same problem?"], t, mono="dedupe.py"),
-        box(755, 104, 205, 196, "Report", ["suggested labels", "for maintainer review:",
-            "missing info, duplicates,", "injection signals", "reply draft only if", "precision ≥ 0.70"], t,
-            mono="triage.py", kind="good"),
+        box(755, 104, 205, 196, "Report", ["policy check first:", "flagged → a human only",
+            "suggested labels", "for review: missing", "info, duplicates", "reply only at ≥ 70%"], t,
+            mono="policy.py", kind="good"),
         *arrows,
-        text(490, 392, "≈ $0.0015 per issue  ·  p50 latency 3.3 s  ·  shadow mode: suggestions only",
+        text(490, 392, "≈ $0.0015 and 3.3 s per issue  ·  read-only shadow run, scored daily against maintainers",
              t, size=12.5, color="muted", anchor="middle"),
         *pkts,
     ]
     return svg(980, 410, "\n".join(b), t,
                "pytest-triage pipeline: a new issue is read from GitHub and passed through a guard that redacts "
-               "secrets and fences the text as untrusted. One Gemini call assesses labels and missing information "
+               "secrets and paths and fences and datamarks the text as untrusted. One Gemini call assesses labels and missing information "
                "using the five most similar labelled issues as examples. Two Gemini calls find duplicates: expand "
                "into three root-cause queries, search the issue's own top 8 plus the queries' top 8 with BM25 and "
-               "embeddings fused by RRF, then verify. The report shows suggested labels, items for maintainer review, "
-               "and a reply draft only for outputs above 0.70 precision. About $0.0015 per issue, p50 3.3 seconds.",
+               "embeddings fused by RRF, then verify. A policy check routes flagged issues to a human; otherwise the "
+               "report shows suggested labels, items for maintainer review, and a reply draft only for outputs at 70% "
+               "precision or better. About $0.0015 and 3.3 seconds per issue, run daily in read-only shadow mode.",
                style=MOTION_CSS, margin=40,
                inner=hoppers(t, [(20, 162, 150, 82), (200, 138, 175, 128), (410, 34, 310, 140), (410, 204, 310, 160), (755, 104, 205, 196)], [("accent", 0.0), ("warm", 0.5)]))
 
 
 # ---------------------------------------------------------------- ask the filings
 def filings(t):
-    arrows, pkts = flow(t, 7, [
-        ("M170,86 L208,86", 0.02, 0.08), ("M360,86 L398,86", 0.09, 0.15),
-        ("M550,86 L588,86", 0.16, 0.22), ("M740,86 L778,86", 0.23, 0.29),
-        ("M130,242 L148,242", 0.38, 0.42),
-        ("M870,126 L870,150 L265,150 L265,194", 0.32, 0.46),
-        ("M380,242 L398,242", 0.48, 0.53), ("M550,242 L568,242", 0.55, 0.60),
-        ("M770,242 L788,242", 0.62, 0.67),
-    ])
+    q = [(20, 120), (156, 165), (337, 115), (468, 160), (644, 160), (820, 136)]     # query row: (x, width)
+    hops = [("M170,86 L208,86", 0.02, 0.08), ("M360,86 L398,86", 0.09, 0.15),
+            ("M550,86 L588,86", 0.16, 0.22), ("M740,86 L778,86", 0.23, 0.29),
+            ("M870,126 L870,150 L238,150 L238,194", 0.32, 0.46)]
+    for i in range(len(q) - 1):
+        x0 = q[i][0] + q[i][1]
+        hops.append((f"M{x0},242 L{q[i + 1][0] - 2},242", 0.38 + 0.07 * i if i else 0.40, 0.42 + 0.07 * i if i else 0.44))
+    arrows, pkts = flow(t, 7.5, hops)
     b = [
         text(20, 32, "INGEST · run once", t, size=11.5, color="accent", weight=600, font=MONO, spacing=1),
         box(20, 46, 150, 80, "EDGAR 10-K", ["filing HTML from", "the SEC website"], t),
-        box(210, 46, 150, 80, "Clean", ["HTML → text,", "tables flattened"], t),
-        box(400, 46, 150, 80, "Chunk", ["section-aware,", "~400 words each"], t),
+        box(210, 46, 150, 80, "Clean", ["tables become", "label | value rows"], t),
+        box(400, 46, 150, 80, "Chunk", ["400 words, tagged", "with its 10-K Item"], t),
         box(590, 46, 150, 80, "Embed", ["bge-small,", "runs locally"], t),
-        box(780, 46, 180, 80, "Postgres", ["pgvector embeddings", "+ full-text tsvector"], t),
+        box(780, 46, 180, 80, "Postgres", ["pgvector embeddings", "+ full-text index"], t),
         text(20, 182, "QUERY · per question", t, size=11.5, color="accent", weight=600, font=MONO, spacing=1),
-        box(20, 196, 110, 92, "Question", ["plain English"], t),
-        box(150, 196, 230, 92, "Retrieve", ["dense top-k · pgvector", "sparse top-k · full-text"], t),
-        box(400, 196, 150, 92, "Fuse", ["Reciprocal Rank", "Fusion"], t),
-        box(570, 196, 200, 92, "Gemini", ["JSON: answerable,", "answer, citation ids"], t),
-        box(790, 196, 170, 92, "Cited answer", ["or “not in the", "filings”"], t, kind="good"),
+        box(*q[0][:1], 196, q[0][1], 92, "Question", ["detects the", "company named"], t),
+        box(q[1][0], 196, q[1][1], 92, "Retrieve", ["dense: pgvector", "keyword: full-text"], t),
+        box(q[2][0], 196, q[2][1], 92, "Fuse", ["RRF merge of", "both lists"], t),
+        box(q[3][0], 196, q[3][1], 92, "Rerank", ["bge-reranker-base", "top 30 → top 8"], t),
+        box(q[4][0], 196, q[4][1], 92, "Gemini", ["JSON: answerable,", "answer, citations"], t),
+        box(q[5][0], 196, q[5][1], 92, "Cited answer", ["or “not in the", "excerpts”"], t, kind="good"),
         *arrows,
-        label(567, 145, "both indexes queried for every question", t),
-        text(490, 326, "Each config (dense / sparse / hybrid) is scored on recall@8, correctness, faithfulness,",
+        label(560, 145, "both indexes queried for every question", t),
+        text(490, 326, "Hybrid + reranker: recall@8 0.92  ·  57 of 60 answers correct  ·  $0.007 and 4.8 s per question",
              t, size=12.5, color="muted", anchor="middle"),
-        text(490, 346, "abstention accuracy, p95 latency and $/query.", t, size=12.5, color="muted", anchor="middle"),
+        text(490, 346, "60 questions over 10 companies' 10-Ks, graded by Gemini. Only the final Gemini call costs money.",
+             t, size=12.5, color="muted", anchor="middle"),
         *pkts,
     ]
     return svg(980, 366, "\n".join(b), t,
-               "Ask the Filings: ingestion downloads 10-K filing HTML from SEC EDGAR, cleans it to text with "
-               "flattened tables, cuts section-aware chunks of about 400 words, embeds them locally with bge-small "
-               "and stores them in Postgres with pgvector and a full-text index. Each question runs dense and sparse "
-               "retrieval, fuses the results with Reciprocal Rank Fusion, and asks Gemini for JSON with whether it is "
-               "answerable, the answer and citation ids, returning a cited answer or 'not in the filings'.",
+               "Ask the Filings: ingestion downloads 10-K filing HTML from SEC EDGAR, flattens tables to label and "
+               "value rows, cuts 400-word chunks tagged with their 10-K Item, embeds them locally with bge-small and "
+               "stores them in Postgres with pgvector and a full-text index. For each question it detects the company "
+               "named, runs dense and keyword search, merges them with Reciprocal Rank Fusion, reranks the top 30 with "
+               "a local bge-reranker-base and sends the top 8 to Gemini, which answers in JSON with citations or says "
+               "the answer is not in the excerpts. Hybrid plus reranker: recall at 8 of 0.92 and 57 of 60 answers "
+               "correct, at $0.007 and 4.8 seconds per question.",
                style=MOTION_CSS, margin=40,
-               inner=hoppers(t, [(20, 46, 150, 80), (210, 46, 150, 80), (400, 46, 150, 80), (590, 46, 150, 80), (780, 46, 180, 80), (790, 196, 170, 92), (570, 196, 200, 92), (400, 196, 150, 92), (150, 196, 230, 92)], [("accent", 0.0), ("good", 0.5)]))
+               inner=hoppers(t, [(20, 46, 150, 80), (210, 46, 150, 80), (400, 46, 150, 80), (590, 46, 150, 80),
+                                 (780, 46, 180, 80), (820, 196, 136, 92), (644, 196, 160, 92), (468, 196, 160, 92),
+                                 (337, 196, 115, 92), (156, 196, 165, 92)], [("accent", 0.0), ("good", 0.5)]))
 
 
 # ---------------------------------------------------------------- syncscribe
