@@ -443,7 +443,7 @@ def impact(t):
     cols = [
         ("−18%", "fraud losses, first quarter", "Ally Financial · real-time fraud scoring", "−18%", "fraud losses"),
         ("340 → 265 ms", "average fraud-API response", "Ally · query plans + connection pooling", "−22%", "API latency"),
-        ("+0.095 F1", "LLM triage vs best free method", "pytest-triage · 95% CI +0.04 to +0.14", "+0.095", "F1 vs baseline"),
+        ("+0.115 F1", "LLM triage vs best free method", "pytest-triage · 95% CI +0.06 to +0.16", "+0.115", "F1 vs baseline"),
     ]
     d, p = ['<g class="dt">'], ['<g class="ph">']
     for i, (num, lab, sub, pnum, plab) in enumerate(cols):
@@ -460,8 +460,8 @@ def impact(t):
     return svg(1200, 170, "\n".join(d + p), t,
                "Results: fraud losses down 18% in the first quarter after launch of Ally Financial's real-time fraud "
                "scoring; average fraud-API response time from 340 to 265 ms after reworking query plans and adding "
-               "connection pooling; pytest-triage's LLM labels beat the best free method by 0.095 macro-F1 "
-               "(95% CI +0.04 to +0.14).", style=PHONE_CSS, margin=HERO_MARGIN)
+               "connection pooling; pytest-triage's LLM labels beat the best free method by 0.115 macro-F1 "
+               "(95% CI +0.06 to +0.16).", style=PHONE_CSS, margin=HERO_MARGIN)
 
 
 # Request packets: a dot runs along an arrow during [start, end] of each cycle (fractions of the cycle).
@@ -496,12 +496,12 @@ def triage(t):
         box(20, 162, 150, 82, "New issue", ["read from GitHub,", "never written back"], t),
         box(200, 138, 175, 128, "Guard", ["redact secrets and", "paths; fence and", "datamark the text"], t, mono="guard.py"),
         box(410, 34, 310, 140, "Assess · 1 Gemini call", ["few-shot: 5 most similar labelled issues",
-            "enum-constrained JSON output:", "labels + missing-info items"], t, mono="classify.py"),
+            "enum-constrained JSON output:", "11 labels + missing-info items"], t, mono="classify.py"),
         box(410, 204, 310, 160, "Duplicates · 2 Gemini calls", ["expand → 3 root-cause search queries",
             "search → own top 8 ∪ queries' top 8", "(BM25 + embeddings, fused by RRF)",
             "verify → which are the same problem?"], t, mono="dedupe.py"),
         box(755, 104, 205, 196, "Report", ["policy check first:", "flagged → a human only",
-            "suggested labels", "for review: missing", "info, duplicates", "reply only at ≥ 70%"], t,
+            "labels shown only if", "a classifier agrees", "review: missing info,", "duplicates; reply ≥ 70%"], t,
             mono="policy.py", kind="good"),
         *arrows,
         text(490, 392, "≈ $0.0015 and 3.3 s per issue  ·  read-only shadow run, scored daily against maintainers",
@@ -514,7 +514,7 @@ def triage(t):
                "using the five most similar labelled issues as examples. Two Gemini calls find duplicates: expand "
                "into three root-cause queries, search the issue's own top 8 plus the queries' top 8 with BM25 and "
                "embeddings fused by RRF, then verify. A policy check routes flagged issues to a human; otherwise the "
-               "report shows suggested labels, items for maintainer review, and a reply draft only for outputs at 70% "
+               "report shows labels a trained classifier agrees with, items for maintainer review, and a reply draft only for outputs at 70% "
                "precision or better. About $0.0015 and 3.3 seconds per issue, run daily in read-only shadow mode.",
                style=MOTION_CSS, margin=40,
                inner=hoppers(t, [(20, 162, 150, 82), (200, 138, 175, 128), (410, 34, 310, 140), (410, 204, 310, 160), (755, 104, 205, 196)], [("accent", 0.0), ("warm", 0.5)]))
@@ -538,17 +538,17 @@ def filings(t):
         box(590, 46, 150, 80, "Embed", ["bge-small,", "runs locally"], t),
         box(780, 46, 180, 80, "Postgres", ["pgvector embeddings", "+ full-text index"], t),
         text(20, 182, "QUERY · per question", t, size=11.5, color="accent", weight=600, font=MONO, spacing=1),
-        box(*q[0][:1], 196, q[0][1], 92, "Question", ["detects the", "company named"], t),
-        box(q[1][0], 196, q[1][1], 92, "Retrieve", ["dense: pgvector", "keyword: full-text"], t),
+        box(*q[0][:1], 196, q[0][1], 92, "Question", ["length check,", "find company"], t),
+        box(q[1][0], 196, q[1][1], 92, "Retrieve", ["embeddings top 120", "keywords top 120"], t),
         box(q[2][0], 196, q[2][1], 92, "Fuse", ["RRF merge of", "both lists"], t),
         box(q[3][0], 196, q[3][1], 92, "Rerank", ["bge-reranker-base", "top 30 → top 8"], t),
-        box(q[4][0], 196, q[4][1], 92, "Gemini", ["JSON: answerable,", "answer, citations"], t),
-        box(q[5][0], 196, q[5][1], 92, "Cited answer", ["or “not in the", "excerpts”"], t, kind="good"),
+        box(q[4][0], 196, q[4][1], 92, "Gemini", ["top 8 passages,", "JSON schema"], t),
+        box(q[5][0], 196, q[5][1], 92, "Checked", ["citation needed,", "numbers verified"], t, kind="good"),
         *arrows,
         label(560, 145, "both indexes queried for every question", t),
-        text(490, 326, "Hybrid + reranker: recall@8 0.92  ·  57 of 60 answers correct  ·  $0.007 and 4.8 s per question",
+        text(490, 326, "111 of 117 correct, 0 wrong  ·  26 of 27 unanswerable refused  ·  $0.007 and 5.5 s per question",
              t, size=12.5, color="muted", anchor="middle"),
-        text(490, 346, "60 questions over 10 companies' 10-Ks, graded by Gemini. Only the final Gemini call costs money.",
+        text(490, 346, "144 questions over 10 companies' 10-Ks. Numbers checked in code; answers graded by Gemini.",
              t, size=12.5, color="muted", anchor="middle"),
         *pkts,
     ]
@@ -556,10 +556,11 @@ def filings(t):
                "Ask the Filings: ingestion downloads 10-K filing HTML from SEC EDGAR, flattens tables to label and "
                "value rows, cuts 400-word chunks tagged with their 10-K Item, embeds them locally with bge-small and "
                "stores them in Postgres with pgvector and a full-text index. For each question it detects the company "
-               "named, runs dense and keyword search, merges them with Reciprocal Rank Fusion, reranks the top 30 with "
-               "a local bge-reranker-base and sends the top 8 to Gemini, which answers in JSON with citations or says "
-               "the answer is not in the excerpts. Hybrid plus reranker: recall at 8 of 0.92 and 57 of 60 answers "
-               "correct, at $0.007 and 4.8 seconds per question.",
+               "named, runs embedding and keyword search, merges them with Reciprocal Rank Fusion, reranks the top 30 "
+               "with a local bge-reranker-base and sends the top 8 to Gemini, which answers in JSON. Output checks "
+               "withhold answers without a valid citation and flag numbers not in the cited passages. 111 of 117 "
+               "answerable questions correct with no wrong answers, 26 of 27 unanswerable refused, at $0.007 and "
+               "5.5 seconds per question.",
                style=MOTION_CSS, margin=40,
                inner=hoppers(t, [(20, 46, 150, 80), (210, 46, 150, 80), (400, 46, 150, 80), (590, 46, 150, 80),
                                  (780, 46, 180, 80), (820, 196, 136, 92), (644, 196, 160, 92), (468, 196, 160, 92),

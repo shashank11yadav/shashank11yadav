@@ -62,15 +62,16 @@ I lean backend, and I like proof: every project below comes with the numbers tha
 A triage assistant for pytest's GitHub issues that runs in shadow mode: it suggests labels, missing information and likely duplicates, never writes to GitHub, and is scored against what the maintainers actually did. [Live results, updated daily](https://shashank11yadav.github.io/pytest-triage/)
 
 **Problem:** since January 2025, 247 of pytest's 484 new issues (51%) never got a label. Triage is the first thing to slip when volunteers are busy.  
-**Approach:** a fixed pipeline of three cheap LLM calls plus local search, with enum-only outputs, injection guardrails and a policy check, and every choice made on a 2024 dev split before the test set is scored.
+**Approach:** a fixed pipeline of three cheap LLM calls plus local search, with enum-only outputs, injection guardrails and a policy check. By default a label is shown only when a trained classifier agrees with it, and every choice is made on a 2024 dev split before the test set is scored.
 
-- Labels: **macro-F1 0.56** vs 0.46 for the best free method, a logistic-regression classifier (**+0.095**, 95% CI +0.04 to +0.14).
-- High-precision mode: **82% precise on the 17% of issues** where a second model agrees.
+- Labels (11 labels): **macro-F1 0.58** vs 0.46 for the best free method, a logistic-regression classifier (**+0.115**, 95% CI +0.06 to +0.16).
+- High-precision mode, the default: **82% of shown labels match the maintainers'** (95% CI 69 to 91%), on 18% of issues. Showing every suggested label would be 46% precise.
+- A guided human check of the type labels found the model calling regressions "bug", so I added **`type: regression`**: F1 0.71, vs 0.47 for the best free method.
 - Duplicates: **7 of 15 known pairs flagged, 3 of 30 false alarms** (search alone finds 5).
 - Prompt injection: **0 of 104 attack runs reached a maintainer** (19 attacks in 6 variants each).
-- About **$0.0015 and 3.3 s per issue**; $2.13 spent on building and evaluating everything. A CI regression gate fails any prompt or model change that hasn't been re-measured.
+- About **$0.0015 and 3.3 s per issue**; $2.64 spent on building and evaluating everything. A CI regression gate fails any prompt or model change that hasn't been re-measured.
 
-`Python · Gemini · BM25 + embeddings · bootstrap evals · GitHub Actions · Docker`
+`Python · Gemini · BM25 + embeddings · scikit-learn · bootstrap evals · GitHub Actions · Docker`
 
 <details>
 <summary><b>Inside pytest-triage</b> · how one issue flows through it</summary>
@@ -85,25 +86,26 @@ A triage assistant for pytest's GitHub issues that runs in shadow mode: it sugge
 <br>
 
 - **Split by time:** examples come from issues before 2024, every choice (prompt, model, thresholds) is made on 256 issues from 2024, and the 237 test issues from 2025 onward are scored once per final choice. Few-shot examples and duplicate candidates are always older than the issue being triaged.
-- **Is the gap real?** Paired bootstrap, 2,000 resamples. With 11 to 44 examples per label, gaps under about 0.03 are noise: the prompt revisions after v1 each moved the score by less than that, so I don't count them as wins.
-- **The fair baseline:** a logistic regression on embeddings I already had, not just kNN or keywords. The LLM wins on intent labels (docs 0.85 vs 0.58) and ties on feature names (fixtures, parametrize).
-- **Precision:** measured 0.43 against maintainer labels, but maintainers apply about 1 label per issue and the model suggests 1.6. A blind audit of 50 "false positives" by two LLM raters (kappa 0.41, no human) puts real precision at about 0.65 to 0.75: an indication, not a measurement.
-- **Duplicates and injection fixes** were designed on the same data they're scored on, so those numbers are optimistic. The "before the fixes" injection run (1 of 104 reached a maintainer) is the fairer estimate, and I wrote the attacks myself.
-- **Not yet used by maintainers:** the daily shadow run scores issues that didn't exist when the code was written. That's the first step towards measuring whether it actually helps.
+- **Is the gap real?** Paired bootstrap, 2,000 resamples. With 11 to 44 examples per label, gaps under about 0.03 are noise. Most of prompt v4's gain is the new label; on the original ten labels it is level with v3s.
+- **Rules fixed in advance:** v4 was adopted only because it stayed within 0.01 of v3s on the original labels and beat the kNN vote on regressions, both on dev. The high-precision threshold (0.90) was the lowest that reached 70% precision on dev, then applied once to test.
+- **Precision against incomplete labels:** measured precision is 0.43, but maintainers apply about 1 label per issue and often leave the type blank. Two model raters put overall precision at about 0.65 to 0.75. A guided human check of 50 disputed type labels (46 judged correct, kappa 0.56 against a blind model rater) puts type precision at 0.71 to 0.95. The rater's warm-up score was 6 of 10, below the 7 set in advance, so treat this as supporting evidence.
+- **Optimistic numbers:** the duplicate design and the injection fixes were measured on the data used to make them. The fairer injection estimate is the run before the fixes (1 of 104 reached a maintainer), and I wrote the attacks myself.
+- **Not yet used by maintainers:** the daily shadow run scores issues that didn't exist when the code was written, recording both the labels shown and everything the model suggested.
 
 </details>
 
 ### [Ask the Filings](https://github.com/shashank11yadav/ask-the-filings)
-Ask a question about a company's annual report (SEC 10-K) and get an answer with the exact passages it came from. If the filings don't contain the answer, it says so instead of guessing.
+Ask a question about a company's annual report (SEC 10-K) and get an answer with the exact passages it came from. If the filings don't contain the answer, it says so instead of guessing. [Watch the demo](https://github.com/user-attachments/assets/64ae15e5-2de7-44b7-a403-27f4e7530134)
 
 **Problem:** an answer about a filing is only useful if you can check it, and if it admits when the filing doesn't say.  
-**Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), a local cross-encoder reranker, and Gemini answering in JSON with citations. Every change was kept or dropped based on an eval.
+**Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), company detection and a local cross-encoder reranker, then Gemini answering in JSON with citations. Guardrails written in code refuse advice and predictions, require a valid citation and check every number against the cited passages. Each design choice was kept or dropped based on the eval.
 
-- Hybrid + reranker: **recall@8 0.92 and 57 of 60 answers correct** (dense alone: 0.78 and 0.82), for **$0.007 and 4.8 s per question**. It never gave a confident wrong answer on this set; the 3 misses were honest "not in the excerpts".
-- The reranker had to earn its place: `bge-reranker-base` lifted recall@8 from 0.88 to 0.92, while a MiniLM reranker trained on web snippets added nothing.
-- A table-aware chunker looked like an 8-point win on the first 60 questions. On 121 newer ones it fixed 9 and broke 7 (McNemar p = 0.80), so I didn't adopt it.
+- **111 of 117 answerable questions correct (95%) and 0 wrong answers**: the other 6 were "not found in the retrieved passages". It also refused **26 of 27 unanswerable questions** (other companies or years, predictions, undisclosed figures, false premises).
+- Checked in code, not by the LLM judge: the main figure is right on 65 of 67 numeric questions, and every number in 112 of 112 answers appears in the cited passages. **21 of 21** guardrail tests pass.
+- Retrieval when the system has to work out the company itself: embeddings alone 0.60, hybrid 0.74, **hybrid + reranker 0.89** recall@8. Company detection alone took it from 0.77 to 0.88.
+- **$0.007 per question**, 5.5 s median (8.7 s p95). Embedding and reranking run locally, so only the final Gemini call costs money.
 
-`Python · Postgres/pgvector · bge embeddings + reranker · Gemini · FastAPI · Streamlit · Docker`
+`Python · Postgres/pgvector · bge embeddings + reranker · Gemini · Streamlit · Docker`
 
 <details>
 <summary><b>Inside Ask the Filings</b> · ingestion and the query path</summary>
@@ -117,10 +119,11 @@ Ask a question about a company's annual report (SEC 10-K) and get an answer with
 <summary><b>How these numbers are measured</b> · what they show and what they don't</summary>
 <br>
 
-- **The set:** 60 questions over 10 companies' 10-Ks (2 years each), answered by Gemini 3.8 Flash. Retrieval-only metrics need no API calls.
-- **Same-family judge:** Gemini drafted the questions and Gemini grades the answers, and I haven't hand-checked all of them yet. That tends to be generous.
-- **Small set:** at 60 questions, a score like 0.95 is uncertain by several points either way. `evals/compare.py` runs a paired McNemar test and a bootstrap interval before I call any change a win.
-- **Not measured yet:** none of the 60 questions is unanswerable, so how often it wrongly refuses is still unknown.
+- **The set:** 144 questions over 10 companies' 10-Ks (two fiscal years each). 117 the filings answer and 27 they don't, in five kinds: company not loaded, year not loaded, prediction, not disclosed, false premise. Questions don't say which company or year to search.
+- **Same-family judge:** Gemini drafted the answerable questions from filing passages and Gemini grades the answers, which tends to be generous. Numbers are therefore also checked in code, and every question passes automatic checks: the quoted evidence exists in the filing, the answer's numbers appear in it, and the question names the company. The 27 unanswerable questions were written separately.
+- **Uncertainty:** 111 of 117 has a 95% interval of roughly 89 to 98%. `evals/compare.py` runs a paired McNemar test and a bootstrap interval before I call any change a win.
+- **Small guardrail set:** 21 cases show the basics work (advice, off-topic, hidden instructions in the question or in fake retrieved passages), not that the system is hard to attack.
+- **Next:** a second judge from a different model family, to measure how often the two agree.
 
 </details>
 
@@ -157,7 +160,7 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 
 **More retrieval candidates made duplicate detection worse.** In pytest-triage, merging the LLM's expansion queries into one ranked pool pushed easy duplicates out of the top 100. Keeping the issue's own top 8 and adding the expansion results as a separate pool raised recall from 6/15 to 10/15.
 
-**My precision number was wrong because the ground truth was incomplete.** Maintainers apply about 1 label per issue and the model suggests 1.6, so measured precision was 0.43. A blind audit of 50 "false positives" put real precision at about 0.65–0.75.
+**My precision number was wrong because the ground truth was incomplete.** In pytest-triage, maintainers apply about 1 label per issue and often leave the type blank, so measured precision was 0.43. Two model raters, then a guided human check of 50 disputed type labels, put it at about 0.65 to 0.75 overall and 0.71 to 0.95 for types. The same check showed the model calling regressions "bug", so I added `type: regression` (F1 0.71).
 
 **An 8-point win that was noise.** In Ask the Filings, a table-aware chunker beat the plain one by 8 points on the first 60 questions. Re-tested on 121 newer questions sampled from the filing text, it fixed 9 answers and broke 7 (McNemar p = 0.80). I kept the simpler chunker and added a paired test to every comparison.
 
@@ -195,7 +198,7 @@ I'm looking for backend, ML/AI engineering and platform roles.
 
 **Shashank Yadav**: open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS Computer Science, UMass Boston (2025) · based in the United States, open to remote · Software Developer at Ally Financial. Stream (Kafka, Redis) → serve (gRPC, Spring, FastAPI) → retrieve (pgvector, BM25, RRF) → evaluate (bootstrap CIs, audits).
 
-**Results:** fraud losses −18% in the first quarter (Ally Financial) · average fraud-API response 340 → 265 ms (Ally) · +0.095 macro-F1 for LLM triage over the best free method, 95% CI +0.04 to +0.14 (pytest-triage).
+**Results:** fraud losses −18% in the first quarter (Ally Financial) · average fraud-API response 340 → 265 ms (Ally) · +0.115 macro-F1 for LLM triage over the best free method, 95% CI +0.06 to +0.16 (pytest-triage).
 
 </details>
 
