@@ -577,35 +577,41 @@ def filings(t):
 
 # ---------------------------------------------------------------- syncscribe
 def syncscribe(t):
-    hops = [("M310,110 L343,110", 0.02, 0.14), ("M635,110 L668,110", 0.16, 0.28),
-            ("M165,244 L165,280 L815,280 L815,246", 0.36, 0.72)]
-    pkts = [packet(d, t, a, b, 5) for d, a, b in hops]
+    arrows, pkts = flow(t, 5.5, [
+        ("M270,110 L318,110", 0.02, 0.12),             # browser -> web app (session cookie)
+        ("M620,110 L668,110", 0.14, 0.22),             # web app -> Postgres
+        ("M270,270 L318,270", 0.30, 0.40),             # browser -> sync server (wss + token)
+        ("M620,250 L668,250", 0.42, 0.50),             # sync server -> Postgres
+        ("M668,310 L622,310", 0.62, 0.70),             # Postgres NOTIFY -> sync server
+    ])
     b = [
-        box(20, 44, 290, 200, "Browser", ["Tiptap editor on a Yjs document",
-            "live cursors and presence", "version history and restore",
-            "Markdown export", "viewers get a read-only editor"], t, mono="y-prosemirror"),
-        box(345, 44, 290, 200, "Next.js server", ["GitHub sign-in (Auth.js)",
-            "one access check on every action", "owner, editor or viewer",
-            "mints a 2-minute sync token", "invites never reveal accounts"], t, mono="requireDocAccess()"),
-        box(670, 44, 290, 200, "Sync server", ["self-hosted Hocuspocus",
-            "verifies the token, re-checks", "the role in Postgres",
-            "drops writes from viewers", "closes sockets on revoke"], t, mono="@hocuspocus/server"),
-        arrow("M310,110 L343,110", t, both=True),
-        arrow("M635,110 L668,110", t, both=True),
-        label(327, 98, "token", t), label(652, 98, "notify", t),
-        arrow("M165,244 L165,280 L815,280 L815,246", t, both=True),
-        label(490, 300, "WebSocket, real time: Yjs updates and cursors", t),
+        box(20, 40, 250, 300, "Browser", ["Tiptap editor on a Yjs doc",
+            "live cursors and presence", "version history, restore",
+            "Markdown export", "viewers: read-only editor"], t, mono="y-prosemirror"),
+        box(320, 40, 300, 140, "Web app · Next.js", ["GitHub sign-in (Auth.js)",
+            "one access check per action", "mints a 2-minute sync token"], t, mono="requireDocAccess()"),
+        box(320, 200, 300, 140, "Sync server · Hocuspocus", ["verifies the token, re-checks",
+            "the role in Postgres", "drops writes from viewers", "closes sockets on revoke"], t),
+        box(670, 40, 290, 300, "Postgres", ["users, members, invites",
+            "Yjs state and versions", "one owner per document", "(partial unique index)",
+            "pg_notify when access", "changes"], t, mono="Neon · Drizzle", kind="good"),
+        *arrows,
+        label(294, 98, "cookie", t), label(644, 98, "SQL", t),
+        label(294, 258, "wss", t), label(644, 238, "Yjs", t), label(644, 328, "NOTIFY", t),
+        text(490, 380, "Roles are checked twice: by the web app on every request, and by the sync server on the websocket.",
+             t, size=12.5, color="muted", anchor="middle"),
         *pkts,
     ]
-    return svg(980, 320, "\n".join(b), t,
+    return svg(980, 400, "\n".join(b), t,
                "SyncScribe: the browser runs a Tiptap editor on a Yjs document with live cursors, version history "
-               "and Markdown export. The Next.js server signs people in with GitHub through Auth.js, runs one access "
-               "check for every action, and mints a two-minute token for a user, document and role. A self-hosted "
-               "Hocuspocus sync server verifies that token, re-checks the role in Postgres, drops writes from viewers, "
-               "and closes a socket as soon as access is revoked through Postgres LISTEN/NOTIFY. Edits and cursors "
-               "travel between browser and sync server over a WebSocket in real time.",
+               "and Markdown export. The Next.js web app signs people in with GitHub through Auth.js, runs one access "
+               "check for every action, and mints a two-minute token for a user, document and role. The browser "
+               "connects to a self-hosted Hocuspocus sync server over a WebSocket with that token; the server verifies "
+               "it, re-checks the role in Postgres, drops writes from viewers, and stores Yjs state and versions in "
+               "Postgres. When access changes, Postgres NOTIFY tells the sync server, which closes the socket.",
                style=MOTION_CSS, margin=40,
-               inner=hoppers(t, [(20, 44, 290, 200), (345, 44, 290, 200), (670, 44, 290, 200)], [("warm", 0.0), ("good", 0.5)]))
+               inner=hoppers(t, [(20, 40, 250, 300), (320, 40, 300, 140), (670, 40, 290, 300), (320, 200, 300, 140)],
+                             [("warm", 0.0), ("good", 0.5)]))
 
 
 # ---------------------------------------------------------------- contribution field

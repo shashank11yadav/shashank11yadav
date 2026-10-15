@@ -128,22 +128,36 @@ Ask a question about a company's annual report (SEC 10-K) and get an answer with
 </details>
 
 ### [SyncScribe](https://github.com/shashank11yadav/SyncScribe)
-A real-time collaborative editor with GitHub sign-in, owner/editor/viewer sharing and version history. [Live demo](https://shashank11yadav.github.io/SyncScribe/) (runs in your browser and syncs between your own tabs)
+A real-time collaborative editor with GitHub sign-in, owner/editor/viewer sharing and version history, on a self-hosted Yjs sync server. [Live demo](https://shashank11yadav.github.io/SyncScribe/) (runs in your browser and syncs between your own tabs)
 
 **Problem:** people editing one document need each other's changes and cursors instantly, and a viewer must not be able to write, even with a modified client.  
 **Approach:** Tiptap on Yjs (a CRDT) in a Next.js app, synced through a self-hosted Hocuspocus server instead of a hosted service. The web app checks access in one place for every action and mints a two-minute token per user, document and role. The sync server re-checks the role in Postgres, drops a viewer's writes and closes sockets as soon as access is revoked.
 
-- Every permission rule is tested three ways: a role-matrix test, integration tests of each server action against real Postgres, and websocket tests with real clients. **239** unit and integration tests, plus Playwright runs of two browsers editing one document.
-- Removing someone cuts off their open session right away: Postgres LISTEN/NOTIFY tells the sync server, which closes the socket.
+- Every permission rule is tested three ways: a role-matrix test, integration tests of each server action against real Postgres, and websocket tests with real clients (forged roles, expired or tampered tokens, `alg: none`). **241** unit and integration tests and **20** Playwright end-to-end tests, including two browsers co-editing, live revocation, axe accessibility checks and a 375px layout.
+- Removing someone cuts off their open session within a second: Postgres LISTEN/NOTIFY tells the sync server, which closes the socket. No Redis or queue.
+- A CRDT can't delete content on the server, because a client holding old state would merge it back. So restoring a version writes the old text as a new edit, and saves the current text first.
 - Sharing never reveals whether an email has an account; it always creates a pending invite.
+- The live demo is a static GitHub Pages build of the same editor, role rules and Markdown export: tabs sync over BroadcastChannel, documents and versions live in IndexedDB, and a strict CSP plus end-to-end checks make sure it never contacts another host.
+- CI runs lint, typecheck, tests and both end-to-end suites; CodeQL and Dependabot watch the code, and every Action is pinned to a commit SHA.
 
-`Next.js · TypeScript · Yjs · Hocuspocus · Tiptap · Auth.js · Postgres · Drizzle`
+`Next.js · TypeScript · Yjs · Hocuspocus · Tiptap · Auth.js · Postgres · Drizzle · Playwright`
 
 <details>
 <summary><b>Inside SyncScribe</b> · sign-in, access checks and real-time sync</summary>
 <br>
 
 <p align="center">{{pic:syncscribe}}</p>
+
+</details>
+
+<details>
+<summary><b>Limits and history</b> · what it doesn't do yet</summary>
+<br>
+
+- **The full app isn't hosted.** Free tiers for the database, sync server and web host all sleep when idle, so the always-on demo shows the editing experience and the full app runs locally with Docker.
+- **The demo syncs within one browser only,** and its "Open as viewer" tab is a UI preview: with no server, a modified client could still write. In the full app the sync server refuses those writes.
+- **One sync instance.** Hocuspocus keeps each document in one process; scaling out needs the Redis extension and sticky routing.
+- **Where it started:** the first version followed the JavaScript Mastery "LiveDocs" tutorial on Liveblocks and Clerk. This is a rewrite with a different architecture, and none of that code remains.
 
 </details>
 
