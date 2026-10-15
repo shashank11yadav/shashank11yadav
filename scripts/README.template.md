@@ -127,17 +127,20 @@ Ask a question about a company's annual report (SEC 10-K) and get an answer with
 
 </details>
 
-### [SyncScribe](https://github.com/shashank11yadav/collaborative-editor)
-A Google-Docs-style real-time editor with presence, inline comments and sharing. [Live demo](https://collaborative-editor-ten.vercel.app)
+### [SyncScribe](https://github.com/shashank11yadav/SyncScribe)
+A real-time collaborative editor with GitHub sign-in, owner/editor/viewer sharing and version history. [Live demo](https://shashank11yadav.github.io/SyncScribe/) (runs in your browser and syncs between your own tabs)
 
-**Problem:** people editing one document together need each other's changes and cursors instantly, with per-document permissions.  
-**Approach:** one Liveblocks room per document, Clerk identities mapped to `room:write` or `room:read` access, and Lexical as the editor.
+**Problem:** people editing one document need each other's changes and cursors instantly, and a viewer must not be able to write, even with a modified client.  
+**Approach:** Tiptap on Yjs (a CRDT) in a Next.js app, synced through a self-hosted Hocuspocus server instead of a hosted service. The web app checks access in one place for every action and mints a two-minute token per user, document and role. The sync server re-checks the role in Postgres, drops a viewer's writes and closes sockets as soon as access is revoked.
 
+- Every permission rule is tested three ways: a role-matrix test, integration tests of each server action against real Postgres, and websocket tests with real clients. **239** unit and integration tests, plus Playwright runs of two browsers editing one document.
+- Removing someone cuts off their open session right away: Postgres LISTEN/NOTIFY tells the sync server, which closes the socket.
+- Sharing never reveals whether an email has an account; it always creates a pending invite.
 
-`Next.js · TypeScript · Liveblocks · Lexical`
+`Next.js · TypeScript · Yjs · Hocuspocus · Tiptap · Auth.js · Postgres · Drizzle`
 
 <details>
-<summary><b>Inside SyncScribe</b> · auth, rooms and real-time sync</summary>
+<summary><b>Inside SyncScribe</b> · sign-in, access checks and real-time sync</summary>
 <br>
 
 <p align="center">{{pic:syncscribe}}</p>

@@ -581,28 +581,29 @@ def syncscribe(t):
             ("M165,244 L165,280 L815,280 L815,246", 0.36, 0.72)]
     pkts = [packet(d, t, a, b, 5) for d, a, b in hops]
     b = [
-        box(20, 44, 290, 200, "Browser", ["Next.js 14 app", "Lexical rich-text editor",
-            "presence avatars and live cursors", "inline comment threads",
-            "share modal: editor or viewer"], t, mono="components/"),
-        box(345, 44, 290, 200, "Next.js server", ["Clerk sign-in",
-            "/api/liveblocks-auth: identify the", "user, return a session token",
-            "server actions: create room,", "share, change access"], t, mono="room:write | room:read"),
-        box(670, 44, 290, 200, "Liveblocks", ["one room per document",
-            "shared document state", "presence and comments",
-            "per-user room access", "notifications"], t, mono="@liveblocks/react-lexical"),
+        box(20, 44, 290, 200, "Browser", ["Tiptap editor on a Yjs document",
+            "live cursors and presence", "version history and restore",
+            "Markdown export", "viewers get a read-only editor"], t, mono="y-prosemirror"),
+        box(345, 44, 290, 200, "Next.js server", ["GitHub sign-in (Auth.js)",
+            "one access check on every action", "owner, editor or viewer",
+            "mints a 2-minute sync token", "invites never reveal accounts"], t, mono="requireDocAccess()"),
+        box(670, 44, 290, 200, "Sync server", ["self-hosted Hocuspocus",
+            "verifies the token, re-checks", "the role in Postgres",
+            "drops writes from viewers", "closes sockets on revoke"], t, mono="@hocuspocus/server"),
         arrow("M310,110 L343,110", t, both=True),
         arrow("M635,110 L668,110", t, both=True),
-        label(327, 98, "auth", t), label(652, 98, "API", t),
+        label(327, 98, "token", t), label(652, 98, "notify", t),
         arrow("M165,244 L165,280 L815,280 L815,246", t, both=True),
-        label(490, 300, "WebSocket, real time: edits, cursors, comments", t),
+        label(490, 300, "WebSocket, real time: Yjs updates and cursors", t),
         *pkts,
     ]
     return svg(980, 320, "\n".join(b), t,
-               "SyncScribe: the browser runs a Next.js 14 app with a Lexical editor, live cursors, presence and "
-               "comment threads. The Next.js server handles Clerk sign-in, identifies the user to Liveblocks through "
-               "/api/liveblocks-auth and uses server actions to create rooms and set per-user write or read access. "
-               "Liveblocks keeps one room per document with shared state, presence, comments and notifications, and "
-               "syncs edits, cursors and comments with the browser over a WebSocket in real time.",
+               "SyncScribe: the browser runs a Tiptap editor on a Yjs document with live cursors, version history "
+               "and Markdown export. The Next.js server signs people in with GitHub through Auth.js, runs one access "
+               "check for every action, and mints a two-minute token for a user, document and role. A self-hosted "
+               "Hocuspocus sync server verifies that token, re-checks the role in Postgres, drops writes from viewers, "
+               "and closes a socket as soon as access is revoked through Postgres LISTEN/NOTIFY. Edits and cursors "
+               "travel between browser and sync server over a WebSocket in real time.",
                style=MOTION_CSS, margin=40,
                inner=hoppers(t, [(20, 44, 290, 200), (345, 44, 290, 200), (670, 44, 290, 200)], [("warm", 0.0), ("good", 0.5)]))
 
