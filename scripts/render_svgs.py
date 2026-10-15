@@ -18,11 +18,11 @@ THEMES = {
     "light": dict(bg="#f6f8fa", card="#ffffff", border="#d0d7de", text="#1f2328",
                   muted="#59636e", accent="#0969da", good="#1a7f37", line="#8c959f",
                   goodbg="#f0fff4", warm="#bc4c00", violet="#8250df", pink="#bf3989", eye="#1f2328",
-                  cells=["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"], glow="#b6d6ff"),
+                  cells=["#ebedf0", "#9be9a8", "#40c463", "#30a14e", "#216e39"], glow="#b6d6ff", page="#ffffff"),
     "dark": dict(bg="#161b22", card="#0d1117", border="#30363d", text="#e6edf3",
                  muted="#9198a1", accent="#4493f8", good="#3fb950", line="#6e7681",
                  goodbg="#0f1f14", warm="#f0883e", violet="#ab7df8", pink="#db61a2", eye="#0d1117",
-                 cells=["#21262d", "#0e4429", "#006d32", "#26a641", "#39d353"], glow="#1f3f6b"),
+                 cells=["#21262d", "#0e4429", "#006d32", "#26a641", "#39d353"], glow="#1f3f6b", page="#0d1117"),
 }
 SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif"
 MONO = "ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace"
@@ -401,13 +401,18 @@ def header(t, num, title, tag, colour="accent", idx=0):
     W, H, base = 1200, 96, 62
     title_w = len(title) * 44 * 0.5
     tag_w = len(tag) * (13 * 0.6 + 1)
-    x1, x2 = 44 + title_w + 28, W - tag_w - 34
+    x1, x2 = 56 + title_w + 28, W - tag_w - 44
     style = PHONE_CSS + f"""
   .tip{{animation:tip 2.4s ease-in-out infinite}}
   @keyframes tip{{ 50%{{opacity:.25}} }}
   @media (prefers-reduced-motion: reduce){{ .tip{{animation:none}} .bot{{display:none}} }}
 """ + ROBOT_CSS
     walk_y = base - 16
+    # Headers have no background of their own. If a viewer's GitHub theme and system theme differ,
+    # the browser can pick the other theme's file, so the title and tag sit on chips in this theme's
+    # page colour: invisible on the page they were made for, a neat label on the other one.
+    def chip(x, y, w, h, r):
+        return f'<rect x="{x:.0f}" y="{y:.0f}" width="{w:.0f}" height="{h:.0f}" rx="{r}" fill="{t["page"]}"/>'
     a, b = x1 + 12, x2 - 24
     path = Path(a, walk_y)
     for f in (0.3, 0.62):
@@ -419,15 +424,18 @@ def header(t, num, title, tag, colour="accent", idx=0):
     tl = timeline(path, 46, [1.4, 2.2, 1.0, 1.8, 1.2, 0.8], hide=6 + 2.5 * idx, appear_burst=True)
     walker = robot(t, colour, path, tl, (idx * 0.17) % 1, 1.0, rotate="0", partner="warm" if colour != "warm" else "accent")
     d = ['<g class="dt">',
-         text(0, base, num, t, size=15, color="accent", weight=600, font=MONO),
-         f'<text x="40" y="{base}" font-family="{SERIF}" font-size="44" fill="{t["text"]}">{escape(title)}</text>',
+         chip(1, base - 46, 54 + title_w + 22, 62, 12),
+         chip(W - tag_w - 26, walk_y - 14, tag_w + 24, 26, 8),
+         text(12, base, num, t, size=15, color="accent", weight=600, font=MONO),
+         f'<text x="52" y="{base}" font-family="{SERIF}" font-size="44" fill="{t["text"]}">{escape(title)}</text>',
          f'<line x1="{x1}" y1="{walk_y}" x2="{x2}" y2="{walk_y}" stroke="{t["border"]}" stroke-width="1.5"/>',
          f'<circle class="tip" cx="{x2 + 6}" cy="{walk_y}" r="4.5" fill="{t["accent"]}"/>',
-         text(W, walk_y + 5, tag, t, size=13, color="muted", font=MONO, anchor="end"),
+         text(W - 12, walk_y + 5, tag, t, size=13, color="muted", font=MONO, anchor="end"),
          walker, "</g>"]
     p = ['<g class="ph">',
-         text(0, base + 8, num, t, size=34, color="accent", weight=600, font=MONO),
-         f'<text x="76" y="{base + 8}" font-family="{SERIF}" font-size="76" fill="{t["text"]}">{escape(title)}</text>',
+         chip(1, base - 66, 104 + len(title) * 76 * 0.5 + 24, 92, 16),
+         text(14, base + 8, num, t, size=34, color="accent", weight=600, font=MONO),
+         f'<text x="90" y="{base + 8}" font-family="{SERIF}" font-size="76" fill="{t["text"]}">{escape(title)}</text>',
          "</g>"]
     svg_ = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" role="img" aria-label="{num} {escape(title)}">
 <title>{num} {escape(title)}</title>
