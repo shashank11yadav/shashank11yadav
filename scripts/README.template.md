@@ -61,8 +61,15 @@ I lean backend, and I like proof: every project below comes with the numbers tha
 ### [pytest-triage](https://github.com/shashank11yadav/pytest-triage)
 A triage assistant for pytest's GitHub issues that runs in shadow mode: it suggests labels, missing information and likely duplicates, never writes to GitHub, and is scored against what the maintainers actually did. [Live results, updated daily](https://shashank11yadav.github.io/pytest-triage/)
 
-**Problem:** since January 2025, 247 of pytest's 484 new issues (51%) never got a label. Triage is the first thing to slip when volunteers are busy.  
+<details>
+<summary><b>Problem and approach</b> · why it exists and how it works</summary>
+<br>
+
+**Problem:** since January 2025, 247 of pytest's 484 new issues (51%) never got a label. Triage is the first thing to slip when volunteers are busy.
+
 **Approach:** a fixed pipeline of three cheap LLM calls plus local search, with enum-only outputs, injection guardrails and a policy check. By default a label is shown only when a trained classifier agrees with it, and every choice is made on a 2024 dev split before the test set is scored.
+
+</details>
 
 - Labels (11 labels): **macro-F1 0.58** vs 0.46 for the best free method, a logistic-regression classifier (**+0.115**, 95% CI +0.06 to +0.16).
 - High-precision mode, the default: **82% of shown labels match the maintainers'** (95% CI 69 to 91%), on 18% of issues. Showing every suggested label would be 46% precise.
@@ -97,8 +104,15 @@ A triage assistant for pytest's GitHub issues that runs in shadow mode: it sugge
 ### [Ask the Filings](https://github.com/shashank11yadav/ask-the-filings)
 Ask a question about a company's annual report (SEC 10-K) and get an answer with the exact passages it came from. If the filings don't contain the answer, it says so instead of guessing. [Watch the demo](https://github.com/user-attachments/assets/64ae15e5-2de7-44b7-a403-27f4e7530134)
 
-**Problem:** an answer about a filing is only useful if you can check it, and if it admits when the filing doesn't say.  
+<details>
+<summary><b>Problem and approach</b> · why it exists and how it works</summary>
+<br>
+
+**Problem:** an answer about a filing is only useful if you can check it, and if it admits when the filing doesn't say.
+
 **Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), company detection and a local cross-encoder reranker, then Gemini answering in JSON with citations. Guardrails written in code refuse advice and predictions, require a valid citation and check every number against the cited passages. Each design choice was kept or dropped based on the eval.
+
+</details>
 
 - **111 of 117 answerable questions correct (95%) and 0 wrong answers**: the other 6 were "not found in the retrieved passages". It also refused **26 of 27 unanswerable questions** (other companies or years, predictions, undisclosed figures, false premises).
 - Checked in code, not by the LLM judge: the main figure is right on 65 of 67 numeric questions, and every number in 112 of 112 answers appears in the cited passages. **21 of 21** guardrail tests pass.
@@ -130,8 +144,15 @@ Ask a question about a company's annual report (SEC 10-K) and get an answer with
 ### [SyncScribe](https://github.com/shashank11yadav/SyncScribe)
 A real-time collaborative editor with GitHub sign-in, owner/editor/viewer sharing and version history, on a self-hosted Yjs sync server. [Live demo](https://shashank11yadav.github.io/SyncScribe/) (runs in your browser and syncs between your own tabs)
 
-**Problem:** people editing one document need each other's changes and cursors instantly, and a viewer must not be able to write, even with a modified client.  
+<details>
+<summary><b>Problem and approach</b> · why it exists and how it works</summary>
+<br>
+
+**Problem:** people editing one document need each other's changes and cursors instantly, and a viewer must not be able to write, even with a modified client.
+
 **Approach:** Tiptap on Yjs (a CRDT) in a Next.js app, synced through a self-hosted Hocuspocus server instead of a hosted service. The web app checks access in one place for every action and mints a two-minute token per user, document and role. The sync server re-checks the role in Postgres, drops a viewer's writes and closes sockets as soon as access is revoked.
+
+</details>
 
 - Every permission rule is tested three ways: a role-matrix test, integration tests of each server action against real Postgres, and websocket tests with real clients (forged roles, expired or tampered tokens, `alg: none`). **241** unit and integration tests and **20** Playwright end-to-end tests, including two browsers co-editing, live revocation, axe accessibility checks and a 375px layout.
 - Removing someone cuts off their open session within a second: Postgres LISTEN/NOTIFY tells the sync server, which closes the socket. No Redis or queue.
