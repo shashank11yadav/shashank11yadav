@@ -6,7 +6,7 @@
 
 {{h:about}}
 
-I'm a software engineer with 3+ years of experience building backend systems and production ML, mostly in Python and Java. At **Ally Financial** I own two of the microservices behind a real-time fraud detection platform (Python, gRPC, Kafka, Redis). Before that, I shipped Java/Spring Boot features to a core banking platform at **TCS** and led its zero-downtime Oracle → PostgreSQL migration. I have an MS in Computer Science from **UMass Boston** (2025).
+I'm a software engineer with 3+ years of experience building backend systems and production ML, mostly in Python and Java. At **Ally Financial** I work on a real-time fraud detection platform, which I helped build from the ground up. Before that, I shipped Java/Spring Boot features to a core banking platform at **TCS** and led its zero-downtime Oracle → PostgreSQL migration. I have an MS in Computer Science from **UMass Boston** (2025).
 
 I lean backend, and I like proof: every project below comes with the numbers that show it works, and with what those numbers don't show.
 <!-- Add work-authorization status here, e.g. "F-1 STEM OPT, no sponsorship needed until 20XX". -->
@@ -14,15 +14,15 @@ I lean backend, and I like proof: every project below comes with the numbers tha
 {{h:experience}}
 
 <details open>
-<summary><b>Software Developer · Ally Financial</b> · 07/2025 – present · Remote<br><sub>Real-time fraud scoring: fraud losses −18% in the first quarter after launch</sub></summary>
+<summary><b>Software Developer · Ally Financial</b> · 07/2025 – present · Remote<br><sub>Real-time fraud detection: fraud losses −18% in the first quarter after launch</sub></summary>
 <br>
 
-- Helped build Ally's fraud detection platform from the ground up. I own **FraudRiskService** and **TransactionPolicyService**, which score transactions in real time (Python, gRPC, Kafka, Redis).
-- Built the `/transaction-risk-evaluation` and `/fraud-alert-monitoring` APIs on PostgreSQL/Aurora. Reworking query plans and adding connection pooling brought average response time from **340 ms to 265 ms**.
-- Built a React/TypeScript fraud analytics dashboard that streams live KPIs from Kafka. It replaced hand-maintained Excel reports and cut average investigation time by **~21%**.
-- Integrated Claude 3 into risk scoring to write anomaly narratives. Prompt guardrails and validation layers keep the output within FFIEC audit requirements.
-- Built the CI/CD pipeline (GitHub Actions, Docker, EKS) and added structured logging and Prometheus/Grafana metrics, so on-call engineers find issues in minutes instead of hours.
-- Own OAuth 2.0/JWT auth on every endpoint for SOC 2 and PCI DSS. Wrote **85+ tests** that run on every PR, with **>90% coverage** on critical paths.
+- Helped build a real-time fraud detection platform from the ground up, and own core parts of how transactions are scored as they happen. In its first quarter, fraud losses fell by **18%**.
+- Cut the average response time of transaction scoring from **340 ms to 265 ms** by tuning database queries and connection handling.
+- Built a live fraud analytics dashboard that replaced spreadsheets analysts were updating by hand, cutting average investigation time by **~21%**.
+- Added LLM-written explanations for flagged activity, with guardrails and validation so every explanation meets regulatory audit requirements.
+- Set up the delivery pipeline and production monitoring, so on-call engineers pinpoint issues in minutes instead of hours.
+- Own authentication and access control across the platform, held to financial-industry security standards, backed by **85+ automated tests** with **>90% coverage** on critical paths.
 
 </details>
 
@@ -202,17 +202,17 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 
 **An 8-point win that was noise.** In Ask the Filings, a table-aware chunker beat the plain one by 8 points on the first 60 questions. Re-tested on 121 newer questions sampled from the filing text, it fixed 9 answers and broke 7 (McNemar p = 0.80). I kept the simpler chunker and added a paired test to every comparison.
 
-**340 ms → 265 ms came from the database layer.** At Ally, reworking the query plans behind the fraud APIs and adding connection pooling cut average response time by about a fifth. <!-- Add what you found: which query, what the plan was doing, how you measured it. -->
+**340 ms → 265 ms came from the database layer.** At Ally, tuning the queries behind transaction scoring and how it holds database connections cut average response time by about a fifth, without changing the scoring itself. <!-- Add what you found: which query, what the plan was doing, how you measured it. -->
 
 {{h:toolbox}}
 
 | Area | Tools | Where I've used them |
 | :--- | :--- | :--- |
 | **Languages** | Python, Java, TypeScript, C++, SQL, Bash | Python and Java in production at Ally, TCS and NTT Data |
-| **Backend & APIs** | Spring Boot, FastAPI, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud APIs and services, TCS core banking |
-| **Streaming & data** | Kafka, Redis, PostgreSQL (incl. pgvector), Aurora, Oracle, MongoDB | Ally real-time scoring, TCS Oracle → Postgres migration, Ask the Filings |
-| **Cloud & delivery** | AWS (EKS, Lambda, SQS/SNS, S3), Docker, Kubernetes, GitHub Actions, Jenkins | Ally CI/CD to EKS, TCS Jenkins pipeline |
-| **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, rerankers, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally narrative generation |
+| **Backend & APIs** | Spring Boot, FastAPI, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud platform, TCS core banking |
+| **Streaming & data** | Kafka, Redis, PostgreSQL (incl. pgvector), Oracle, MongoDB | Ally fraud platform, TCS Oracle → Postgres migration, Ask the Filings |
+| **Cloud & delivery** | AWS (EKS, Lambda, SQS/SNS, S3), Docker, Kubernetes, GitHub Actions, Jenkins | Ally delivery pipeline, TCS Jenkins pipeline |
+| **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, rerankers, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally fraud explanations |
 | **Quality & reliability** | PyTest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
 
 {{h:activity}}
@@ -236,7 +236,7 @@ I'm looking for backend, ML/AI engineering and platform roles.
 
 **Shashank Yadav**: open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS Computer Science, UMass Boston (2025) · based in the United States, open to remote · Software Developer at Ally Financial. Stream (Kafka, Redis) → serve (gRPC, Spring, FastAPI) → retrieve (pgvector, BM25, RRF) → evaluate (bootstrap CIs, audits).
 
-**Results:** fraud losses −18% in the first quarter (Ally Financial) · average fraud-API response 340 → 265 ms (Ally) · +0.115 macro-F1 for LLM triage over the best free method, 95% CI +0.06 to +0.16 (pytest-triage).
+**Results:** fraud losses −18% in the first quarter (Ally Financial) · average transaction-scoring response 340 → 265 ms (Ally) · +0.115 macro-F1 for LLM triage over the best free method, 95% CI +0.06 to +0.16 (pytest-triage).
 
 </details>
 

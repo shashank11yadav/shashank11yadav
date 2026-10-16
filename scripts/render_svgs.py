@@ -450,7 +450,7 @@ def header(t, num, title, tag, colour="accent", idx=0):
 def impact(t):
     cols = [
         ("−18%", "fraud losses, first quarter", "Ally Financial · real-time fraud scoring", "−18%", "fraud losses"),
-        ("340 → 265 ms", "average fraud-API response", "Ally · query plans + connection pooling", "−22%", "API latency"),
+        ("340 → 265 ms", "average scoring response", "Ally · database tuning", "−22%", "scoring latency"),
         ("+0.115 F1", "LLM triage vs best free method", "pytest-triage · 95% CI +0.06 to +0.16", "+0.115", "F1 vs baseline"),
     ]
     d, p = ['<g class="dt">'], ['<g class="ph">']
@@ -467,8 +467,8 @@ def impact(t):
     d.append("</g>"); p.append("</g>")
     return svg(1200, 170, "\n".join(d + p), t,
                "Results: fraud losses down 18% in the first quarter after launch of Ally Financial's real-time fraud "
-               "scoring; average fraud-API response time from 340 to 265 ms after reworking query plans and adding "
-               "connection pooling; pytest-triage's LLM labels beat the best free method by 0.115 macro-F1 "
+               "detection; average transaction-scoring response time from 340 to 265 ms after tuning database queries and "
+               "connection handling; pytest-triage's LLM labels beat the best free method by 0.115 macro-F1 "
                "(95% CI +0.06 to +0.16).", style=PHONE_CSS, margin=HERO_MARGIN)
 
 
