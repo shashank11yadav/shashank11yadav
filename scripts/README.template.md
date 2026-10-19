@@ -227,7 +227,7 @@ Public activity only: work I do for employers lives in their repositories, so it
 I'm looking for backend, ML/AI engineering and platform roles.
 
 **US · Open to remote**<br>
-[Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://shashank11yadav.github.io/shashank-yadav-portfolio/) · [X](https://x.com/Shashankyadav30)
+[Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://www.shashankyadav.dev/) · [X](https://x.com/Shashankyadav30)
 
 <details>
 <summary>Plain-text version of the images</summary>

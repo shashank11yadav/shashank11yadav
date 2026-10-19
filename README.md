@@ -3,7 +3,7 @@
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/hero-dark.svg"><img src="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/hero-light.svg" width="100%" alt="Shashank Yadav. Open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS in Computer Science, UMass Boston, 2025. Based in the United States, open to remote. Current role: Software Developer at Ally Financial."></picture>
 
 <p align="center">
-<a href="https://shashank11yadav.github.io/shashank-yadav-portfolio/"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-portfolio-dark.svg"><img src="./Assets/profile/btn-portfolio-light.svg" height="40" alt="Portfolio"></picture></a>
+<a href="https://www.shashankyadav.dev/"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-portfolio-dark.svg"><img src="./Assets/profile/btn-portfolio-light.svg" height="40" alt="Portfolio"></picture></a>
 <a href="https://www.linkedin.com/in/shashank-yadav-cs/"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-linkedin-dark.svg"><img src="./Assets/profile/btn-linkedin-light.svg" height="40" alt="LinkedIn"></picture></a>
 <a href="https://x.com/Shashankyadav30"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-x-dark.svg"><img src="./Assets/profile/btn-x-light.svg" height="40" alt="X"></picture></a>
 <a href="mailto:yadav.shashank1201@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-email-dark.svg"><img src="./Assets/profile/btn-email-light.svg" height="40" alt="Email"></picture></a>
@@ -236,7 +236,7 @@ Public activity only: work I do for employers lives in their repositories, so it
 I'm looking for backend, ML/AI engineering and platform roles.
 
 **US · Open to remote**<br>
-[Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://shashank11yadav.github.io/shashank-yadav-portfolio/) · [X](https://x.com/Shashankyadav30)
+[Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://www.shashankyadav.dev/) · [X](https://x.com/Shashankyadav30)
 
 <details>
 <summary>Plain-text version of the images</summary>

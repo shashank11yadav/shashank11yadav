@@ -27,7 +27,7 @@ PREVIEW = "--preview" in sys.argv
 LIVE = {"hero", "activity"}     # images redrawn by the profile workflow
 
 LINKS = {
-    "portfolio": "https://shashank11yadav.github.io/shashank-yadav-portfolio/",
+    "portfolio": "https://www.shashankyadav.dev/",
     "linkedin": "https://www.linkedin.com/in/shashank-yadav-cs/",
     "x": "https://x.com/Shashankyadav30",
     "email": "mailto:yadav.shashank1201@gmail.com",
