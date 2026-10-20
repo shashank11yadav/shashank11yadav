@@ -31,7 +31,7 @@ LINKS = {
     "linkedin": "https://www.linkedin.com/in/shashank-yadav-cs/",
     "x": "https://x.com/Shashankyadav30",
     "email": "mailto:yadav.shashank1201@gmail.com",
-    "resume": "https://drive.google.com/file/d/1snhoAl2qE-RtV797FtQCy2SIOwR_2YRu/view",
+    "resume": "https://www.shashankyadav.dev/resume.pdf",
     "leetcode": "https://leetcode.com/u/Shashank-yadav/",
 }
 

@@ -7,7 +7,7 @@
 <a href="https://www.linkedin.com/in/shashank-yadav-cs/"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-linkedin-dark.svg"><img src="./Assets/profile/btn-linkedin-light.svg" height="40" alt="LinkedIn"></picture></a>
 <a href="https://x.com/Shashankyadav30"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-x-dark.svg"><img src="./Assets/profile/btn-x-light.svg" height="40" alt="X"></picture></a>
 <a href="mailto:yadav.shashank1201@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-email-dark.svg"><img src="./Assets/profile/btn-email-light.svg" height="40" alt="Email"></picture></a>
-<a href="https://drive.google.com/file/d/1snhoAl2qE-RtV797FtQCy2SIOwR_2YRu/view"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-resume-dark.svg"><img src="./Assets/profile/btn-resume-light.svg" height="40" alt="Résumé"></picture></a>
+<a href="https://www.shashankyadav.dev/resume.pdf"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-resume-dark.svg"><img src="./Assets/profile/btn-resume-light.svg" height="40" alt="Résumé"></picture></a>
 <a href="https://leetcode.com/u/Shashank-yadav/"><picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/btn-leetcode-dark.svg"><img src="./Assets/profile/btn-leetcode-light.svg" height="40" alt="LeetCode"></picture></a>
 </p>
 
