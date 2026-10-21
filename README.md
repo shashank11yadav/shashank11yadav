@@ -120,7 +120,7 @@ Ask a question about a company's annual report (SEC 10-K) and get an answer with
 
 **Problem:** an answer about a filing is only useful if you can check it, and if it admits when the filing doesn't say.
 
-**Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), company detection and a local cross-encoder reranker, then Gemini answering in JSON with citations. Gemini labels each request, and code returns a fixed refusal for advice, predictions and off-topic questions, withholds answers without a valid citation, and flags numbers that aren't in the cited passages. Each design choice was kept or dropped based on the eval.
+**Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), company detection and a local cross-encoder reranker, then Gemini answering in JSON with citations. Guardrails refuse investment advice, predictions and off-topic questions with fixed responses written in code, withhold answers without a valid citation, and flag numbers that aren't in the cited passages. Each design choice was kept or dropped based on the eval.
 
 </details>
 
