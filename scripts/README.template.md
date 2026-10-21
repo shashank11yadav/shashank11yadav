@@ -135,10 +135,10 @@ Ask a question about a company's annual report (SEC 10-K) and get an answer with
 <br>
 
 - **The set:** 144 questions over 10 companies' 10-Ks (two fiscal years each). 117 the filings answer and 27 they don't, in five kinds: company not loaded, year not loaded, prediction, not disclosed, false premise. Questions don't say which company or year to search.
-- **Same-family judge:** Gemini drafted the answerable questions from filing passages and Gemini grades the answers, which tends to be generous. Numbers are therefore also checked in code, and every question passes automatic checks: the quoted evidence exists in the filing, the answer's numbers appear in it, and the question names the company. The 27 unanswerable questions were written separately.
+- **How I built and graded the set:** I generated the answerable questions from filing passages and grade the answers with an LLM judge from the same model family, which tends to be generous. To offset that, I check every number in code, and every question has to pass my automatic checks: the quoted evidence exists in the filing, the answer's numbers appear in it, and the question names the company. The 27 unanswerable questions were written separately.
 - **Uncertainty:** 111 of 117 has a 95% interval of roughly 89 to 98%. `evals/compare.py` runs a paired McNemar test and a bootstrap interval before I call any change a win.
 - **Small guardrail set:** 21 cases show the basics work (advice, off-topic, hidden instructions in the question or in fake retrieved passages), not that the system is hard to attack.
-- **Next:** a second judge from a different model family, to measure how often the two agree.
+- **Next:** I'm adding a second judge from a different model family, so I can measure how often the two agree.
 
 </details>
 
