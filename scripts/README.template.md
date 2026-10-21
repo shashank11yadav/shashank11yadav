@@ -6,23 +6,23 @@
 
 {{h:about}}
 
-I'm a software engineer with 3+ years of experience building backend systems and production ML, mostly in Python and Java. At **Ally Financial** I work on a real-time fraud detection platform, which I helped build from the ground up. Before that, I shipped Java/Spring Boot features to a core banking platform at **TCS** and led its zero-downtime Oracle → PostgreSQL migration. I have an MS in Computer Science from **UMass Boston** (2025).
+I'm an AI/ML engineer in Denver with 3+ years of building production software. I build LLM features, retrieval systems and ML models, and the backend services they run on. At **Ally Financial** I added an LLM to a real-time fraud risk pipeline, with guardrails and validation that meet banking audit requirements, on a fraud detection platform I helped build from the ground up. Before that, I shipped Java/Spring Boot features to a core banking platform at **TCS** and led its zero-downtime Oracle → PostgreSQL migration. I have an MS in Computer Science from **UMass Boston** (2025).
 
-I lean backend, and I like proof: every project below comes with the numbers that show it works, and with what those numbers don't show.
+I like proof: every project below comes with the numbers that show it works, and with what those numbers don't show.
 <!-- Add work-authorization status here, e.g. "F-1 STEM OPT, no sponsorship needed until 20XX". -->
 
 {{h:experience}}
 
 <details open>
-<summary><b>Software Developer · Ally Financial</b> · 07/2025 – present · Remote<br><sub>Real-time fraud detection: fraud losses −18% in the first quarter after launch</sub></summary>
+<summary><b>Software Developer · Ally Financial</b> · 07/2025 – present · Remote, USA<br><sub>Real-time fraud detection: fraud losses −18% in the first quarter after launch</sub></summary>
 <br>
 
-- Helped build a real-time fraud detection platform from the ground up, and own core parts of how transactions are scored as they happen. In its first quarter, fraud losses fell by **18%**.
-- Cut the average response time of transaction scoring from **340 ms to 265 ms** by tuning database queries and connection handling.
-- Built a live fraud analytics dashboard that replaced spreadsheets analysts were updating by hand, cutting average investigation time by **~21%**.
-- Added LLM-written explanations for flagged activity, with guardrails and validation so every explanation meets regulatory audit requirements.
-- Set up the delivery pipeline and production monitoring, so on-call engineers pinpoint issues in minutes instead of hours.
-- Own authentication and access control across the platform, held to financial-industry security standards, backed by **85+ automated tests** with **>90% coverage** on critical paths.
+- Added an LLM to a real-time transaction risk scoring pipeline to write explanations of flagged activity for fraud analysts, with prompt guardrails and validation, built with the AI and compliance teams, that meet banking audit requirements.
+- Owned the core scoring services (Python, streaming and caching) of a real-time fraud detection platform built from the ground up. In its first quarter, fraud losses fell by **18%**.
+- Cut average response time for risk evaluation and alerting from **340 ms to 265 ms** by reworking query plans and adding connection pooling.
+- Built a live fraud analytics dashboard (React, TypeScript) that replaced spreadsheets analysts were updating by hand, cutting average investigation time by **~21%**.
+- Set up CI/CD with containerized deployments, structured logging and metrics dashboards, so on-call engineers pinpoint issues in minutes instead of hours.
+- Owned service authentication (OAuth 2.0, JWT) for compliance requirements, backed by **85+ automated tests** that run on every pull request, with **>90% coverage** on critical paths.
 
 </details>
 
@@ -30,13 +30,14 @@ I lean backend, and I like proof: every project below comes with the numbers tha
 <summary><b>Graduate Teaching Assistant · University of Massachusetts Boston</b> · 09/2024 – 05/2025 · Boston, MA<br><sub>8 lab cohorts, 90+ students, feedback within 24 hours</sub></summary>
 <br>
 
-- Led 8 lab cohorts (**90+ students**) through circuit analysis and MATLAB/Multisim simulations.
-- Gave actionable feedback on **70+ lab reports within 24 hours**, which improved problem-solving for **85%** of student pairs.
+- Led 8 lab cohorts (**90+ students**) through circuit analysis and MATLAB simulations.
+- Gave feedback on **70+ lab reports**, each within 24 hours.
+- Mentored student pairs on debugging and problem solving.
 
 </details>
 
 <details>
-<summary><b>Software Engineer · Tata Consultancy Services</b> · 08/2022 – 08/2023 · Gurgaon<br><sub>Core banking: zero-downtime Oracle → PostgreSQL migration, $45K/yr saved</sub></summary>
+<summary><b>Software Engineer · Tata Consultancy Services</b> · 08/2022 – 08/2023 · Gurgaon, India<br><sub>Core banking: zero-downtime Oracle → PostgreSQL migration, $45K/yr saved</sub></summary>
 <br>
 
 - Shipped 7 Java/Spring Boot features to a core banking platform that processes **50K+ transactions a day**. Wrote 120+ JUnit tests and owned the Jenkins pipeline, which cut the defect rate by **40%** versus the previous release cycle.
@@ -47,7 +48,7 @@ I lean backend, and I like proof: every project below comes with the numbers tha
 </details>
 
 <details>
-<summary><b>Software Development Engineer Intern · NTT Data</b> · 01/2021 – 07/2022 · Remote<br><sub>Enterprise apps: Spring Security hardening, weekly releases</sub></summary>
+<summary><b>Software Development Engineer Intern · NTT Data</b> · 01/2021 – 07/2022 · Remote, India<br><sub>Enterprise apps: Spring Security hardening, weekly releases</sub></summary>
 <br>
 
 - Built Angular/TypeScript components and Spring Boot APIs, plus a Kafka order-processing microservice handling 2K+ transactions a day.
@@ -75,7 +76,7 @@ A triage assistant for pytest's GitHub issues that runs in shadow mode: it sugge
 - High-precision mode, the default: **82% of shown labels match the maintainers'** (95% CI 69 to 91%), on 18% of issues. Showing every suggested label would be 46% precise.
 - A guided human check of the type labels found the model calling regressions "bug", so I added **`type: regression`**: F1 0.71, vs 0.47 for the best free method.
 - Duplicates: **7 of 15 known pairs flagged, 3 of 30 false alarms** (search alone finds 5).
-- Prompt injection: **0 of 104 attack runs reached a maintainer** (19 attacks in 6 variants each).
+- Prompt injection: **0 of 104 attack runs reached a maintainer** (19 attacks, most in 6 variants).
 - About **$0.0015 and 3.3 s per issue**; $2.64 spent on building and evaluating everything. A CI regression gate fails any prompt or model change that hasn't been re-measured.
 
 `Python · Gemini · BM25 + embeddings · scikit-learn · bootstrap evals · GitHub Actions · Docker`
@@ -110,7 +111,7 @@ Ask a question about a company's annual report (SEC 10-K) and get an answer with
 
 **Problem:** an answer about a filing is only useful if you can check it, and if it admits when the filing doesn't say.
 
-**Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), company detection and a local cross-encoder reranker, then Gemini answering in JSON with citations. Guardrails written in code refuse advice and predictions, require a valid citation and check every number against the cited passages. Each design choice was kept or dropped based on the eval.
+**Approach:** hybrid search (pgvector + Postgres full-text, merged with RRF), company detection and a local cross-encoder reranker, then Gemini answering in JSON with citations. Gemini labels each request, and code returns a fixed refusal for advice, predictions and off-topic questions, withholds answers without a valid citation, and flags numbers that aren't in the cited passages. Each design choice was kept or dropped based on the eval.
 
 </details>
 
@@ -154,7 +155,7 @@ A real-time collaborative editor with GitHub sign-in, owner/editor/viewer sharin
 
 </details>
 
-- Every permission rule is tested three ways: a role-matrix test, integration tests of each server action against real Postgres, and websocket tests with real clients (forged roles, expired or tampered tokens, `alg: none`). **241** unit and integration tests and **20** Playwright end-to-end tests, including two browsers co-editing, live revocation, axe accessibility checks and a 375px layout.
+- Every permission rule is tested three ways: a role-matrix test, integration tests of each server action against real Postgres, and websocket tests with real clients (expired, foreign-document or wrong-secret tokens, and a token claiming more than the database grants). Token tampering and `alg: none` are covered by unit tests, and forged roles by the integration tests. **241** unit and integration tests and **20** Playwright end-to-end tests, including two browsers co-editing, live revocation, axe accessibility checks and a 375px layout.
 - Removing someone cuts off their open session within a second: Postgres LISTEN/NOTIFY tells the sync server, which closes the socket. No Redis or queue.
 - A CRDT can't delete content on the server, because a client holding old state would merge it back. So restoring a version writes the old text as a new edit, and saves the current text first.
 - Sharing never reveals whether an email has an account; it always creates a pending invite.
@@ -200,20 +201,20 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 
 **My precision number was wrong because the ground truth was incomplete.** In pytest-triage, maintainers apply about 1 label per issue and often leave the type blank, so measured precision was 0.43. Two model raters, then a guided human check of 50 disputed type labels, put it at about 0.65 to 0.75 overall and 0.71 to 0.95 for types. The same check showed the model calling regressions "bug", so I added `type: regression` (F1 0.71).
 
-**An 8-point win that was noise.** In Ask the Filings, a table-aware chunker beat the plain one by 8 points on the first 60 questions. Re-tested on 121 newer questions sampled from the filing text, it fixed 9 answers and broke 7 (McNemar p = 0.80). I kept the simpler chunker and added a paired test to every comparison.
+**An 8-point win that was noise.** In Ask the Filings, a table-aware chunker beat the plain one by 8 points on the first 60 questions. Re-tested on a larger, newer question set sampled from the filing text, it fixed 9 answers and broke 7 (McNemar p = 0.80). I kept the simpler chunker and added a paired test to every comparison.
 
-**340 ms → 265 ms came from the database layer.** At Ally, tuning the queries behind transaction scoring and how it holds database connections cut average response time by about a fifth, without changing the scoring itself. <!-- Add what you found: which query, what the plan was doing, how you measured it. -->
+**340 ms → 265 ms came from the database layer.** At Ally, reworking the query plans behind risk evaluation and alerting and adding connection pooling cut average response time by about a fifth. <!-- Add what you found: which query, what the plan was doing, how you measured it. -->
 
 {{h:toolbox}}
 
 | Area | Tools | Where I've used them |
 | :--- | :--- | :--- |
-| **Languages** | Python, Java, TypeScript, C++, SQL, Bash | Python and Java in production at Ally, TCS and NTT Data |
-| **Backend & APIs** | Spring Boot, FastAPI, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud platform, TCS core banking |
+| **Languages** | Python, Java, TypeScript, C++, SQL, Bash | Python at Ally; Java at TCS and NTT Data |
+| **Backend & APIs** | Spring Boot, FastAPI, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud platform, TCS core banking, NTT Data |
 | **Streaming & data** | Kafka, Redis, PostgreSQL (incl. pgvector), Oracle, MongoDB | Ally fraud platform, TCS Oracle → Postgres migration, Ask the Filings |
-| **Cloud & delivery** | AWS (EKS, Lambda, SQS/SNS, S3), Docker, Kubernetes, GitHub Actions, Jenkins | Ally delivery pipeline, TCS Jenkins pipeline |
+| **Cloud & delivery** | AWS (Lambda, Fargate, EKS, S3, SQS), Docker, Kubernetes, GitHub Actions, Jenkins | Ally delivery pipeline, TCS Jenkins pipeline |
 | **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, rerankers, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally fraud explanations |
-| **Quality & reliability** | PyTest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
+| **Quality & reliability** | pytest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
 
 {{h:activity}}
 
@@ -223,10 +224,10 @@ Public activity only: work I do for employers lives in their repositories, so it
 
 ---
 
-**Working on real-time systems or production ML? I'd like to hear about it.**<br>
-I'm looking for backend, ML/AI engineering and platform roles.
+**Building LLM features, retrieval or evals? I'd like to hear about it.**<br>
+I'm looking for AI/ML engineer roles, and I can start immediately.
 
-**US · Open to remote**<br>
+**Denver, CO · Open to on-site, hybrid and remote work, and to relocation**<br>
 [Email](mailto:yadav.shashank1201@gmail.com) · [LinkedIn](https://www.linkedin.com/in/shashank-yadav-cs/) · [Portfolio](https://www.shashankyadav.dev/) · [X](https://x.com/Shashankyadav30)
 
 <details>
@@ -234,9 +235,9 @@ I'm looking for backend, ML/AI engineering and platform roles.
 
 **Activity:** a year of public GitHub contributions, one cell per day, with totals, active days, streaks and the busiest day; redrawn every 6 hours.
 
-**Shashank Yadav**: open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS Computer Science, UMass Boston (2025) · based in the United States, open to remote · Software Developer at Ally Financial. Stream (Kafka, Redis) → serve (gRPC, Spring, FastAPI) → retrieve (pgvector, BM25, RRF) → evaluate (bootstrap CIs, audits).
+**Shashank Yadav**: AI/ML engineer, open to AI/ML engineer roles. Builds LLM features, retrieval systems and evals, and the backend services they run on. MS Computer Science, UMass Boston (2025) · based in Denver, CO, open to on-site, hybrid and remote work · Software Developer at Ally Financial. Stream (Kafka, Redis) → serve (gRPC, Spring, FastAPI) → retrieve (pgvector, BM25, RRF) → evaluate (bootstrap CIs, audits).
 
-**Results:** fraud losses −18% in the first quarter (Ally Financial) · average transaction-scoring response 340 → 265 ms (Ally) · +0.115 macro-F1 for LLM triage over the best free method, 95% CI +0.06 to +0.16 (pytest-triage).
+**Results:** fraud losses −18% in the first quarter (Ally Financial) · risk evaluation and alerting response 340 → 265 ms (Ally) · +0.115 macro-F1 for LLM triage over the best free method, 95% CI +0.06 to +0.16 (pytest-triage).
 
 </details>
 

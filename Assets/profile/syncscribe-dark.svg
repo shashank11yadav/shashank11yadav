@@ -29,7 +29,7 @@
 <text x="34" y="129" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#9198a1" text-anchor="start">version history, restore</text>
 <text x="34" y="149" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#9198a1" text-anchor="start">Markdown export</text>
 <text x="34" y="169" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#9198a1" text-anchor="start">viewers: read-only editor</text>
-<text x="34" y="327" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#4493f8" text-anchor="start">y-prosemirror</text>
+<text x="34" y="327" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="11" font-weight="400" fill="#4493f8" text-anchor="start">@tiptap/y-tiptap</text>
 <rect x="320" y="40" width="300" height="140" rx="10" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
 <text x="334" y="66" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" fill="#e6edf3" text-anchor="start">Web app · Next.js</text>
 <text x="334" y="89" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#9198a1" text-anchor="start">GitHub sign-in (Auth.js)</text>

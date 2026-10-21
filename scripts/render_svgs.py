@@ -322,10 +322,10 @@ def hero(t):
                 f'<tspan font-style="italic" fill="{t["accent"]}">Yadav</tspan></text>')
 
     d = ['<g class="dt">']
-    d += pill(48, 34, "OPEN TO SOFTWARE ENGINEER · BACKEND · ML/AI ROLES", 13, 34)
+    d += pill(48, 34, "OPEN TO AI/ML ENGINEER ROLES", 13, 34)
     d.append(name(46, 150, 76))
-    d.append(text(48, 200, "Software engineer building real-time services, the data paths", t, size=22, color="muted"))
-    d.append(text(48, 230, "behind them, and the evals that show the ML inside them works.", t, size=22, color="muted"))
+    d.append(text(48, 200, "AI/ML engineer building LLM features, retrieval systems and", t, size=22, color="muted"))
+    d.append(text(48, 230, "evals, and the backend services they run on.", t, size=22, color="muted"))
     d.append(text(48, 278, "focus", t, size=15, color="muted", font=MONO))
     for i, phrase in enumerate(FOCUS):
         d.append(f'<g class="rot rot{i}" style="animation-delay:{i * FOCUS_SLOT}s">')
@@ -335,7 +335,7 @@ def hero(t):
     if ARGS.views is not None:
         d += views_pill(t, ARGS.views)
     d.append(f'<line x1="48" y1="312" x2="1152" y2="312" stroke="{t["border"]}"/>')
-    for x, k, v in [(48, "MS COMPUTER SCIENCE", "UMass Boston · 2025"), (430, "BASED IN", "United States · open to remote"),
+    for x, k, v in [(48, "MS COMPUTER SCIENCE", "UMass Boston · 2025"), (430, "BASED IN", "Denver, CO · open to relocation"),
                     (812, "CURRENT ROLE", "Software Developer · Ally Financial")]:
         d.append(text(x, 344, k, t, size=12, color="muted", weight=600, font=MONO, spacing=1.5))
         d.append(text(x, 372, v, t, size=18, weight=600))
@@ -351,15 +351,15 @@ def hero(t):
     d.append(f'<circle class="pkt" cx="{x0}" cy="{y0}" r="4" fill="{t["accent"]}"/>')
     d.append("</g>")
     p = ['<g class="ph">']
-    p += pill(48, 30, "OPEN TO SWE · ML/AI ROLES", 30, 64)
+    p += pill(48, 30, "OPEN TO AI/ML ROLES", 30, 64)
     p.append(name(44, 214, 128))
-    p.append(text(48, 288, "Backend & ML/AI engineer", t, size=52, color="muted"))
+    p.append(text(48, 288, "AI/ML engineer", t, size=52, color="muted"))
     p.append(text(48, 370, "Ally Financial · MS CS ’25", t, size=44, weight=600))
     p.append("</g>")
     return svg(1200, 400, "\n".join(d + p), t,
-               "Shashank Yadav. Open to software engineer, backend and ML/AI roles. Software engineer building "
-               "real-time services, the data paths behind them, and the evals that show the ML inside them works. "
-               "MS in Computer Science, UMass Boston, 2025. Based in the United States, open to remote. Current role: "
+               "Shashank Yadav, AI/ML engineer. Open to AI/ML engineer roles. Builds LLM features, retrieval "
+               "systems and evals, and the backend services they run on. "
+               "MS in Computer Science, UMass Boston, 2025. Based in Denver, CO, open to relocation. Current role: "
                "Software Developer at Ally Financial.", style=style,
                bots=[("accent", 0.0), ("warm", 0.5)])
 
@@ -450,7 +450,7 @@ def header(t, num, title, tag, colour="accent", idx=0):
 def impact(t):
     cols = [
         ("−18%", "fraud losses, first quarter", "Ally Financial · real-time fraud scoring", "−18%", "fraud losses"),
-        ("340 → 265 ms", "average scoring response", "Ally · database tuning", "−22%", "scoring latency"),
+        ("340 → 265 ms", "risk evaluation response", "Ally · query plans + pooling", "−22%", "latency"),
         ("+0.115 F1", "LLM triage vs best free method", "pytest-triage · 95% CI +0.06 to +0.16", "+0.115", "F1 vs baseline"),
     ]
     d, p = ['<g class="dt">'], ['<g class="ph">']
@@ -467,8 +467,8 @@ def impact(t):
     d.append("</g>"); p.append("</g>")
     return svg(1200, 170, "\n".join(d + p), t,
                "Results: fraud losses down 18% in the first quarter after launch of Ally Financial's real-time fraud "
-               "detection; average transaction-scoring response time from 340 to 265 ms after tuning database queries and "
-               "connection handling; pytest-triage's LLM labels beat the best free method by 0.115 macro-F1 "
+               "detection; average risk evaluation and alerting response time from 340 to 265 ms after reworking query plans and adding "
+               "connection pooling; pytest-triage's LLM labels beat the best free method by 0.115 macro-F1 "
                "(95% CI +0.06 to +0.16).", style=PHONE_CSS, margin=HERO_MARGIN)
 
 
@@ -551,7 +551,7 @@ def filings(t):
         box(q[2][0], 196, q[2][1], 92, "Fuse", ["RRF merge of", "both lists"], t),
         box(q[3][0], 196, q[3][1], 92, "Rerank", ["bge-reranker-base", "top 30 → top 8"], t),
         box(q[4][0], 196, q[4][1], 92, "Gemini", ["top 8 passages,", "JSON schema"], t),
-        box(q[5][0], 196, q[5][1], 92, "Checked", ["citation needed,", "numbers verified"], t, kind="good"),
+        box(q[5][0], 196, q[5][1], 92, "Checked", ["citation needed,", "numbers flagged"], t, kind="good"),
         *arrows,
         label(560, 145, "both indexes queried for every question", t),
         text(490, 326, "111 of 117 correct, 0 wrong  ·  26 of 27 unanswerable refused  ·  $0.007 and 5.5 s per question",
@@ -587,7 +587,7 @@ def syncscribe(t):
     b = [
         box(20, 40, 250, 300, "Browser", ["Tiptap editor on a Yjs doc",
             "live cursors and presence", "version history, restore",
-            "Markdown export", "viewers: read-only editor"], t, mono="y-prosemirror"),
+            "Markdown export", "viewers: read-only editor"], t, mono="@tiptap/y-tiptap"),
         box(320, 40, 300, 140, "Web app · Next.js", ["GitHub sign-in (Auth.js)",
             "one access check per action", "mints a 2-minute sync token"], t, mono="requireDocAccess()"),
         box(320, 200, 300, 140, "Sync server · Hocuspocus", ["verifies the token, re-checks",

@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1296 496" width="1296" height="496" role="img" aria-label="Shashank Yadav. Open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS in Computer Science, UMass Boston, 2025. Based in the United States, open to remote. Current role: Software Developer at Ally Financial.">
-<title>Shashank Yadav. Open to software engineer, backend and ML/AI roles. Software engineer building real-time services, the data paths behind them, and the evals that show the ML inside them works. MS in Computer Science, UMass Boston, 2025. Based in the United States, open to remote. Current role: Software Developer at Ally Financial.</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1296 496" width="1296" height="496" role="img" aria-label="Shashank Yadav, AI/ML engineer. Open to AI/ML engineer roles. Builds LLM features, retrieval systems and evals, and the backend services they run on. MS in Computer Science, UMass Boston, 2025. Based in Denver, CO, open to relocation. Current role: Software Developer at Ally Financial.">
+<title>Shashank Yadav, AI/ML engineer. Open to AI/ML engineer roles. Builds LLM features, retrieval systems and evals, and the backend services they run on. MS in Computer Science, UMass Boston, 2025. Based in Denver, CO, open to relocation. Current role: Software Developer at Ally Financial.</title>
 <style>
   .ph{display:none}
   @media (max-width: 600px){ .dt{display:none} .ph{display:inline} }
@@ -41,13 +41,13 @@
 <rect x="48.5" y="48.5" width="1199" height="399" rx="14" fill="#161b22" stroke="#30363d"/>
 <g transform="translate(48,48)">
 <g class="dt">
-<rect x="48" y="34" width="499" height="34" rx="17.0" fill="#0d1117" stroke="#30363d"/>
+<rect x="48" y="34" width="314" height="34" rx="17.0" fill="#0d1117" stroke="#30363d"/>
 <circle class="ping" cx="66.7" cy="51.0" r="4.8" fill="#3fb950"/>
 <circle cx="66.7" cy="51.0" r="4.8" fill="#3fb950"/>
-<text x="82" y="55.68" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">OPEN TO SOFTWARE ENGINEER · BACKEND · ML/AI ROLES</text>
+<text x="82" y="55.68" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="13" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">OPEN TO AI/ML ENGINEER ROLES</text>
 <text x="46" y="150" font-family="'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif" font-size="76" fill="#e6edf3">Shashank <tspan font-style="italic" fill="#4493f8">Yadav</tspan></text>
-<text x="48" y="200" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="400" fill="#9198a1" text-anchor="start">Software engineer building real-time services, the data paths</text>
-<text x="48" y="230" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="400" fill="#9198a1" text-anchor="start">behind them, and the evals that show the ML inside them works.</text>
+<text x="48" y="200" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="400" fill="#9198a1" text-anchor="start">AI/ML engineer building LLM features, retrieval systems and</text>
+<text x="48" y="230" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="22" font-weight="400" fill="#9198a1" text-anchor="start">evals, and the backend services they run on.</text>
 <text x="48" y="278" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="400" fill="#9198a1" text-anchor="start">focus</text>
 <g class="rot rot0" style="animation-delay:0.0s">
 <text x="104" y="278" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="15" font-weight="600" fill="#4493f8" text-anchor="start">→ production ML you can measure</text>
@@ -69,7 +69,7 @@
 <text x="48" y="344" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1.5">MS COMPUTER SCIENCE</text>
 <text x="48" y="372" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" fill="#e6edf3" text-anchor="start">UMass Boston · 2025</text>
 <text x="430" y="344" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1.5">BASED IN</text>
-<text x="430" y="372" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" fill="#e6edf3" text-anchor="start">United States · open to remote</text>
+<text x="430" y="372" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" fill="#e6edf3" text-anchor="start">Denver, CO · open to relocation</text>
 <text x="812" y="344" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="12" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1.5">CURRENT ROLE</text>
 <text x="812" y="372" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="18" font-weight="600" fill="#e6edf3" text-anchor="start">Software Developer · Ally Financial</text>
 <line x1="800" y1="112" x2="800" y2="250" stroke="#30363d" stroke-width="2"/>
@@ -88,12 +88,12 @@
 <circle class="pkt" cx="800" cy="112" r="4" fill="#4493f8"/>
 </g>
 <g class="ph">
-<rect x="48" y="30" width="603" height="64" rx="32.0" fill="#0d1117" stroke="#30363d"/>
+<rect x="48" y="30" width="489" height="64" rx="32.0" fill="#0d1117" stroke="#30363d"/>
 <circle class="ping" cx="83.2" cy="62.0" r="9.0" fill="#3fb950"/>
 <circle cx="83.2" cy="62.0" r="9.0" fill="#3fb950"/>
-<text x="112" y="72.8" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">OPEN TO SWE · ML/AI ROLES</text>
+<text x="112" y="72.8" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,monospace" font-size="30" font-weight="600" fill="#9198a1" text-anchor="start" letter-spacing="1">OPEN TO AI/ML ROLES</text>
 <text x="44" y="214" font-family="'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,serif" font-size="128" fill="#e6edf3">Shashank <tspan font-style="italic" fill="#4493f8">Yadav</tspan></text>
-<text x="48" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="52" font-weight="400" fill="#9198a1" text-anchor="start">Backend &amp; ML/AI engineer</text>
+<text x="48" y="288" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="52" font-weight="400" fill="#9198a1" text-anchor="start">AI/ML engineer</text>
 <text x="48" y="370" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="44" font-weight="600" fill="#e6edf3" text-anchor="start">Ally Financial · MS CS ’25</text>
 </g>
 

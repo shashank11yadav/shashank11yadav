@@ -67,7 +67,7 @@
 <rect x="820" y="196" width="136" height="92" rx="10" fill="#0f1f14" stroke="#3fb950" stroke-width="1.5"/>
 <text x="834" y="222" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="16" font-weight="600" fill="#e6edf3" text-anchor="start">Checked</text>
 <text x="834" y="245" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#9198a1" text-anchor="start">citation needed,</text>
-<text x="834" y="265" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#9198a1" text-anchor="start">numbers verified</text>
+<text x="834" y="265" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif" font-size="13.5" font-weight="400" fill="#9198a1" text-anchor="start">numbers flagged</text>
 <path d="M170,86 L208,86" fill="none" stroke="#6e7681" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M360,86 L398,86" fill="none" stroke="#6e7681" stroke-width="1.5" marker-end="url(#arr)"/>
 <path d="M550,86 L588,86" fill="none" stroke="#6e7681" stroke-width="1.5" marker-end="url(#arr)"/>
