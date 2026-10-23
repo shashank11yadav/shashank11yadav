@@ -219,11 +219,12 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 | Area | Tools | Where I've used them |
 | :--- | :--- | :--- |
 | **Languages** | Python, Java, TypeScript, C++, SQL, Bash | Python at Ally; Java at TCS and NTT Data |
-| **Backend & APIs** | Spring Boot, FastAPI, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud platform, TCS core banking, NTT Data |
+| **Backend & APIs** | Spring Boot, FastAPI, Node.js, gRPC, REST, WebSockets, OAuth 2.0/JWT | Ally fraud platform, TCS core banking, NTT Data, SyncScribe sync server |
+| **Frontend** | React, Next.js, Tailwind CSS, Angular | Ally fraud dashboard, SyncScribe, NTT Data |
 | **Streaming & data** | Kafka, Redis, PostgreSQL (incl. pgvector), Oracle, MongoDB | Ally fraud platform, TCS Oracle → Postgres migration, Ask the Filings |
 | **Cloud & delivery** | AWS (Lambda, Fargate, EKS, S3, SQS), Docker, Kubernetes, GitHub Actions, Jenkins | Ally delivery pipeline, TCS Jenkins pipeline |
 | **ML & LLM systems** | PyTorch, Hugging Face Transformers, RAG, hybrid retrieval, rerankers, LLM guardrails | pytest-triage, Ask the Filings, AccuScan, Ally fraud explanations |
-| **Quality & reliability** | pytest, JUnit/Mockito, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, eval-backed project results |
+| **Quality & reliability** | pytest, JUnit/Mockito, Vitest, Playwright, SonarQube, Prometheus/Grafana, bootstrap evals | 85+ tests at Ally, 120+ JUnit tests at TCS, SyncScribe's 241 tests and 20 Playwright end-to-end tests, eval-backed project results |
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/h-activity-dark.svg"><img src="./Assets/profile/h-activity-light.svg" width="100%" alt="06 Activity"></picture>
 
