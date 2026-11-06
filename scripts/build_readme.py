@@ -9,6 +9,7 @@ Placeholders:
     {{pic:NAME}}   Assets/profile/NAME-{light,dark}.svg, full width, alt text from the SVG <title>
     {{h:KEY}}      section header Assets/profile/h-KEY-{light,dark}.svg
     {{buttons}}    the row of link buttons
+    {{upstream}}   the open-source contributions table, from scripts/upstream.py
     {{views}}      the komarev.com counter, loaded as an invisible 1x1 image; the count is drawn
                    into the banner by .github/workflows/profile.yml
     {{pic:hero}} and {{pic:activity}} are served from the `output` branch (view count and
@@ -18,6 +19,8 @@ Placeholders:
 import pathlib
 import re
 import sys
+
+import upstream
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 ASSETS = "./Assets/profile"
@@ -63,7 +66,7 @@ def fill(match):
         return picture(arg, 'width="100%" ')
     if kind == "h":
         return picture("h-" + arg, 'width="100%" ')
-    return {"buttons": buttons, "views": views}[kind]()
+    return {"buttons": buttons, "views": views, "upstream": upstream.render}[kind]()
 
 
 template = (ROOT / "scripts/README.template.md").read_text()

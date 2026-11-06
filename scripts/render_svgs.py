@@ -391,10 +391,10 @@ SERIF = "'Iowan Old Style','Palatino Linotype','Book Antiqua',Palatino,Georgia,s
 HEADER_COLOURS = ["accent", "warm", "good", "violet", "pink", "violet", "warm"]
 SECTIONS = [("about", "01", "About", "whoami"), ("experience", "02", "Experience", "where I've shipped"),
             ("work", "03", "Featured work", "built, measured, written up"),
-            ("opensource", "04", "Open-source contributions", "upstream"),
             ("interview", "04", "Things I'd bring up", "in an interview"),
             ("toolbox", "05", "Toolbox", "what I reach for"),
-            ("activity", "06", "Activity", "a year on GitHub")]
+            ("activity", "06", "Activity", "a year on GitHub"),
+            ("opensource", "07", "Open-source contributions", "upstream")]
 
 
 def header(t, num, title, tag, colour="accent", idx=0):

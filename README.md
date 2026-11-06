@@ -192,18 +192,6 @@ A real-time collaborative editor with GitHub sign-in, owner/editor/viewer sharin
 
 </details>
 
-<!--
-When you enable this section, renumber the headers after it in scripts/render_svgs.py (SECTIONS).
-
-<picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/h-opensource-dark.svg"><img src="./Assets/profile/h-opensource-light.svg" width="100%" alt="04 Open-source contributions"></picture>
-
-**<Project>** · <N> merged pull requests
-<One sentence: what the change does and why it mattered.> ([#1234](https://github.com/<org>/<repo>/pull/1234))
-
-**<Project>** · <N> merged pull requests
-<One sentence.> ([#5678](https://github.com/<org>/<repo>/pull/5678), [#5690](https://github.com/<org>/<repo>/pull/5690))
--->
-
 <picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/h-interview-dark.svg"><img src="./Assets/profile/h-interview-light.svg" width="100%" alt="04 Things I&#x27;d bring up"></picture>
 
 **More retrieval candidates made duplicate detection worse.** In pytest-triage, merging the LLM's expansion queries into one ranked pool pushed easy duplicates out of the top 100. Keeping the issue's own top 8 and adding the expansion results as a separate pool raised recall from 6/15 to 10/15.
@@ -231,6 +219,19 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 Public activity only: work I do for employers lives in their repositories, so it doesn't show up here. Redrawn every 6 hours from GitHub's contribution calendar.
 
 <picture><source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/activity-dark.svg"><img src="https://raw.githubusercontent.com/shashank11yadav/shashank11yadav/output/activity-light.svg" width="100%" alt="Contribution field: 21 GitHub contributions in the last 12 months, 8 active days, longest streak 2 days, current streak 2 days, busiest day Mon 12 Oct 2026 with 6."></picture>
+
+<picture><source media="(prefers-color-scheme: dark)" srcset="./Assets/profile/h-opensource-dark.svg"><img src="./Assets/profile/h-opensource-light.svg" width="100%" alt="07 Open-source contributions"></picture>
+
+Each count links to GitHub's own search, so you can check it.
+
+| Project | Merged | What I fixed or built |
+| :--- | :---: | :--- |
+| <img src="https://github.com/docling-project.png" width="16" height="16"> **[Docling](https://github.com/docling-project/docling)**<br><sub>Converts PDFs and other documents for gen AI · 70K★</sub> | [**3**](https://github.com/pulls?q=is%3Apr+is%3Amerged+author%3Ashashank11yadav+repo%3Adocling-project%2Fdocling) | • AsciiDoc block titles keep their links and formatting (issue [#5142](https://github.com/docling-project/docling/issues/5142) → PR [#5144](https://github.com/docling-project/docling/pull/5144))<br>• Images with 0 DPI metadata get the standard 72 DPI (issue [#5163](https://github.com/docling-project/docling/issues/5163) → PR [#5165](https://github.com/docling-project/docling/pull/5165))<br>• Whisper transcription uses the temperature it's given (issue [#5164](https://github.com/docling-project/docling/issues/5164) → PR [#5166](https://github.com/docling-project/docling/pull/5166)) |
+| <img src="https://github.com/ModelEarth.png" width="16" height="16"> **[ModelEarth](https://github.com/ModelEarth)**<br><sub>Open-source data visualization framework</sub> | [**14**](https://github.com/pulls?q=is%3Apr+is%3Amerged+author%3Ashashank11yadav+user%3AModelEarth) | • Issue tracking across its repos grew from 12 to 34 (PR [#29](https://github.com/ModelEarth/projects/pull/29))<br>• Separate caches for filtered and unfiltered views, so fewer API calls (PR [#82](https://github.com/ModelEarth/projects/pull/82), [#83](https://github.com/ModelEarth/projects/pull/83))<br>• Clear messages for invalid tokens and rate limits (PR [#67](https://github.com/ModelEarth/projects/pull/67))<br>• One GitHub sign-in across the team tools (PR [#24](https://github.com/ModelEarth/team/pull/24)) |
+
+**In review:** [qdrant-client #1660](https://github.com/qdrant/qdrant-client/pull/1660) · [docling-core #970](https://github.com/docling-project/docling-core/pull/970) · [Hugging Face datasets #8950](https://github.com/huggingface/datasets/pull/8950)
+
+**Reported, fixed by the maintainers:** [Haystack #13535](https://github.com/deepset-ai/haystack/issues/13535): subclass `from_dict` returned the base class
 
 ---
 

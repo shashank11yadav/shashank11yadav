@@ -1,0 +1,39 @@
+{
+  "_help": [
+    "Hand-written notes for the Open-source contributions table, read by scripts/upstream.py.",
+    "projects: display name, one-line description and link for a repo, or for every repo of an",
+    "  owner with 'owner/*'. Projects listed here come first, in this order; new ones follow.",
+    "pull_requests: the sentence shown for a merged PR. Several PRs can share one sentence by",
+    "  listing them together. A merged PR without a sentence shows its cleaned-up title, but only",
+    "  if it merged after curated_until; older ones were reviewed by hand and stay out.",
+    "issues: issue links GitHub doesn't know about (the PR body has no 'Closes #...'), and the",
+    "  sentence for a reported issue that the maintainers fixed.",
+    "hide: repos ('owner/repo' or 'owner/*') and items ('owner/repo#123') never shown.",
+    "since: PRs and issues opened before this date are ignored."
+  ],
+  "since": "2025-01-01",
+  "curated_until": "2026-11-06",
+  "max_bullets": 5,
+  "projects": {
+    "docling-project/docling": {"name": "Docling", "about": "Converts PDFs and other documents for gen AI"},
+    "ModelEarth/*": {"name": "ModelEarth", "about": "Open-source data visualization framework", "url": "https://github.com/ModelEarth"},
+    "docling-project/docling-core": {"name": "docling-core"},
+    "huggingface/datasets": {"name": "Hugging Face datasets"},
+    "qdrant/qdrant-client": {"name": "qdrant-client"},
+    "deepset-ai/haystack": {"name": "Haystack"}
+  },
+  "pull_requests": [
+    {"prs": ["docling-project/docling#5144"], "text": "AsciiDoc block titles keep their links and formatting"},
+    {"prs": ["docling-project/docling#5165"], "text": "Images with 0 DPI metadata get the standard 72 DPI"},
+    {"prs": ["docling-project/docling#5166"], "text": "Whisper transcription uses the temperature it's given"},
+    {"prs": ["ModelEarth/projects#29"], "text": "Issue tracking across its repos grew from 12 to 34"},
+    {"prs": ["ModelEarth/projects#82", "ModelEarth/projects#83"], "text": "Separate caches for filtered and unfiltered views, so fewer API calls"},
+    {"prs": ["ModelEarth/projects#67"], "text": "Clear messages for invalid tokens and rate limits"},
+    {"prs": ["ModelEarth/team#24"], "text": "One GitHub sign-in across the team tools"}
+  ],
+  "issues": {
+    "qdrant/qdrant-client#1660": {"fixes": ["qdrant/qdrant-client#1659"]},
+    "deepset-ai/haystack#13535": {"text": "subclass `from_dict` returned the base class"}
+  },
+  "hide": []
+}

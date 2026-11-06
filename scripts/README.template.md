@@ -183,18 +183,6 @@ A real-time collaborative editor with GitHub sign-in, owner/editor/viewer sharin
 
 </details>
 
-<!--
-When you enable this section, renumber the headers after it in scripts/render_svgs.py (SECTIONS).
-
-{{h:opensource}}
-
-**<Project>** · <N> merged pull requests
-<One sentence: what the change does and why it mattered.> ([#1234](https://github.com/<org>/<repo>/pull/1234))
-
-**<Project>** · <N> merged pull requests
-<One sentence.> ([#5678](https://github.com/<org>/<repo>/pull/5678), [#5690](https://github.com/<org>/<repo>/pull/5690))
--->
-
 {{h:interview}}
 
 **More retrieval candidates made duplicate detection worse.** In pytest-triage, merging the LLM's expansion queries into one ranked pool pushed easy duplicates out of the top 100. Keeping the issue's own top 8 and adding the expansion results as a separate pool raised recall from 6/15 to 10/15.
@@ -222,6 +210,12 @@ When you enable this section, renumber the headers after it in scripts/render_sv
 Public activity only: work I do for employers lives in their repositories, so it doesn't show up here. Redrawn every 6 hours from GitHub's contribution calendar.
 
 {{pic:activity}}
+
+{{h:opensource}}
+
+Each count links to GitHub's own search, so you can check it.
+
+{{upstream}}
 
 ---
 

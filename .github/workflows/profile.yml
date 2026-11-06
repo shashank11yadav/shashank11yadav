@@ -1,8 +1,10 @@
-# Refreshes the moving parts of the profile README and pushes them to the `output` branch,
-# so `master` only changes by hand:
+# Refreshes the moving parts of the profile README:
 #   - hero-{light,dark}.svg with the current profile-view count (read from the komarev.com
 #     counter that the README loads as a 1x1 image; each refresh adds one view)
 #   - activity-{light,dark}.svg, the contribution field (last 12 months, one cell per day)
+# Both images go to the `output` branch, so they don't add commits to `master`.
+#   - the Open-source contributions table, which has to stay text for its links to work, so
+#     it is committed to `master`, and only when a PR or issue changed (scripts/upstream.py)
 name: profile
 
 on:
@@ -41,3 +43,27 @@ jobs:
           keep_history: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  upstream:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Refresh the open-source contributions table
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 scripts/upstream.py "${{ github.repository_owner }}"
+          python3 scripts/build_readme.py
+
+      - name: Commit it if something changed
+        run: |
+          if git diff --quiet -- README.md scripts/upstream.data.json; then
+            echo "No change."
+            exit 0
+          fi
+          git -c user.name="Shashank Yadav" -c user.email=65058495+shashank11yadav@users.noreply.github.com \
+            commit -m "Update open-source contributions" -- README.md scripts/upstream.data.json
+          git push origin HEAD:master
