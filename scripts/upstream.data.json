@@ -13,6 +13,10 @@
    "stars": "0",
    "about": ""
   },
+  "Unstructured-IO/unstructured": {
+   "stars": "16K",
+   "about": "Convert documents to structured data effortlessly. Unstructured is open-source ETL solution for transforming complex documents into clean, structured formats for language models.  Visit our website to learn more about our enterprise grade Platform product for production grade workflows, partitioning, enrichments, chunking and embedding."
+  },
   "agno-agi/agno": {
    "stars": "43K",
    "about": "The self-driving agent platform"
@@ -184,6 +188,18 @@
    "fixes": []
   },
   {
+   "key": "Unstructured-IO/unstructured#4671",
+   "url": "https://github.com/Unstructured-IO/unstructured/pull/4671",
+   "title": "fix(email): keep the bytes of a binary file inside a multipart/* attachment",
+   "created": "2026-11-06",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "Unstructured-IO/unstructured#4670"
+   ]
+  },
+  {
    "key": "docling-project/docling#5144",
    "url": "https://github.com/docling-project/docling/pull/5144",
    "title": "fix(asciidoc): parse links and inline marks in block titles",
@@ -260,6 +276,14 @@
    "url": "https://github.com/Arize-ai/openinference/issues/4245",
    "title": "[bug] vertexai: `VertexAIInstrumentor().instrument()` raises \"metaclass conflict\" when wrapt's C extension is disabled",
    "created": "2026-11-05",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "Unstructured-IO/unstructured#4670",
+   "url": "https://github.com/Unstructured-IO/unstructured/issues/4670",
+   "title": "bug/partition-email-corrupts-nested-multipart-attachment",
+   "created": "2026-11-06",
    "state": "OPEN",
    "reason": null
   },
