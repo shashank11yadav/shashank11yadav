@@ -30,7 +30,7 @@
    "about": "Get your documents ready for gen AI"
   },
   "docling-project/docling-core": {
-   "stars": "297",
+   "stars": "298",
    "about": "Docling core data types and transformations"
   },
   "huggingface/datasets": {
@@ -200,6 +200,18 @@
    ]
   },
   {
+   "key": "Unstructured-IO/unstructured#4678",
+   "url": "https://github.com/Unstructured-IO/unstructured/pull/4678",
+   "title": "fix: Accept non-seekable file-like objects in partition()",
+   "created": "2026-11-09",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "Unstructured-IO/unstructured#4677"
+   ]
+  },
+  {
    "key": "docling-project/docling#5144",
    "url": "https://github.com/docling-project/docling/pull/5144",
    "title": "fix(asciidoc): parse links and inline marks in block titles",
@@ -284,6 +296,14 @@
    "url": "https://github.com/Unstructured-IO/unstructured/issues/4670",
    "title": "bug/partition-email-corrupts-nested-multipart-attachment",
    "created": "2026-11-06",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "Unstructured-IO/unstructured#4677",
+   "url": "https://github.com/Unstructured-IO/unstructured/issues/4677",
+   "title": "bug/partition-crashes-on-non-seekable-file",
+   "created": "2026-11-09",
    "state": "OPEN",
    "reason": null
   },
