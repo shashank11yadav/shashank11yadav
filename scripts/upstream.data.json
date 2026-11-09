@@ -33,6 +33,10 @@
    "stars": "298",
    "about": "Docling core data types and transformations"
   },
+  "hgrecco/pint": {
+   "stars": "2.8K",
+   "about": "Operate and manipulate physical quantities in Python"
+  },
   "huggingface/datasets": {
    "stars": "22K",
    "about": "🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools"
@@ -260,6 +264,18 @@
    ]
   },
   {
+   "key": "hgrecco/pint#2560",
+   "url": "https://github.com/hgrecco/pint/pull/2560",
+   "title": "Fix numpy.linalg.tensorsolve rejecting positional axes argument",
+   "created": "2026-11-09",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "hgrecco/pint#2559"
+   ]
+  },
+  {
    "key": "huggingface/datasets#8950",
    "url": "https://github.com/huggingface/datasets/pull/8950",
    "title": "Validate metadata.jsonl tables in folder-based builders",
@@ -352,6 +368,14 @@
    "url": "https://github.com/docling-project/docling-core/issues/969",
    "title": "LaTeXDocSerializer does not escape the image path in `\\includegraphics`, so \"%\" breaks the output",
    "created": "2026-11-03",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "hgrecco/pint#2559",
+   "url": "https://github.com/hgrecco/pint/issues/2559",
+   "title": "np.linalg.tensorsolve(a, b, axes) raises TypeError on Quantities when axes is passed positionally",
+   "created": "2026-11-09",
    "state": "OPEN",
    "reason": null
   },
