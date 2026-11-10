@@ -276,6 +276,18 @@
    ]
   },
   {
+   "key": "hgrecco/pint#2564",
+   "url": "https://github.com/hgrecco/pint/pull/2564",
+   "title": "Fix Quantity.clip, put and searchsorted for values of a different Quantity class",
+   "created": "2026-11-10",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "hgrecco/pint#2563"
+   ]
+  },
+  {
    "key": "huggingface/datasets#8950",
    "url": "https://github.com/huggingface/datasets/pull/8950",
    "title": "Validate metadata.jsonl tables in folder-based builders",
@@ -376,6 +388,14 @@
    "url": "https://github.com/hgrecco/pint/issues/2559",
    "title": "np.linalg.tensorsolve(a, b, axes) raises TypeError on Quantities when axes is passed positionally",
    "created": "2026-11-09",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "hgrecco/pint#2563",
+   "url": "https://github.com/hgrecco/pint/issues/2563",
+   "title": "Quantity.clip() raises DimensionalityError for a compatible-unit bound from another UnitRegistry",
+   "created": "2026-11-10",
    "state": "OPEN",
    "reason": null
   },
