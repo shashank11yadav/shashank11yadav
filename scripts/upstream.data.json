@@ -336,6 +336,14 @@
    "reason": null
   },
   {
+   "key": "Unstructured-IO/unstructured#4692",
+   "url": "https://github.com/Unstructured-IO/unstructured/issues/4692",
+   "title": "bug/partition-docx-vmerge-table-html-recursion",
+   "created": "2026-11-10",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
    "key": "agno-agi/agno#11434",
    "url": "https://github.com/agno-agi/agno/issues/11434",
    "title": "[Bug] search_compacted_history silently drops later matches on a long line",
