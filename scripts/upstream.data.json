@@ -41,6 +41,10 @@
    "stars": "22K",
    "about": "🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools"
   },
+  "joblib/joblib": {
+   "stars": "4.4K",
+   "about": "Computing with Python functions."
+  },
   "qdrant/qdrant-client": {
    "stars": "1.4K",
    "about": "Python client for Qdrant vector search engine"
@@ -252,6 +256,18 @@
    ]
   },
   {
+   "key": "docling-project/docling#5290",
+   "url": "https://github.com/docling-project/docling/pull/5290",
+   "title": "fix(jats): keep ext-link hyperlinks in fn-group footnotes",
+   "created": "2026-11-10",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "docling-project/docling#5289"
+   ]
+  },
+  {
    "key": "docling-project/docling-core#970",
    "url": "https://github.com/docling-project/docling-core/pull/970",
    "title": "fix(serializer): keep % and # in LaTeX includegraphics paths",
@@ -297,6 +313,18 @@
    "merged": "",
    "fixes": [
     "huggingface/datasets#8949"
+   ]
+  },
+  {
+   "key": "joblib/joblib#1945",
+   "url": "https://github.com/joblib/joblib/pull/1945",
+   "title": "FIX Memory accepts any os.PathLike location",
+   "created": "2026-11-10",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "joblib/joblib#1944"
    ]
   },
   {
@@ -384,6 +412,14 @@
    "reason": "COMPLETED"
   },
   {
+   "key": "docling-project/docling#5289",
+   "url": "https://github.com/docling-project/docling/issues/5289",
+   "title": "JATS: links in back-matter `<fn-group>` footnotes lose their URL",
+   "created": "2026-11-10",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
    "key": "docling-project/docling-core#969",
    "url": "https://github.com/docling-project/docling-core/issues/969",
    "title": "LaTeXDocSerializer does not escape the image path in `\\includegraphics`, so \"%\" breaks the output",
@@ -412,6 +448,14 @@
    "url": "https://github.com/huggingface/datasets/issues/8949",
    "title": "imagefolder metadata.jsonl: a list starting with null loads as wrong values",
    "created": "2026-11-03",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "joblib/joblib#1944",
+   "url": "https://github.com/joblib/joblib/issues/1944",
+   "title": "Memory(location=...) disables caching for os.PathLike objects that are not pathlib.Path",
+   "created": "2026-11-10",
    "state": "OPEN",
    "reason": null
   },
