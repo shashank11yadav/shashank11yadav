@@ -260,9 +260,9 @@
    "url": "https://github.com/docling-project/docling/pull/5290",
    "title": "fix(jats): keep ext-link hyperlinks in fn-group footnotes",
    "created": "2026-11-10",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-11",
    "fixes": [
     "docling-project/docling#5289"
    ]
@@ -416,8 +416,8 @@
    "url": "https://github.com/docling-project/docling/issues/5289",
    "title": "JATS: links in back-matter `<fn-group>` footnotes lose their URL",
    "created": "2026-11-10",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "docling-project/docling-core#969",
