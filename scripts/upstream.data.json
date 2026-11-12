@@ -26,7 +26,7 @@
    "about": "Open-source AI orchestration framework for building context-engineered, production-ready LLM applications. Design modular pipelines and agent workflows with explicit control over retrieval, routing, memory, and generation. Built for scalable agents, RAG, multimodal applications, semantic search, and conversational systems."
   },
   "docling-project/docling": {
-   "stars": "70K",
+   "stars": "71K",
    "about": "Get your documents ready for gen AI"
   },
   "docling-project/docling-core": {
@@ -36,6 +36,10 @@
   "hgrecco/pint": {
    "stars": "2.8K",
    "about": "Operate and manipulate physical quantities in Python"
+  },
+  "huggingface/accelerate": {
+   "stars": "9.9K",
+   "about": "🚀 A simple way to launch, train, and use PyTorch models on almost any device and distributed configuration, automatic mixed precision (including fp8), and easy-to-configure FSDP and DeepSpeed support"
   },
   "huggingface/datasets": {
    "stars": "22K",
@@ -304,6 +308,18 @@
    ]
   },
   {
+   "key": "huggingface/accelerate#4535",
+   "url": "https://github.com/huggingface/accelerate/pull/4535",
+   "title": "Clear Linear8bitLt int8 state when AlignDevicesHook first offloads weights",
+   "created": "2026-11-12",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "huggingface/accelerate#4534"
+   ]
+  },
+  {
    "key": "huggingface/datasets#8950",
    "url": "https://github.com/huggingface/datasets/pull/8950",
    "title": "Validate metadata.jsonl tables in folder-based builders",
@@ -320,9 +336,9 @@
    "url": "https://github.com/joblib/joblib/pull/1945",
    "title": "FIX Memory accepts any os.PathLike location",
    "created": "2026-11-10",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-12",
    "fixes": [
     "joblib/joblib#1944"
    ]
@@ -444,6 +460,14 @@
    "reason": null
   },
   {
+   "key": "huggingface/accelerate#4534",
+   "url": "https://github.com/huggingface/accelerate/issues/4534",
+   "title": "AlignDevicesHook.init_hook does not clear Linear8bitLt state.CB/SCB/CxB when offloading to meta, unlike _offload_weights",
+   "created": "2026-11-12",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
    "key": "huggingface/datasets#8949",
    "url": "https://github.com/huggingface/datasets/issues/8949",
    "title": "imagefolder metadata.jsonl: a list starting with null loads as wrong values",
@@ -456,8 +480,8 @@
    "url": "https://github.com/joblib/joblib/issues/1944",
    "title": "Memory(location=...) disables caching for os.PathLike objects that are not pathlib.Path",
    "created": "2026-11-10",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "qdrant/qdrant-client#1659",
