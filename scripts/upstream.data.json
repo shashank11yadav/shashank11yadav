@@ -21,6 +21,10 @@
    "stars": "43K",
    "about": "The self-managing agent platform"
   },
+  "apache/arrow-nanoarrow": {
+   "stars": "252",
+   "about": "Helpers for Arrow C Data & Arrow C Stream interfaces"
+  },
   "deepset-ai/haystack": {
    "stars": "27K",
    "about": "Open-source AI orchestration framework for building context-engineered, production-ready LLM applications. Design modular pipelines and agent workflows with explicit control over retrieval, routing, memory, and generation. Built for scalable agents, RAG, multimodal applications, semantic search, and conversational systems."
@@ -224,6 +228,30 @@
    ]
   },
   {
+   "key": "apache/arrow-nanoarrow#1014",
+   "url": "https://github.com/apache/arrow-nanoarrow/pull/1014",
+   "title": "fix(ipc): Don't overflow the footer size check in VerifyFooter and DecodeFooter",
+   "created": "2026-11-12",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "apache/arrow-nanoarrow#1013"
+   ]
+  },
+  {
+   "key": "apache/arrow-nanoarrow#1016",
+   "url": "https://github.com/apache/arrow-nanoarrow/pull/1016",
+   "title": "fix(hpp): Correctly subscript ViewArrayAsBytes, ViewArrayAsFixedSizeBytes and ViewBinaryViewArrayAsBytes with offset",
+   "created": "2026-11-12",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "apache/arrow-nanoarrow#1015"
+   ]
+  },
+  {
    "key": "docling-project/docling#5144",
    "url": "https://github.com/docling-project/docling/pull/5144",
    "title": "fix(asciidoc): parse links and inline marks in block titles",
@@ -392,6 +420,22 @@
    "url": "https://github.com/agno-agi/agno/issues/11434",
    "title": "[Bug] search_compacted_history silently drops later matches on a long line",
    "created": "2026-11-02",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "apache/arrow-nanoarrow#1013",
+   "url": "https://github.com/apache/arrow-nanoarrow/issues/1013",
+   "title": "ArrowIpcDecoderVerifyFooter() reads out of bounds when the footer size is close to INT32_MAX",
+   "created": "2026-11-12",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "apache/arrow-nanoarrow#1015",
+   "url": "https://github.com/apache/arrow-nanoarrow/issues/1015",
+   "title": "ViewArrayAsBytes, ViewArrayAsFixedSizeBytes and ViewBinaryViewArrayAsBytes operator[] ignore the array offset",
+   "created": "2026-11-12",
    "state": "OPEN",
    "reason": null
   },
