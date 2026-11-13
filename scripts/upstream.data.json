@@ -300,6 +300,18 @@
    ]
   },
   {
+   "key": "docling-project/docling#5343",
+   "url": "https://github.com/docling-project/docling/pull/5343",
+   "title": "fix(paddleocr-vl): keep the page when a table exceeds the grid-cell limit",
+   "created": "2026-11-13",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "docling-project/docling#5342"
+   ]
+  },
+  {
    "key": "docling-project/docling-core#970",
    "url": "https://github.com/docling-project/docling-core/pull/970",
    "title": "fix(serializer): keep % and # in LaTeX includegraphics paths",
@@ -478,6 +490,14 @@
    "created": "2026-11-10",
    "state": "CLOSED",
    "reason": "COMPLETED"
+  },
+  {
+   "key": "docling-project/docling#5342",
+   "url": "https://github.com/docling-project/docling/issues/5342",
+   "title": "PaddleOCR-VL: parse_paddleocr_vl_result raises on a table over 1000 grid cells, losing the page",
+   "created": "2026-11-13",
+   "state": "OPEN",
+   "reason": null
   },
   {
    "key": "docling-project/docling-core#969",
