@@ -572,8 +572,8 @@
    "url": "https://github.com/unionai-oss/pandera/issues/2639",
    "title": "Tuple `Index` name comes back as a list from `from_json`, so the reloaded schema rejects valid data",
    "created": "2026-11-03",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "unionai-oss/pandera#2640",
