@@ -352,7 +352,7 @@
    "url": "https://github.com/huggingface/accelerate/pull/4535",
    "title": "Clear Linear8bitLt int8 state when AlignDevicesHook first offloads weights",
    "created": "2026-11-12",
-   "state": "OPEN",
+   "state": "CLOSED",
    "draft": false,
    "merged": "",
    "fixes": [
@@ -392,6 +392,18 @@
    "draft": false,
    "merged": "",
    "fixes": []
+  },
+  {
+   "key": "unionai-oss/pandera#2670",
+   "url": "https://github.com/unionai-oss/pandera/pull/2670",
+   "title": "fix(pyspark): return False from Decimal.check for a non-decimal dtype",
+   "created": "2026-11-13",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "unionai-oss/pandera#2669"
+   ]
   }
  ],
  "issues": [
@@ -528,8 +540,8 @@
    "url": "https://github.com/huggingface/accelerate/issues/4534",
    "title": "AlignDevicesHook.init_hook does not clear Linear8bitLt state.CB/SCB/CxB when offloading to meta, unlike _offload_weights",
    "created": "2026-11-12",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "huggingface/datasets#8949",
@@ -568,6 +580,14 @@
    "url": "https://github.com/unionai-oss/pandera/issues/2640",
    "title": "polars add_missing_columns raises AttributeError for a column with a default and no dtype",
    "created": "2026-11-03",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "unionai-oss/pandera#2669",
+   "url": "https://github.com/unionai-oss/pandera/issues/2669",
+   "title": "pyspark: validating a StringType column against a DecimalType schema column raises AssertionError instead of a SchemaError",
+   "created": "2026-11-13",
    "state": "OPEN",
    "reason": null
   }
