@@ -3,7 +3,7 @@
  "repos": {
   "Arize-ai/openinference": {
    "stars": "1.3K",
-   "about": "OpenTelemetry Instrumentation for AI Observability"
+   "about": "OpenTelemetry Instrumentation for Agent Observability"
   },
   "ModelEarth/projects": {
    "stars": "0",
