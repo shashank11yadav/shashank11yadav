@@ -49,6 +49,10 @@
    "stars": "22K",
    "about": "🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools"
   },
+  "huggingface/sentence-transformers": {
+   "stars": "19K",
+   "about": "State-of-the-Art Embeddings, Retrieval, and Reranking"
+  },
   "joblib/joblib": {
    "stars": "4.4K",
    "about": "Computing with Python functions."
@@ -412,8 +416,8 @@
    "url": "https://github.com/Arize-ai/openinference/issues/4245",
    "title": "[bug] vertexai: `VertexAIInstrumentor().instrument()` raises \"metaclass conflict\" when wrapt's C extension is disabled",
    "created": "2026-11-05",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "Unstructured-IO/unstructured#4670",
@@ -548,6 +552,30 @@
    "url": "https://github.com/huggingface/datasets/issues/8949",
    "title": "imagefolder metadata.jsonl: a list starting with null loads as wrong values",
    "created": "2026-11-03",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "huggingface/sentence-transformers#4388",
+   "url": "https://github.com/huggingface/sentence-transformers/issues/4388",
+   "title": "LayerNorm.load raises TypeError when config.json has a key outside config_keys",
+   "created": "2026-11-16",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "huggingface/sentence-transformers#4389",
+   "url": "https://github.com/huggingface/sentence-transformers/issues/4389",
+   "title": "MultipleNegativesRankingLoss loss collapses to 0 under bf16 autocast (CoSENTLoss was fixed in #4167)",
+   "created": "2026-11-16",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "huggingface/sentence-transformers#4390",
+   "url": "https://github.com/huggingface/sentence-transformers/issues/4390",
+   "title": "BatchHardTripletLossDistanceFunction.cosine_distance rounds near-duplicate distances to exactly 0 under autocast",
+   "created": "2026-11-16",
    "state": "OPEN",
    "reason": null
   },

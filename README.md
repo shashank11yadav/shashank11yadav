@@ -232,7 +232,7 @@ Each count links to GitHub's own search, so you can check it.
 
 **In review:** [qdrant-client #1660](https://github.com/qdrant/qdrant-client/pull/1660) · [docling-core #970](https://github.com/docling-project/docling-core/pull/970) · [Hugging Face datasets #8950](https://github.com/huggingface/datasets/pull/8950) · [unstructured #4671](https://github.com/Unstructured-IO/unstructured/pull/4671) · [unstructured #4678](https://github.com/Unstructured-IO/unstructured/pull/4678) · [pint #2560](https://github.com/hgrecco/pint/pull/2560) · [pint #2564](https://github.com/hgrecco/pint/pull/2564) · [arrow-nanoarrow #1014](https://github.com/apache/arrow-nanoarrow/pull/1014) · [arrow-nanoarrow #1016](https://github.com/apache/arrow-nanoarrow/pull/1016) · [Docling #5343](https://github.com/docling-project/docling/pull/5343) · [pandera #2670](https://github.com/unionai-oss/pandera/pull/2670)
 
-**Reported, fixed by the maintainers:** [Haystack #13535](https://github.com/deepset-ai/haystack/issues/13535): subclass `from_dict` returned the base class · [pandera #2639](https://github.com/unionai-oss/pandera/issues/2639): Tuple `Index` name comes back as a list from `from_json`, so the reloaded schema rejects valid data
+**Reported, fixed by the maintainers:** [Haystack #13535](https://github.com/deepset-ai/haystack/issues/13535): subclass `from_dict` returned the base class · [pandera #2639](https://github.com/unionai-oss/pandera/issues/2639): Tuple `Index` name comes back as a list from `from_json`, so the reloaded schema rejects valid data · [openinference #4245](https://github.com/Arize-ai/openinference/issues/4245): `VertexAIInstrumentor().instrument()` raises "metaclass conflict" when wrapt's C extension is disabled
 
 ---
 
