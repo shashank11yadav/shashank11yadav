@@ -25,6 +25,10 @@
    "stars": "252",
    "about": "Helpers for Arrow C Data & Arrow C Stream interfaces"
   },
+  "apache/arrow-rs": {
+   "stars": "3.7K",
+   "about": "Official Rust implementation of Apache Arrow"
+  },
   "deepset-ai/haystack": {
    "stars": "27K",
    "about": "Open-source AI orchestration framework for building context-engineered, production-ready LLM applications. Design modular pipelines and agent workflows with explicit control over retrieval, routing, memory, and generation. Built for scalable agents, RAG, multimodal applications, semantic search, and conversational systems."
@@ -236,9 +240,9 @@
    "url": "https://github.com/apache/arrow-nanoarrow/pull/1014",
    "title": "fix(ipc): Don't overflow the footer size check in VerifyFooter and DecodeFooter",
    "created": "2026-11-12",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-17",
    "fixes": [
     "apache/arrow-nanoarrow#1013"
    ]
@@ -246,11 +250,11 @@
   {
    "key": "apache/arrow-nanoarrow#1016",
    "url": "https://github.com/apache/arrow-nanoarrow/pull/1016",
-   "title": "fix(hpp): Correctly subscript ViewArrayAsBytes, ViewArrayAsFixedSizeBytes and ViewBinaryViewArrayAsBytes with offset",
+   "title": "fix: Correctly subscript ViewArrayAsBytes, ViewArrayAsFixedSizeBytes and ViewBinaryViewArrayAsBytes with offset",
    "created": "2026-11-12",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-16",
    "fixes": [
     "apache/arrow-nanoarrow#1015"
    ]
@@ -456,14 +460,22 @@
    "url": "https://github.com/apache/arrow-nanoarrow/issues/1013",
    "title": "ArrowIpcDecoderVerifyFooter() reads out of bounds when the footer size is close to INT32_MAX",
    "created": "2026-11-12",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "apache/arrow-nanoarrow#1015",
    "url": "https://github.com/apache/arrow-nanoarrow/issues/1015",
    "title": "ViewArrayAsBytes, ViewArrayAsFixedSizeBytes and ViewBinaryViewArrayAsBytes operator[] ignore the array offset",
    "created": "2026-11-12",
+   "state": "CLOSED",
+   "reason": "COMPLETED"
+  },
+  {
+   "key": "apache/arrow-rs#12290",
+   "url": "https://github.com/apache/arrow-rs/issues/12290",
+   "title": "parquet: DELTA_LENGTH_BYTE_ARRAY decoder panics on a negative length instead of returning an error",
+   "created": "2026-11-17",
    "state": "OPEN",
    "reason": null
   },
@@ -576,6 +588,14 @@
    "url": "https://github.com/huggingface/sentence-transformers/issues/4390",
    "title": "BatchHardTripletLossDistanceFunction.cosine_distance rounds near-duplicate distances to exactly 0 under autocast",
    "created": "2026-11-16",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "huggingface/sentence-transformers#4392",
+   "url": "https://github.com/huggingface/sentence-transformers/issues/4392",
+   "title": "CrossEncoder.fit() never adds a learnable loss_fct's parameters to the optimizer",
+   "created": "2026-11-17",
    "state": "OPEN",
    "reason": null
   },
