@@ -260,6 +260,18 @@
    ]
   },
   {
+   "key": "apache/arrow-nanoarrow#1023",
+   "url": "https://github.com/apache/arrow-nanoarrow/pull/1023",
+   "title": "fix(ipc): Return EINVAL from ArrowIpcDecoderDecodeFooter when the footer has no schema",
+   "created": "2026-11-17",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "apache/arrow-nanoarrow#1022"
+   ]
+  },
+  {
    "key": "docling-project/docling#5144",
    "url": "https://github.com/docling-project/docling/pull/5144",
    "title": "fix(asciidoc): parse links and inline marks in block titles",
@@ -472,6 +484,14 @@
    "reason": "COMPLETED"
   },
   {
+   "key": "apache/arrow-nanoarrow#1022",
+   "url": "https://github.com/apache/arrow-nanoarrow/issues/1022",
+   "title": "ArrowIpcDecoderDecodeFooter() crashes on a footer with no schema instead of returning EINVAL",
+   "created": "2026-11-17",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
    "key": "apache/arrow-rs#12290",
    "url": "https://github.com/apache/arrow-rs/issues/12290",
    "title": "parquet: DELTA_LENGTH_BYTE_ARRAY decoder panics on a negative length instead of returning an error",
@@ -572,29 +592,37 @@
    "url": "https://github.com/huggingface/sentence-transformers/issues/4388",
    "title": "LayerNorm.load raises TypeError when config.json has a key outside config_keys",
    "created": "2026-11-16",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "huggingface/sentence-transformers#4389",
    "url": "https://github.com/huggingface/sentence-transformers/issues/4389",
    "title": "MultipleNegativesRankingLoss loss collapses to 0 under bf16 autocast (CoSENTLoss was fixed in #4167)",
    "created": "2026-11-16",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "huggingface/sentence-transformers#4390",
    "url": "https://github.com/huggingface/sentence-transformers/issues/4390",
    "title": "BatchHardTripletLossDistanceFunction.cosine_distance rounds near-duplicate distances to exactly 0 under autocast",
    "created": "2026-11-16",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "huggingface/sentence-transformers#4392",
    "url": "https://github.com/huggingface/sentence-transformers/issues/4392",
    "title": "CrossEncoder.fit() never adds a learnable loss_fct's parameters to the optimizer",
+   "created": "2026-11-17",
+   "state": "CLOSED",
+   "reason": "COMPLETED"
+  },
+  {
+   "key": "huggingface/sentence-transformers#4401",
+   "url": "https://github.com/huggingface/sentence-transformers/issues/4401",
+   "title": "DenoisingAutoEncoderDataset cannot be pickled because its default noise_fn is a lambda",
    "created": "2026-11-17",
    "state": "OPEN",
    "reason": null
