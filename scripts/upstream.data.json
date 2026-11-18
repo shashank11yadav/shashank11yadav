@@ -3,7 +3,7 @@
  "repos": {
   "Arize-ai/openinference": {
    "stars": "1.3K",
-   "about": "OpenTelemetry Instrumentation for Agent Observability"
+   "about": "OpenTelemetry Instrumentation for AI Observability"
   },
   "ModelEarth/projects": {
    "stars": "0",
@@ -38,7 +38,7 @@
    "about": "Get your documents ready for gen AI"
   },
   "docling-project/docling-core": {
-   "stars": "299",
+   "stars": "300",
    "about": "Docling core data types and transformations"
   },
   "hgrecco/pint": {
@@ -264,9 +264,9 @@
    "url": "https://github.com/apache/arrow-nanoarrow/pull/1023",
    "title": "fix(ipc): Return EINVAL from ArrowIpcDecoderDecodeFooter when the footer has no schema",
    "created": "2026-11-17",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-17",
    "fixes": [
     "apache/arrow-nanoarrow#1022"
    ]
@@ -488,8 +488,8 @@
    "url": "https://github.com/apache/arrow-nanoarrow/issues/1022",
    "title": "ArrowIpcDecoderDecodeFooter() crashes on a footer with no schema instead of returning EINVAL",
    "created": "2026-11-17",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "apache/arrow-rs#12290",
