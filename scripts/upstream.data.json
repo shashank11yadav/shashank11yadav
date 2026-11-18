@@ -272,6 +272,18 @@
    ]
   },
   {
+   "key": "apache/arrow-rs#12324",
+   "url": "https://github.com/apache/arrow-rs/pull/12324",
+   "title": "fix(parquet): return error for invalid DELTA_LENGTH_BYTE_ARRAY lengths",
+   "created": "2026-11-18",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "apache/arrow-rs#12290"
+   ]
+  },
+  {
    "key": "docling-project/docling#5144",
    "url": "https://github.com/docling-project/docling/pull/5144",
    "title": "fix(asciidoc): parse links and inline marks in block titles",
