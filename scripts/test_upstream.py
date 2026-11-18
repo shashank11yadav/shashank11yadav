@@ -23,7 +23,8 @@ HOSTILE = [
 
 def outside_code(text):
     """GitHub shows code spans literally, so only the text outside them can be live."""
-    return re.sub(r"(?<!\\)`[^`]+`", "", text)
+    text = re.sub(r"(?<!\\)`[^`]+`", "", text)
+    return text.replace("<span>@</span>", "@").replace("<span>$</span>", "$")
 
 
 def fake(title):
@@ -61,6 +62,12 @@ class Safe(unittest.TestCase):
         self.assertEqual(upstream.safe("Fix `Index` and `a|b`"), "Fix `Index` and `a\\|b`")
         self.assertEqual(upstream.safe("`<b>x</b>` [y](z)"), "`<b>x</b>` \\[y\\]\\(z\\)")
         self.assertEqual(upstream.safe("one ` stray"), "one \\` stray")
+        # an escaped pipe in the source stays one cell: GitHub reads `\\|` in a table as `\|`
+        self.assertEqual(upstream.safe("`a\\|b`"), "`a\\\\|b`")
+
+    def test_invisible_and_math_characters(self):
+        self.assertEqual(upstream.safe("a‎b‏c؜d​e‮f"), "abcdef")
+        self.assertEqual(upstream.safe("costs $x^2$ @me"), "costs <span>$</span>x^2<span>$</span> <span>@</span>me")
 
     def test_cap(self):
         out = upstream.safe("x" * 500)

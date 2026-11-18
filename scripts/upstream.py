@@ -145,22 +145,23 @@ def cell(text):
 
 
 MAX_TEXT = 120
-_MD = re.compile(r"([\\`*_\[\]()!#|~@+{}])")
+_MD = re.compile(r"([\\`*_\[\]()!#|~+{}])")
 _WWW = re.compile(r"(?i)\b(www)\.")
-_BIDI = "\u202a\u202b\u202c\u202d\u202e\u2066\u2067\u2068\u2069"
 
 
 def safe(text, limit=MAX_TEXT):
     """Untrusted text (from other people): inert in a GitHub Markdown table cell.
 
-    Control and bidi characters are dropped, whitespace is collapsed, the text is cut at `limit`
-    characters (ending with an ellipsis), then & < > and quotes become HTML entities and every
-    Markdown control character is backslash-escaped, so it shows up as plain text.
+    Control and invisible format characters (bidi marks, zero-width) are dropped, whitespace is
+    collapsed, the text is cut at `limit` characters (ending with an ellipsis), then & < > and
+    quotes become HTML entities and every Markdown control character is backslash-escaped, so it
+    shows up as plain text. `@` and `$` get an empty span around them instead, because GitHub
+    turns them into mentions and math even after a backslash.
     Bare URLs and www. names are broken up so GitHub does not autolink them.
     A matched pair of backticks stays a code span: GitHub shows code spans literally (no links,
     images or HTML), so only `|` needs escaping inside one.
     """
-    text = "".join(c for c in str(text) if c not in _BIDI and (c in "\t\n\r" or unicodedata.category(c) != "Cc"))
+    text = "".join(c for c in str(text) if c in "\t\n\r" or unicodedata.category(c) not in ("Cc", "Cf"))
     text = " ".join(text.split())
     if len(text) > limit:
         text = text[:limit - 1].rstrip() + "\u2026"
@@ -177,6 +178,8 @@ def _code(part):
 def _plain(text):
     text = (text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;"))
     text = _MD.sub(r"\\\1", text)
+    # a backslash doesn't stop GitHub's @mentions or $math$, an empty span around the sign does
+    text = text.replace("@", "<span>@</span>").replace("$", "<span>$</span>")
     text = text.replace("://", ":\\/\\/")
     return _WWW.sub(r"\1\\.", text)
 
