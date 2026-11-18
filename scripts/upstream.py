@@ -11,7 +11,8 @@ Two kinds of text reach the table. Text from scripts/upstream.json is hand-writt
 it only gets cell() (so a `|` can't break the table; backticks and links still work). Everything
 that comes from other people through scripts/upstream.data.json (repo descriptions, PR and issue
 titles, repo names, URLs, star counts) goes through safe(), which makes it inert: HTML and Markdown
-are escaped, whitespace is collapsed and the length is capped. The workflow commits the result to
+are escaped (a matched pair of backticks stays code, which GitHub shows literally), whitespace is
+collapsed and the length is capped. The workflow commits the result to
 master unattended, so a hostile maintainer must not be able to inject tags, links or images.
 """
 import unicodedata
@@ -156,11 +157,24 @@ def safe(text, limit=MAX_TEXT):
     characters (ending with an ellipsis), then & < > and quotes become HTML entities and every
     Markdown control character is backslash-escaped, so it shows up as plain text.
     Bare URLs and www. names are broken up so GitHub does not autolink them.
+    A matched pair of backticks stays a code span: GitHub shows code spans literally (no links,
+    images or HTML), so only `|` needs escaping inside one.
     """
     text = "".join(c for c in str(text) if c not in _BIDI and (c in "\t\n\r" or unicodedata.category(c) != "Cc"))
     text = " ".join(text.split())
     if len(text) > limit:
         text = text[:limit - 1].rstrip() + "\u2026"
+    return "".join(_code(part) if _CODE.fullmatch(part) else _plain(part) for part in _CODE.split(text))
+
+
+_CODE = re.compile(r"(`[^`]+`)")
+
+
+def _code(part):
+    return part.replace("|", "\\|")
+
+
+def _plain(text):
     text = (text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;"))
     text = _MD.sub(r"\\\1", text)
     text = text.replace("://", ":\\/\\/")

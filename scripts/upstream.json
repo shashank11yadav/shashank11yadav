@@ -11,7 +11,7 @@
     "hide: repos ('owner/repo' or 'owner/*') and items ('owner/repo#123') never shown.",
     "since: PRs and issues opened before this date are ignored.",
     "Text written here is trusted: Markdown such as `code` renders, only '|' is escaped. Titles,",
-    "  descriptions and names that come from other repos are escaped and capped at 120 characters."
+    "  descriptions and names that come from other repos are escaped (paired `code` stays code) and capped at 120 characters."
   ],
   "since": "2025-01-01",
   "curated_until": "2026-11-06",

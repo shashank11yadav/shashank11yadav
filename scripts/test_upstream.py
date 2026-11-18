@@ -16,8 +16,14 @@ HOSTILE = [
     "**bold** | pipe",
     "<a href=\"https://evil.example\">x</a> www.evil.example https://evil.example/a_b",
     "# heading\nsecond `code` line @someone ~~gone~~",
+    "`<img src=x onerror=1>` and `[c](https://evil.example)` and `a|b` and ` stray",
     "x" * 500,
 ]
+
+
+def outside_code(text):
+    """GitHub shows code spans literally, so only the text outside them can be live."""
+    return re.sub(r"(?<!\\)`[^`]+`", "", text)
 
 
 def fake(title):
@@ -42,12 +48,19 @@ class Safe(unittest.TestCase):
     def test_nothing_live_survives(self):
         for text in HOSTILE:
             out = upstream.safe(text)
-            self.assertNotIn("<", out, text)
             self.assertNotIn("\n", out)
             self.assertLessEqual(len(out), upstream.MAX_TEXT * 2, text)
-            self.assertIsNone(re.search(r"(?<!\\)[\[\]|`*]", out), out)
-            self.assertIsNone(re.search(r"(?<!\\)\]\(", out), out)
-            self.assertNotIn("://", out)
+            self.assertIsNone(re.search(r"(?<!\\)\|", out), out)  # no pipe breaks the table, even in code
+            live = outside_code(out)
+            self.assertNotIn("<", live, text)
+            self.assertIsNone(re.search(r"(?<!\\)[\[\]`*]", live), live)
+            self.assertIsNone(re.search(r"(?<!\\)\]\(", live), live)
+            self.assertNotIn("://", live)
+
+    def test_code_spans_stay_code(self):
+        self.assertEqual(upstream.safe("Fix `Index` and `a|b`"), "Fix `Index` and `a\\|b`")
+        self.assertEqual(upstream.safe("`<b>x</b>` [y](z)"), "`<b>x</b>` \\[y\\]\\(z\\)")
+        self.assertEqual(upstream.safe("one ` stray"), "one \\` stray")
 
     def test_cap(self):
         out = upstream.safe("x" * 500)
@@ -70,13 +83,14 @@ class Render(unittest.TestCase):
             self.assertEqual(len(table), 3)  # header, separator, one project row
             for line in table:  # the row must still have exactly 3 cells
                 self.assertEqual(len(re.split(r"(?<!\\)\|", line.strip())) - 2, 3, line)
+            live = outside_code(out)
             # the only raw tag is the 16px avatar the renderer itself writes
-            self.assertEqual(re.findall(r"<[a-z]+", out.replace("<br>", "").replace("<sub>", "")), ["<img"])
-            self.assertNotIn("](https://evil", out)  # no live link or image to a stranger's host
-            self.assertNotIn("](https://t.example", out)
-            self.assertNotIn("(https://evil", out)
-            self.assertNotIn("https://t.example", out)
-            self.assertNotIn("<a ", out)
+            self.assertEqual(re.findall(r"<[a-z]+", live.replace("<br>", "").replace("<sub>", "")), ["<img"])
+            self.assertNotIn("](https://evil", live)  # no live link or image to a stranger's host
+            self.assertNotIn("](https://t.example", live)
+            self.assertNotIn("(https://evil", live)
+            self.assertNotIn("https://t.example", live)
+            self.assertNotIn("<a ", live)
             for line in body:
                 self.assertLess(len(line), 1500)
 
