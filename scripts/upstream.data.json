@@ -46,7 +46,7 @@
    "about": "Operate and manipulate physical quantities in Python"
   },
   "huggingface/accelerate": {
-   "stars": "9.9K",
+   "stars": "10.0K",
    "about": "🚀 A simple way to launch, train, and use PyTorch models on almost any device and distributed configuration, automatic mixed precision (including fp8), and easy-to-configure FSDP and DeepSpeed support"
   },
   "huggingface/datasets": {
@@ -624,8 +624,8 @@
    "url": "https://github.com/huggingface/sentence-transformers/issues/4401",
    "title": "DenoisingAutoEncoderDataset cannot be pickled because its default noise_fn is a lambda",
    "created": "2026-11-17",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "joblib/joblib#1944",
