@@ -9,7 +9,9 @@
     "issues: issue links GitHub doesn't know about (the PR body has no 'Closes #...'), and the",
     "  sentence for a reported issue that the maintainers fixed.",
     "hide: repos ('owner/repo' or 'owner/*') and items ('owner/repo#123') never shown.",
-    "since: PRs and issues opened before this date are ignored."
+    "since: PRs and issues opened before this date are ignored.",
+    "Text written here is trusted: Markdown such as `code` renders, only '|' is escaped. Titles,",
+    "  descriptions and names that come from other repos are escaped and capped at 120 characters."
   ],
   "since": "2025-01-01",
   "curated_until": "2026-11-06",

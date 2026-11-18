@@ -6,7 +6,15 @@
 
 Fetching uses $GITHUB_TOKEN when set (the profile workflow), otherwise the local `gh` login.
 What each PR says, project names and what to hide live in scripts/upstream.json.
+
+Two kinds of text reach the table. Text from scripts/upstream.json is hand-written and trusted:
+it only gets cell() (so a `|` can't break the table; backticks and links still work). Everything
+that comes from other people through scripts/upstream.data.json (repo descriptions, PR and issue
+titles, repo names, URLs, star counts) goes through safe(), which makes it inert: HTML and Markdown
+are escaped, whitespace is collapsed and the length is capped. The workflow commits the result to
+master unattended, so a hostile maintainer must not be able to inject tags, links or images.
 """
+import unicodedata
 import json
 import os
 import pathlib
@@ -131,7 +139,42 @@ def clean_title(title):
 
 
 def cell(text):
+    """Trusted text (scripts/upstream.json): keep its Markdown, just don't break the table."""
     return text.replace("|", "\\|").replace("\n", " ")
+
+
+MAX_TEXT = 120
+_MD = re.compile(r"([\\`*_\[\]()!#|~@+{}])")
+_WWW = re.compile(r"(?i)\b(www)\.")
+_BIDI = "\u202a\u202b\u202c\u202d\u202e\u2066\u2067\u2068\u2069"
+
+
+def safe(text, limit=MAX_TEXT):
+    """Untrusted text (from other people): inert in a GitHub Markdown table cell.
+
+    Control and bidi characters are dropped, whitespace is collapsed, the text is cut at `limit`
+    characters (ending with an ellipsis), then & < > and quotes become HTML entities and every
+    Markdown control character is backslash-escaped, so it shows up as plain text.
+    Bare URLs and www. names are broken up so GitHub does not autolink them.
+    """
+    text = "".join(c for c in str(text) if c not in _BIDI and (c in "\t\n\r" or unicodedata.category(c) != "Cc"))
+    text = " ".join(text.split())
+    if len(text) > limit:
+        text = text[:limit - 1].rstrip() + "\u2026"
+    text = (text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;"))
+    text = _MD.sub(r"\\\1", text)
+    text = text.replace("://", ":\\/\\/")
+    return _WWW.sub(r"\1\\.", text)
+
+
+_KEY = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+#[0-9]+$")
+_STARS = re.compile(r"^[0-9]+(\.[0-9])?K?$")
+
+
+def safe_url(url, fallback):
+    """A github.com link without anything that could end the Markdown link early."""
+    ok = isinstance(url, str) and re.fullmatch(r"https://github\.com/[A-Za-z0-9_./#?=&%+:-]+", url)
+    return url if ok else fallback
 
 
 def refs(pr_keys, issue_keys, urls):
@@ -144,10 +187,15 @@ def refs(pr_keys, issue_keys, urls):
     return f"({'issues' if len(issue_keys) > 1 else 'issue'} {issues} → {'PRs' if len(pr_keys) > 1 else 'PR'} {prs})"
 
 
-def render():
-    cfg = json.loads(CONFIG.read_text())
-    data = json.loads(DATA.read_text())
+def render(cfg=None, data=None):
+    cfg = cfg or json.loads(CONFIG.read_text())
+    data = data or json.loads(DATA.read_text())
     projects, hide = cfg["projects"], cfg.get("hide", [])
+    # drop anything whose key is not a plain owner/repo#number, and pin every link to github.com
+    data["pull_requests"] = [p for p in data["pull_requests"] if _KEY.match(p["key"])]
+    data["issues"] = [i for i in data["issues"] if _KEY.match(i["key"])]
+    for item in data["pull_requests"] + data["issues"]:
+        item["url"] = safe_url(item.get("url"), "https://github.com/" + repo_of(item["key"]))
     urls = {i["key"]: i["url"] for i in data["pull_requests"] + data["issues"]}
     prs = [p for p in data["pull_requests"] if not hidden(p["key"], hide)]
     issues = [i for i in data["issues"] if not hidden(i["key"], hide)]
@@ -155,7 +203,8 @@ def render():
     fixes = {p["key"]: sorted(set(p["fixes"]) | set(extra_fixes.get(p["key"], []))) for p in prs}
 
     def name(project):
-        return projects.get(project, {}).get("name") or project.split("/")[-1]
+        configured = projects.get(project, {}).get("name")
+        return cell(configured) if configured else safe(project.split("/")[-1])
 
     # group merged PRs by project; configured projects first, the rest by number of PRs
     merged = {}
@@ -179,21 +228,24 @@ def render():
         new = sorted((p for p in items if p["key"] not in covered and p["merged"] > cfg["curated_until"]),
                      key=lambda p: p["merged"], reverse=True)
         for p in new[:max(0, cfg["max_bullets"] - len(bullets))]:
-            bullets.append(f"• {cell(clean_title(p['title']))} {refs([p['key']], fixes[p['key']], urls)}")
+            bullets.append(f"• {safe(clean_title(p['title']))} {refs([p['key']], fixes[p['key']], urls)}")
         if not bullets:
             continue
         repos = sorted({repo_of(k) for k in keys})
         owner = repos[0].split("/")[0]
         url = info.get("url") or f"https://github.com/{repos[0]}"
-        about = (info.get("about") or data["repos"].get(repos[0], {}).get("about", "")).rstrip(".")
+        if info.get("about"):
+            about = cell(info["about"].rstrip("."))
+        else:
+            about = safe(data["repos"].get(repos[0], {}).get("about", "").rstrip("."))
         star = data["repos"].get(repos[0], {}).get("stars", "0") if len(repos) == 1 else ""
-        if star and star[-1] == "K":
+        if star and star[-1] == "K" and _STARS.match(star):
             about = f"{about} · {star}★" if about else f"{star}★"
         scope = f"repo:{repos[0]}" if len(repos) == 1 else f"user:{owner}"
         search = "https://github.com/pulls?q=" + urllib.parse.quote_plus(
             f"is:pr is:merged author:{data['user']} {scope}")
         rows.append(f'| <img src="https://github.com/{owner}.png" width="16" height="16"> **[{name(project)}]({url})**'
-                    f"{'<br><sub>' + cell(about) + '</sub>' if about else ''} | [**{len(items)}**]({search}) | "
+                    f"{'<br><sub>' + about + '</sub>' if about else ''} | [**{len(items)}**]({search}) | "
                     + "<br>".join(bullets) + " |")
 
     out = ["| Project | Merged | What I fixed or built |", "| :--- | :---: | :--- |"] + rows
@@ -210,7 +262,8 @@ def render():
     if fixed:
         out += ["", "**Reported, fixed by the maintainers:** " + " · ".join(
             f"[{name(project_of(repo_of(i['key']), projects))} #{number(i['key'])}]({i['url']}): "
-            + cfg.get("issues", {}).get(i["key"], {}).get("text", clean_title(i["title"]))
+            + (cell(cfg["issues"][i["key"]]["text"]) if "text" in cfg.get("issues", {}).get(i["key"], {})
+               else safe(clean_title(i["title"])))
             for i in sorted(fixed, key=lambda i: i["created"]))]
     return "\n".join(out)
 
