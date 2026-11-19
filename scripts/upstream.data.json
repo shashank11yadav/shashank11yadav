@@ -29,6 +29,10 @@
    "stars": "3.7K",
    "about": "Official Rust implementation of Apache Arrow"
   },
+  "areal-project/AReaL": {
+   "stars": "5.9K",
+   "about": "The RL Bridge for LLM-based Agent Applications. Made Simple & Flexible."
+  },
   "deepset-ai/haystack": {
    "stars": "27K",
    "about": "Open-source AI orchestration framework for building context-engineered, production-ready LLM applications. Design modular pipelines and agent workflows with explicit control over retrieval, routing, memory, and generation. Built for scalable agents, RAG, multimodal applications, semantic search, and conversational systems."
@@ -284,6 +288,18 @@
    ]
   },
   {
+   "key": "areal-project/AReaL#1973",
+   "url": "https://github.com/areal-project/AReaL/pull/1973",
+   "title": "fix(engine): recognize SGLang multimodal context overflow 400",
+   "created": "2026-11-19",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "areal-project/AReaL#1972"
+   ]
+  },
+  {
    "key": "docling-project/docling#5144",
    "url": "https://github.com/docling-project/docling/pull/5144",
    "title": "fix(asciidoc): parse links and inline marks in block titles",
@@ -508,6 +524,14 @@
    "url": "https://github.com/apache/arrow-rs/issues/12290",
    "title": "parquet: DELTA_LENGTH_BYTE_ARRAY decoder panics on a negative length instead of returning an error",
    "created": "2026-11-17",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "areal-project/AReaL#1972",
+   "url": "https://github.com/areal-project/AReaL/issues/1972",
+   "title": "[BUG] SGLangBackend.is_generation_rejection misses SGLang's multimodal \"prompt is too long\" 400",
+   "created": "2026-11-19",
    "state": "OPEN",
    "reason": null
   },
