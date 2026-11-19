@@ -22,7 +22,7 @@
    "about": "The self-managing agent platform"
   },
   "apache/arrow-nanoarrow": {
-   "stars": "252",
+   "stars": "251",
    "about": "Helpers for Arrow C Data & Arrow C Stream interfaces"
   },
   "apache/arrow-rs": {
@@ -56,6 +56,10 @@
   "huggingface/datasets": {
    "stars": "22K",
    "about": "🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulation tools"
+  },
+  "huggingface/huggingface_hub": {
+   "stars": "4.1K",
+   "about": "The official CLI and Python client for the Hugging Face Hub."
   },
   "huggingface/sentence-transformers": {
    "stars": "19K",
@@ -420,6 +424,18 @@
    ]
   },
   {
+   "key": "huggingface/huggingface_hub#5394",
+   "url": "https://github.com/huggingface/huggingface_hub/pull/5394",
+   "title": "[CLI] Count shared blobs once with --limit and --filter",
+   "created": "2026-11-19",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "huggingface/huggingface_hub#5393"
+   ]
+  },
+  {
    "key": "joblib/joblib#1945",
    "url": "https://github.com/joblib/joblib/pull/1945",
    "title": "FIX Memory accepts any os.PathLike location",
@@ -620,6 +636,14 @@
    "url": "https://github.com/huggingface/datasets/issues/8949",
    "title": "imagefolder metadata.jsonl: a list starting with null loads as wrong values",
    "created": "2026-11-03",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "huggingface/huggingface_hub#5393",
+   "url": "https://github.com/huggingface/huggingface_hub/issues/5393",
+   "title": "[CLI] `hf cache ls --limit/--filter` double-counts blobs shared across repos in the total",
+   "created": "2026-11-19",
    "state": "OPEN",
    "reason": null
   },
