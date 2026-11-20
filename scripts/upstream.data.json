@@ -444,9 +444,9 @@
    "url": "https://github.com/huggingface/huggingface_hub/pull/5394",
    "title": "[CLI] Count shared blobs once with --limit and --filter",
    "created": "2026-11-19",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-20",
    "fixes": [
     "huggingface/huggingface_hub#5393"
    ]
@@ -668,8 +668,8 @@
    "url": "https://github.com/huggingface/huggingface_hub/issues/5393",
    "title": "[CLI] `hf cache ls --limit/--filter` double-counts blobs shared across repos in the total",
    "created": "2026-11-19",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "huggingface/sentence-transformers#4388",
