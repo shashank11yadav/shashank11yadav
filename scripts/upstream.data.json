@@ -29,6 +29,10 @@
    "stars": "3.7K",
    "about": "Official Rust implementation of Apache Arrow"
   },
+  "apache/iceberg-python": {
+   "stars": "1.2K",
+   "about": "PyIceberg"
+  },
   "areal-project/AReaL": {
    "stars": "5.9K",
    "about": "The RL Bridge for LLM-based Agent Applications. Made Simple & Flexible."
@@ -50,7 +54,7 @@
    "about": "Operate and manipulate physical quantities in Python"
   },
   "huggingface/accelerate": {
-   "stars": "10.0K",
+   "stars": "9.9K",
    "about": "🚀 A simple way to launch, train, and use PyTorch models on almost any device and distributed configuration, automatic mixed precision (including fp8), and easy-to-configure FSDP and DeepSpeed support"
   },
   "huggingface/datasets": {
@@ -284,11 +288,23 @@
    "url": "https://github.com/apache/arrow-rs/pull/12324",
    "title": "fix(parquet): return error for invalid DELTA_LENGTH_BYTE_ARRAY lengths",
    "created": "2026-11-18",
+   "state": "MERGED",
+   "draft": false,
+   "merged": "2026-11-19",
+   "fixes": [
+    "apache/arrow-rs#12290"
+   ]
+  },
+  {
+   "key": "apache/iceberg-python#4439",
+   "url": "https://github.com/apache/iceberg-python/pull/4439",
+   "title": "Fix row ID scan with a filter when a column is named __iceberg_file_position",
+   "created": "2026-11-19",
    "state": "OPEN",
    "draft": false,
    "merged": "",
    "fixes": [
-    "apache/arrow-rs#12290"
+    "apache/iceberg-python#4438"
    ]
   },
   {
@@ -500,8 +516,8 @@
    "url": "https://github.com/Unstructured-IO/unstructured/issues/4692",
    "title": "bug/partition-docx-vmerge-table-html-recursion",
    "created": "2026-11-10",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "agno-agi/agno#11434",
@@ -540,6 +556,14 @@
    "url": "https://github.com/apache/arrow-rs/issues/12290",
    "title": "parquet: DELTA_LENGTH_BYTE_ARRAY decoder panics on a negative length instead of returning an error",
    "created": "2026-11-17",
+   "state": "CLOSED",
+   "reason": "COMPLETED"
+  },
+  {
+   "key": "apache/iceberg-python#4438",
+   "url": "https://github.com/apache/iceberg-python/issues/4438",
+   "title": "Scan with `_row_id` and a row filter raises KeyError when a data column is named `__iceberg_file_position`",
+   "created": "2026-11-19",
    "state": "OPEN",
    "reason": null
   },
