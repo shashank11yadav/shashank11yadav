@@ -54,7 +54,7 @@
    "about": "Operate and manipulate physical quantities in Python"
   },
   "huggingface/accelerate": {
-   "stars": "9.9K",
+   "stars": "10.0K",
    "about": "🚀 A simple way to launch, train, and use PyTorch models on almost any device and distributed configuration, automatic mixed precision (including fp8), and easy-to-configure FSDP and DeepSpeed support"
   },
   "huggingface/datasets": {
