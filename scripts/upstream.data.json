@@ -46,7 +46,7 @@
    "about": "Get your documents ready for gen AI"
   },
   "docling-project/docling-core": {
-   "stars": "301",
+   "stars": "302",
    "about": "Docling core data types and transformations"
   },
   "hgrecco/pint": {
@@ -312,9 +312,9 @@
    "url": "https://github.com/areal-project/AReaL/pull/1973",
    "title": "fix(engine): recognize SGLang multimodal context overflow 400",
    "created": "2026-11-19",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-23",
    "fixes": [
     "areal-project/AReaL#1972"
    ]
@@ -572,8 +572,8 @@
    "url": "https://github.com/areal-project/AReaL/issues/1972",
    "title": "[BUG] SGLangBackend.is_generation_rejection misses SGLang's multimodal \"prompt is too long\" 400",
    "created": "2026-11-19",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "deepset-ai/haystack#13535",
