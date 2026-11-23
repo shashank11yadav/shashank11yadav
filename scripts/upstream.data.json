@@ -49,6 +49,10 @@
    "stars": "302",
    "about": "Docling core data types and transformations"
   },
+  "fsspec/filesystem_spec": {
+   "stars": "1.4K",
+   "about": "A specification that python filesystems should adhere to."
+  },
   "hgrecco/pint": {
    "stars": "2.8K",
    "about": "Operate and manipulate physical quantities in Python"
@@ -80,6 +84,10 @@
   "unionai-oss/pandera": {
    "stars": "4.5K",
    "about": "A light-weight, flexible, and expressive statistical data testing library"
+  },
+  "vega/altair": {
+   "stars": "11K",
+   "about": "Declarative visualization library for Python"
   }
  },
  "pull_requests": [
@@ -392,6 +400,18 @@
    ]
   },
   {
+   "key": "fsspec/filesystem_spec#2502",
+   "url": "https://github.com/fsspec/filesystem_spec/pull/2502",
+   "title": "Raise when WebHDFS delete reports failure",
+   "created": "2026-11-23",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "fsspec/filesystem_spec#2501"
+   ]
+  },
+  {
    "key": "hgrecco/pint#2560",
    "url": "https://github.com/hgrecco/pint/pull/2560",
    "title": "Fix numpy.linalg.tensorsolve rejecting positional axes argument",
@@ -484,6 +504,30 @@
    "fixes": [
     "unionai-oss/pandera#2669"
    ]
+  },
+  {
+   "key": "vega/altair#4233",
+   "url": "https://github.com/vega/altair/pull/4233",
+   "title": "fix: Convert inf in nullable Float32/Float64 columns to null",
+   "created": "2026-11-23",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "vega/altair#4232"
+   ]
+  },
+  {
+   "key": "vega/altair#4235",
+   "url": "https://github.com/vega/altair/pull/4235",
+   "title": "fix: Write NaN and infinity inside list arguments as valid expression values",
+   "created": "2026-11-23",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "vega/altair#4234"
+   ]
   }
  ],
  "issues": [
@@ -528,6 +572,14 @@
    "reason": null
   },
   {
+   "key": "agno-agi/agno#11833",
+   "url": "https://github.com/agno-agi/agno/issues/11833",
+   "title": "[Bug] SingleStore.insert() ignores batch_size; all documents go through one loop and one transaction",
+   "created": "2026-11-23",
+   "state": "CLOSED",
+   "reason": "COMPLETED"
+  },
+  {
    "key": "apache/arrow-nanoarrow#1013",
    "url": "https://github.com/apache/arrow-nanoarrow/issues/1013",
    "title": "ArrowIpcDecoderVerifyFooter() reads out of bounds when the footer size is close to INT32_MAX",
@@ -558,6 +610,14 @@
    "created": "2026-11-17",
    "state": "CLOSED",
    "reason": "COMPLETED"
+  },
+  {
+   "key": "apache/arrow-rs#12424",
+   "url": "https://github.com/apache/arrow-rs/issues/12424",
+   "title": "`GenericByteDictionaryBuilder::append` calls `as_ref()` twice, so the stored value can differ from the hashed value",
+   "created": "2026-11-23",
+   "state": "OPEN",
+   "reason": null
   },
   {
    "key": "apache/iceberg-python#4438",
@@ -628,6 +688,14 @@
    "url": "https://github.com/docling-project/docling-core/issues/969",
    "title": "LaTeXDocSerializer does not escape the image path in `\\includegraphics`, so \"%\" breaks the output",
    "created": "2026-11-03",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "fsspec/filesystem_spec#2501",
+   "url": "https://github.com/fsspec/filesystem_spec/issues/2501",
+   "title": "WebHDFS.rm ignores the `boolean` result of the DELETE call",
+   "created": "2026-11-23",
    "state": "OPEN",
    "reason": null
   },
@@ -748,6 +816,22 @@
    "url": "https://github.com/unionai-oss/pandera/issues/2669",
    "title": "pyspark: validating a StringType column against a DecimalType schema column raises AssertionError instead of a SchemaError",
    "created": "2026-11-13",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "vega/altair#4232",
+   "url": "https://github.com/vega/altair/issues/4232",
+   "title": "Infinite values in pandas nullable Float32/Float64 columns are written as `Infinity` in the chart spec",
+   "created": "2026-11-23",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "vega/altair#4234",
+   "url": "https://github.com/vega/altair/issues/4234",
+   "title": "NaN/inf inside a list argument of an expression is written as Python `nan`",
+   "created": "2026-11-23",
    "state": "OPEN",
    "reason": null
   }
