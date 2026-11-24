@@ -22,7 +22,7 @@
    "about": "The self-managing agent platform"
   },
   "apache/arrow-nanoarrow": {
-   "stars": "251",
+   "stars": "252",
    "about": "Helpers for Arrow C Data & Arrow C Stream interfaces"
   },
   "apache/arrow-rs": {
