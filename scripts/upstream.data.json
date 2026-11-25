@@ -46,7 +46,7 @@
    "about": "Get your documents ready for gen AI"
   },
   "docling-project/docling-core": {
-   "stars": "302",
+   "stars": "303",
    "about": "Docling core data types and transformations"
   },
   "fsspec/filesystem_spec": {
@@ -328,6 +328,30 @@
    ]
   },
   {
+   "key": "areal-project/AReaL#2008",
+   "url": "https://github.com/areal-project/AReaL/pull/2008",
+   "title": "fix(sapo): mask excluded log ratios before exponentiation",
+   "created": "2026-11-25",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "areal-project/AReaL#2007"
+   ]
+  },
+  {
+   "key": "deepset-ai/haystack#13934",
+   "url": "https://github.com/deepset-ai/haystack/pull/13934",
+   "title": "fix: handle non-list statements in FaithfulnessEvaluator",
+   "created": "2026-11-25",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "deepset-ai/haystack#13933"
+   ]
+  },
+  {
    "key": "docling-project/docling#5144",
    "url": "https://github.com/docling-project/docling/pull/5144",
    "title": "fix(asciidoc): parse links and inline marks in block titles",
@@ -409,6 +433,18 @@
    "merged": "",
    "fixes": [
     "fsspec/filesystem_spec#2501"
+   ]
+  },
+  {
+   "key": "fsspec/filesystem_spec#2518",
+   "url": "https://github.com/fsspec/filesystem_spec/pull/2518",
+   "title": "Ignore Content-Range size for content-encoded HTTP responses",
+   "created": "2026-11-25",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "fsspec/filesystem_spec#2517"
    ]
   },
   {
@@ -636,12 +672,28 @@
    "reason": "COMPLETED"
   },
   {
+   "key": "areal-project/AReaL#2007",
+   "url": "https://github.com/areal-project/AReaL/issues/2007",
+   "title": "[BUG] sapo_loss_fn gives a NaN gradient when a masked token's log ratio overflows exp",
+   "created": "2026-11-25",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
    "key": "deepset-ai/haystack#13535",
    "url": "https://github.com/deepset-ai/haystack/issues/13535",
    "title": "`ImageContent`, `FileContent` and `TextContent` `from_dict` return the base class when called on a subclass",
    "created": "2026-11-02",
    "state": "CLOSED",
    "reason": "COMPLETED"
+  },
+  {
+   "key": "deepset-ai/haystack#13933",
+   "url": "https://github.com/deepset-ai/haystack/issues/13933",
+   "title": "FaithfulnessEvaluator raises TypeError on a null `statements` value even with raise_on_failure=False",
+   "created": "2026-11-25",
+   "state": "OPEN",
+   "reason": null
   },
   {
    "key": "docling-project/docling#5142",
@@ -696,6 +748,14 @@
    "url": "https://github.com/fsspec/filesystem_spec/issues/2501",
    "title": "WebHDFS.rm ignores the `boolean` result of the DELETE call",
    "created": "2026-11-23",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "fsspec/filesystem_spec#2517",
+   "url": "https://github.com/fsspec/filesystem_spec/issues/2517",
+   "title": "HTTPFileSystem.info reports the compressed Content-Range total as size for Content-Encoding responses",
+   "created": "2026-11-25",
    "state": "OPEN",
    "reason": null
   },
