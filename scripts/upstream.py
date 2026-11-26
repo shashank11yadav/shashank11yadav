@@ -8,8 +8,7 @@ Fetching uses $GITHUB_TOKEN when set (the profile workflow), otherwise the local
 What each PR says, project names and what to hide live in scripts/upstream.json.
 
 The section is: a summary line (merged PRs, projects, first merge month, a link to all of them),
-the table with the projects that have the most merged PRs first (split into "Sustained work" and
-"Targeted fixes" at `sustained_min` when both kinds exist), and open PRs as one linked count.
+the table with the projects that have the most merged PRs first, and open PRs as one linked count.
 Every count links to github.com/search, which works for visitors who are not signed in, with the
 same filters the count uses (so it matches unless something is in `hide`).
 
@@ -229,16 +228,11 @@ def search_url(query):
     return "https://github.com/search?type=pullrequests&q=" + urllib.parse.quote_plus(query)
 
 
-def divider(title, note):
-    return f"| **{title}**<br><sub>{note}</sub> | | |"
-
-
 def render(cfg=None, data=None):
     cfg = cfg or json.loads(CONFIG.read_text())
     data = data or json.loads(DATA.read_text())
     projects, hide = cfg["projects"], cfg.get("hide", [])
     user, since = data["user"], cfg["since"]
-    deep_min = cfg.get("sustained_min", 3)
     # drop anything whose key is not a plain owner/repo#number, and pin every link to github.com
     data["pull_requests"] = [p for p in data["pull_requests"] if _KEY.match(p["key"])]
     data["issues"] = [i for i in data["issues"] if _KEY.match(i["key"])]
@@ -291,9 +285,9 @@ def render(cfg=None, data=None):
             about = f"{about} · {star}★" if about else f"{star}★"
         scope = f"repo:{repos[0]}" if len(repos) == 1 else f"user:{owner}"
         search = search_url(f"is:pr is:merged author:{user} {scope} created:>={since}")
-        rows.append((len(items), f'| <img src="https://github.com/{owner}.png" width="16" height="16"> **[{name(project)}]({url})**'
-                     f"{'<br><sub>' + about + '</sub>' if about else ''} | [**{len(items)}**]({search}) | "
-                     + "<br>".join(bullets) + " |"))
+        rows.append(f'| <img src="https://github.com/{owner}.png" width="16" height="16"> **[{name(project)}]({url})**'
+                    f"{'<br><sub>' + about + '</sub>' if about else ''} | [**{len(items)}**]({search}) | "
+                    + "<br>".join(bullets) + " |")
 
     out = []
     if merged:
@@ -306,16 +300,7 @@ def render(cfg=None, data=None):
         everything = search_url(f"is:pr is:merged author:{user} -user:{user} created:>={since}")
         out += [f"{summary}. [See them all on GitHub]({everything})", ""]
 
-    # projects with several merged PRs first, under their own divider, when both kinds exist
-    deep = [line for n, line in rows if n >= deep_min]
-    quick = [line for n, line in rows if n < deep_min]
-    if deep and quick:
-        few = "1 merged PR each" if deep_min == 2 else f"fewer than {deep_min} merged PRs each"
-        body = ([divider("Sustained work", f"{deep_min} or more merged PRs each")] + deep
-                + [divider("Targeted fixes", few)] + quick)
-    else:
-        body = deep + quick
-    out += ["| Project | Merged | What I fixed or built |", "| :--- | :---: | :--- |"] + body
+    out += ["| Project | Merged | What I fixed or built |", "| :--- | :---: | :--- |"] + rows
 
     # open PRs as one linked count: a long list of unmerged work reads as volume, not depth
     review = [p for p in prs if p["state"] == "OPEN" and not p["draft"]]
