@@ -7,6 +7,12 @@
 Fetching uses $GITHUB_TOKEN when set (the profile workflow), otherwise the local `gh` login.
 What each PR says, project names and what to hide live in scripts/upstream.json.
 
+The section is: a summary line (merged PRs, projects, first merge month, a link to all of them),
+the table with the projects that have the most merged PRs first (split into "Sustained work" and
+"Targeted fixes" at `sustained_min` when both kinds exist), and open PRs as one linked count.
+Every count links to github.com/search, which works for visitors who are not signed in, with the
+same filters the count uses (so it matches unless something is in `hide`).
+
 Two kinds of text reach the table. Text from scripts/upstream.json is hand-written and trusted:
 it only gets cell() (so a `|` can't break the table; backticks and links still work). Everything
 that comes from other people through scripts/upstream.data.json (repo descriptions, PR and issue
@@ -204,10 +210,35 @@ def refs(pr_keys, issue_keys, urls):
     return f"({'issues' if len(issue_keys) > 1 else 'issue'} {issues} → {'PRs' if len(pr_keys) > 1 else 'PR'} {prs})"
 
 
+MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+
+
+def month(date):
+    """'2025-08-09' -> 'Aug 2025', without depending on the machine's locale; '' if not a date."""
+    found = re.match(r"^(\d{4})-(0[1-9]|1[0-2])-", str(date))
+    return f"{MONTHS[int(found.group(2)) - 1]} {found.group(1)}" if found else ""
+
+
+def plural(n, word):
+    return f"{n} {word}" if n == 1 else f"{n} {word}s"
+
+
+def search_url(query):
+    """A GitHub search link for pull requests. github.com/search works for visitors who aren't
+    signed in; github.com/pulls sends them to the login page instead."""
+    return "https://github.com/search?type=pullrequests&q=" + urllib.parse.quote_plus(query)
+
+
+def divider(title, note):
+    return f"| **{title}**<br><sub>{note}</sub> | | |"
+
+
 def render(cfg=None, data=None):
     cfg = cfg or json.loads(CONFIG.read_text())
     data = data or json.loads(DATA.read_text())
     projects, hide = cfg["projects"], cfg.get("hide", [])
+    user, since = data["user"], cfg["since"]
+    deep_min = cfg.get("sustained_min", 3)
     # drop anything whose key is not a plain owner/repo#number, and pin every link to github.com
     data["pull_requests"] = [p for p in data["pull_requests"] if _KEY.match(p["key"])]
     data["issues"] = [i for i in data["issues"] if _KEY.match(i["key"])]
@@ -223,13 +254,13 @@ def render(cfg=None, data=None):
         configured = projects.get(project, {}).get("name")
         return cell(configured) if configured else safe(project.split("/")[-1])
 
-    # group merged PRs by project; configured projects first, the rest by number of PRs
+    # group merged PRs by project; most merged PRs first, ties in the order of upstream.json
     merged = {}
     for p in prs:
         if p["state"] == "MERGED":
             merged.setdefault(project_of(repo_of(p["key"]), projects), []).append(p)
-    order = [k for k in projects if k in merged]
-    order += sorted((k for k in merged if k not in projects), key=lambda k: -len(merged[k]))
+    rank = {k: i for i, k in enumerate(projects)}
+    order = sorted(merged, key=lambda k: (-len(merged[k]), rank.get(k, len(rank)), k))
 
     rows = []
     for project in order:
@@ -259,19 +290,39 @@ def render(cfg=None, data=None):
         if star and star[-1] == "K" and _STARS.match(star):
             about = f"{about} · {star}★" if about else f"{star}★"
         scope = f"repo:{repos[0]}" if len(repos) == 1 else f"user:{owner}"
-        search = "https://github.com/pulls?q=" + urllib.parse.quote_plus(
-            f"is:pr is:merged author:{data['user']} {scope}")
-        rows.append(f'| <img src="https://github.com/{owner}.png" width="16" height="16"> **[{name(project)}]({url})**'
-                    f"{'<br><sub>' + about + '</sub>' if about else ''} | [**{len(items)}**]({search}) | "
-                    + "<br>".join(bullets) + " |")
+        search = search_url(f"is:pr is:merged author:{user} {scope} created:>={since}")
+        rows.append((len(items), f'| <img src="https://github.com/{owner}.png" width="16" height="16"> **[{name(project)}]({url})**'
+                     f"{'<br><sub>' + about + '</sub>' if about else ''} | [**{len(items)}**]({search}) | "
+                     + "<br>".join(bullets) + " |"))
 
-    out = ["| Project | Merged | What I fixed or built |", "| :--- | :---: | :--- |"] + rows
+    out = []
+    if merged:
+        total = sum(len(items) for items in merged.values())
+        first = month(min((p["merged"] for items in merged.values() for p in items if p["merged"]), default=""))
+        top = order[0]
+        summary = f"**{plural(total, 'merged PR')} in {plural(len(merged), 'project')}{' since ' + first if first else ''}**"
+        if len(merged) > 1 and len(merged[top]) > 1:
+            summary += f", {len(merged[top])} of them in {name(top)}"
+        everything = search_url(f"is:pr is:merged author:{user} -user:{user} created:>={since}")
+        out += [f"{summary}. [See them all on GitHub]({everything})", ""]
 
+    # projects with several merged PRs first, under their own divider, when both kinds exist
+    deep = [line for n, line in rows if n >= deep_min]
+    quick = [line for n, line in rows if n < deep_min]
+    if deep and quick:
+        few = "1 merged PR each" if deep_min == 2 else f"fewer than {deep_min} merged PRs each"
+        body = ([divider("Sustained work", f"{deep_min} or more merged PRs each")] + deep
+                + [divider("Targeted fixes", few)] + quick)
+    else:
+        body = deep + quick
+    out += ["| Project | Merged | What I fixed or built |", "| :--- | :---: | :--- |"] + body
+
+    # open PRs as one linked count: a long list of unmerged work reads as volume, not depth
     review = [p for p in prs if p["state"] == "OPEN" and not p["draft"]]
     if review:
-        out += ["", "**In review:** " + " · ".join(
-            f"[{name(project_of(repo_of(p['key']), projects))} #{number(p['key'])}]({p['url']})"
-            for p in sorted(review, key=lambda p: p["created"]))]
+        waiting = len({project_of(repo_of(p["key"]), projects) for p in review})
+        open_search = search_url(f"is:pr is:open draft:false author:{user} -user:{user} created:>={since}")
+        out += ["", f"**In review:** [{plural(len(review), 'open PR')} in {plural(waiting, 'project')}]({open_search})"]
 
     # reports the maintainers fixed themselves: closed as completed, not by one of my PRs
     mine = {i for keys in fixes.values() for i in keys}
