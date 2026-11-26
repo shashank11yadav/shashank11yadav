@@ -3,8 +3,6 @@
     "Hand-written notes for the Open-source contributions table, read by scripts/upstream.py.",
     "projects: display name, one-line description and link for a repo, or for every repo of an",
     "  owner with 'owner/*'. Rows are sorted by merged PRs, most first; ties keep this order.",
-    "sustained_min: projects with at least this many merged PRs go under 'Sustained work', the",
-    "  rest under 'Targeted fixes' (no dividers when every project is on one side).",
     "pull_requests: the sentence shown for a merged PR. Several PRs can share one sentence by",
     "  listing them together. A merged PR without a sentence shows its cleaned-up title, but only",
     "  if it merged after curated_until; older ones were reviewed by hand and stay out.",
@@ -18,7 +16,6 @@
   "since": "2025-01-01",
   "curated_until": "2026-11-06",
   "max_bullets": 5,
-  "sustained_min": 3,
   "projects": {
     "docling-project/docling": {"name": "Docling", "about": "Converts PDFs and other documents for gen AI"},
     "ModelEarth/*": {"name": "ModelEarth", "about": "Open-source data visualization framework", "url": "https://github.com/ModelEarth"},

@@ -131,7 +131,7 @@ def layout(prs, **cfg_extra):
 
 
 class Layout(unittest.TestCase):
-    """Summary line, deepest projects first with tier dividers, open PRs as one count."""
+    """Summary line, deepest projects first, open PRs as one count."""
 
     def test_summary_line_counts_and_links_everything(self):
         out = layout([pr("o/a#1", merged="2025-08-09"), pr("o/b#2"), pr("x/y#3"),
@@ -153,21 +153,18 @@ class Layout(unittest.TestCase):
         out = layout([pr("x/y#1", state="OPEN", merged="")])
         self.assertTrue(out.startswith("| Project |"), out)
 
-    def test_deepest_projects_first_with_dividers(self):
+    def test_deepest_projects_first_with_only_project_rows(self):
         out = layout([pr("x/y#1"), pr("o/a#2"), pr("o/b#3"), pr("o/a#4"), pr("p/q#5"), pr("p/q#6")])
         table = [l for l in out.split("\n") if l.startswith("| ") and "Project" not in l and not l.startswith("| :")]
-        self.assertIn("Sustained work", table[0])
-        self.assertIn("**[Org]", table[1])          # 3 merged
-        self.assertIn("Targeted fixes", table[2])
-        self.assertIn("**[q]", table[3])            # 2 merged
-        self.assertIn("**[y]", table[4])            # 1 merged
+        self.assertEqual(len(table), 3)             # one row per project, no divider rows
+        self.assertIn("**[Org]", table[0])          # 3 merged
+        self.assertIn("**[q]", table[1])            # 2 merged
+        self.assertIn("**[y]", table[2])            # 1 merged
         for line in table:
             self.assertEqual(len(re.split(r"(?<!\\)\|", line.strip())) - 2, 3, line)
 
-    def test_ties_keep_config_order_and_one_tier_has_no_divider(self):
+    def test_ties_keep_config_order(self):
         out = layout([pr("x/y#1"), pr("o/a#2")])
-        self.assertNotIn("Sustained work", out)
-        self.assertNotIn("Targeted fixes", out)
         self.assertLess(out.index("**[Org]"), out.index("**[y]"))
 
     def test_count_links_work_signed_out_and_match_filters(self):
