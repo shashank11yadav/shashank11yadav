@@ -37,6 +37,10 @@
    "stars": "5.9K",
    "about": "The RL Bridge for LLM-based Agent Applications. Made Simple & Flexible."
   },
+  "confident-ai/deepeval": {
+   "stars": "20K",
+   "about": "The LLM Evaluation Framework"
+  },
   "deepset-ai/haystack": {
    "stars": "27K",
    "about": "Open-source AI orchestration framework for building context-engineered, production-ready LLM applications. Design modular pipelines and agent workflows with explicit control over retrieval, routing, memory, and generation. Built for scalable agents, RAG, multimodal applications, semantic search, and conversational systems."
@@ -80,6 +84,10 @@
   "joblib/joblib": {
    "stars": "4.4K",
    "about": "Computing with Python functions."
+  },
+  "msgspec/msgspec": {
+   "stars": "4.2K",
+   "about": "A fast serialization and validation library, with builtin support for JSON, MessagePack, YAML, and TOML"
   },
   "pylint-dev/pylint": {
    "stars": "5.7K",
@@ -348,6 +356,18 @@
    ]
   },
   {
+   "key": "confident-ai/deepeval#3818",
+   "url": "https://github.com/confident-ai/deepeval/pull/3818",
+   "title": "fix(classifiers): rank labels whose review failed after reviewed ones",
+   "created": "2026-11-27",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "confident-ai/deepeval#3817"
+   ]
+  },
+  {
    "key": "deepset-ai/haystack#13934",
    "url": "https://github.com/deepset-ai/haystack/pull/13934",
    "title": "fix: handle non-list statements in FaithfulnessEvaluator",
@@ -417,6 +437,18 @@
    "merged": "",
    "fixes": [
     "docling-project/docling#5342"
+   ]
+  },
+  {
+   "key": "docling-project/docling-core#1092",
+   "url": "https://github.com/docling-project/docling-core/pull/1092",
+   "title": "fix(doclang): keep empty headings when deserializing DocLang",
+   "created": "2026-11-27",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "docling-project/docling-core#1091"
    ]
   },
   {
@@ -532,9 +564,9 @@
    "url": "https://github.com/huggingface/huggingface_hub/pull/5447",
    "title": "[CLI] Fix load_uv_script crash on long non-file arguments",
    "created": "2026-11-26",
-   "state": "OPEN",
+   "state": "MERGED",
    "draft": false,
-   "merged": "",
+   "merged": "2026-11-27",
    "fixes": [
     "huggingface/huggingface_hub#5446"
    ]
@@ -549,6 +581,18 @@
    "merged": "2026-11-12",
    "fixes": [
     "joblib/joblib#1944"
+   ]
+  },
+  {
+   "key": "msgspec/msgspec#1377",
+   "url": "https://github.com/msgspec/msgspec/pull/1377",
+   "title": "Fix reference leak in `is_namedtuple_class` when `_fields` is not a tuple",
+   "created": "2026-11-27",
+   "state": "OPEN",
+   "draft": false,
+   "merged": "",
+   "fixes": [
+    "msgspec/msgspec#1376"
    ]
   },
   {
@@ -724,6 +768,14 @@
    "reason": null
   },
   {
+   "key": "confident-ai/deepeval#3817",
+   "url": "https://github.com/confident-ai/deepeval/issues/3817",
+   "title": "Classifier multi_label: label whose review failed is ranked ahead of reviewed labels",
+   "created": "2026-11-27",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
    "key": "deepset-ai/haystack#13535",
    "url": "https://github.com/deepset-ai/haystack/issues/13535",
    "title": "`ImageContent`, `FileContent` and `TextContent` `from_dict` return the base class when called on a subclass",
@@ -776,6 +828,14 @@
    "url": "https://github.com/docling-project/docling/issues/5342",
    "title": "PaddleOCR-VL: parse_paddleocr_vl_result raises on a table over 1000 grid cells, losing the page",
    "created": "2026-11-13",
+   "state": "OPEN",
+   "reason": null
+  },
+  {
+   "key": "docling-project/docling-core#1091",
+   "url": "https://github.com/docling-project/docling-core/issues/1091",
+   "title": "DocLang deserializer drops an empty `<heading>` that the serializer emits",
+   "created": "2026-11-27",
    "state": "OPEN",
    "reason": null
   },
@@ -856,8 +916,8 @@
    "url": "https://github.com/huggingface/huggingface_hub/issues/5446",
    "title": "[CLI] `hf jobs uv run \"<long command>\"` crashes with OSError (File name too long) on Python < 3.14",
    "created": "2026-11-26",
-   "state": "OPEN",
-   "reason": null
+   "state": "CLOSED",
+   "reason": "COMPLETED"
   },
   {
    "key": "huggingface/sentence-transformers#4388",
@@ -906,6 +966,14 @@
    "created": "2026-11-10",
    "state": "CLOSED",
    "reason": "COMPLETED"
+  },
+  {
+   "key": "msgspec/msgspec#1376",
+   "url": "https://github.com/msgspec/msgspec/issues/1376",
+   "title": "Reference leak in `is_namedtuple_class` when `_fields` is not exactly a tuple",
+   "created": "2026-11-27",
+   "state": "OPEN",
+   "reason": null
   },
   {
    "key": "pylint-dev/pylint#11878",
